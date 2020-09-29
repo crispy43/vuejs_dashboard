@@ -10,7 +10,7 @@
 import TempComponent from '../components/TempComponent';
 
 export default {
-   name: 'App',
+   name: 'TempView',
    components: {
       TempComponent
    },

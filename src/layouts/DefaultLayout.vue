@@ -2,7 +2,6 @@
 <div :style="cssRootVar" class="root-layout">
    <Header
       :headerLogo="headerLogo"
-      :headerMenus="headerMenus"
       :headerUser="headerUser"
    />
    <SideNav />
@@ -13,10 +12,11 @@
 
 
 <script>
+import { reactive, onBeforeMount } from 'vue';
+import { useStore } from 'vuex';
 import Header from './Header';
 import SideNav from './SideNav';
 import Main from './Main';
-import { reactive } from 'vue';
 
 export default {
    name: 'DefaultLayout',
@@ -26,6 +26,11 @@ export default {
       Main
    },
    setup() {
+      const store = useStore();
+      onBeforeMount(() => {
+         store._actions['menuTree/fetch'][0]();
+      });
+
       // css 변수
       const cssRootVar = reactive({
          '--header-height': '70px',
@@ -45,9 +50,6 @@ export default {
          alt: 'bizportal_logo'
       });
 
-      // 해더 메뉴
-      const headerMenus = require('../assets/menus.json');
-
       // 해더 유저
       const headerUser = reactive({
          signOutImg: {
@@ -56,10 +58,10 @@ export default {
          },
          userId: 'test',
          userName: '테스트'
-      })
+      });
 
       return {
-         cssRootVar, headerLogo, headerMenus, headerUser
+         cssRootVar, headerLogo, headerUser
       };
    }
 }

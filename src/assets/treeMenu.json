@@ -1,0 +1,203 @@
+{
+   "version": "0.1.0",
+   "tree": [
+      {
+         "name": "종목",
+         "key": "assets",
+         "path": "/assets",
+         "child": [
+            {
+               "name": "본사 종목",
+               "key": "internal",
+               "path": "/internal",
+               "child": [
+                  {
+                     "name": "아스타",
+                     "key": "asta",
+                     "path": "/asta"
+                  },
+                  {
+                     "name": "용형토큰",
+                     "key": "bmp",
+                     "path": "/bmp"
+                  }
+               ]
+            },
+            {
+               "name": "외부 종목",
+               "key": "external",
+               "path": "/external",
+               "child": [
+                  {
+                     "name": "아스타",
+                     "key": "asta",
+                     "path": "/asta"
+                  },
+                  {
+                     "name": "용형토큰",
+                     "key": "bmp",
+                     "path": "/bmp"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "매출",
+         "key": "revenues",
+         "path": "/revenues",
+         "child": [
+            {
+               "name": "매출관리",
+               "key": "office",
+               "path": "/office",
+               "child": [
+                  {
+                     "name": "매출/입금대사",
+                     "key": "sheet",
+                     "path": "/sheet"
+                  },
+                  {
+                     "name": "계약목록",
+                     "key": "contracts",
+                     "path": "/contracts"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "수수료",
+         "key": "fees",
+         "path": "/fees",
+         "child": [
+            {
+               "name": "depth2",
+               "key": "depth2",
+               "path": "/depth2",
+               "child": [
+                  {
+                     "name": "depth3",
+                     "key": "depth3",
+                     "path": "/depth3"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "보고서",
+         "key": "reports",
+         "path": "/reports",
+         "child": [
+            {
+               "name": "depth2",
+               "key": "depth2",
+               "path": "/depth2",
+               "child": [
+                  {
+                     "name": "depth3",
+                     "key": "depth3",
+                     "path": "/depth3"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "인사",
+         "key": "personals",
+         "path": "/personals",
+         "child": [
+            {
+               "name": "depth2",
+               "key": "depth2",
+               "path": "/depth2",
+               "child": [
+                  {
+                     "name": "depth3",
+                     "key": "depth3",
+                     "path": "/depth3"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "영업",
+         "key": "sales",
+         "path": "/sales",
+         "child": [
+            {
+               "name": "depth2",
+               "key": "depth2",
+               "path": "/depth2",
+               "child": [
+                  {
+                     "name": "depth3",
+                     "key": "depth3",
+                     "path": "/depth3"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "교육",
+         "key": "educations",
+         "path": "/educations",
+         "child": [
+            {
+               "name": "depth2",
+               "key": "depth2",
+               "path": "/depth2",
+               "child": [
+                  {
+                     "name": "depth3",
+                     "key": "depth3",
+                     "path": "/depth3"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "게시판",
+         "key": "boards",
+         "path": "/boards",
+         "child": [
+            {
+               "name": "depth2",
+               "key": "depth2",
+               "path": "/depth2",
+               "child": [
+                  {
+                     "name": "depth3",
+                     "key": "depth3",
+                     "path": "/depth3"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "name": "시스템",
+         "key": "systems",
+         "path": "/systems",
+         "child": [
+            {
+               "name": "depth2",
+               "key": "depth2",
+               "path": "/depth2",
+               "child": [
+                  {
+                     "name": "depth3",
+                     "key": "depth3",
+                     "path": "/depth3"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

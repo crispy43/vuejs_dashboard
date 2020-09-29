@@ -1,5 +1,8 @@
 <template>
-   <div class="header-nav-ele">
+   <div
+      class="header-nav-ele"
+      @click="routePush"
+   >
       <slot />
    </div>
 </template>
@@ -7,8 +10,25 @@
 
 
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
-   name: 'HeaderNavEle'
+   name: 'HeaderNavEle',
+   props: {
+      item: Object,
+      index: Number
+   },
+   setup(props) {
+      const router = useRouter();
+
+      const routePush = () => {
+         router.push({ path: props.item.path });
+      }
+
+      return {
+         routePush
+      };
+   }
 }
 </script>
 

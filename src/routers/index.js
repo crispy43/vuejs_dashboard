@@ -4,7 +4,12 @@ const routes = [
    {
       path: '/',
       name: 'Home',
-      component: () => import(/* webpackChunkName: "about" */ '../views/TempView.vue')
+      component: () => import(/* webpackChunkName: "about" */ '../views/Welcome.vue')
+   },
+   {
+      path: '/:pathMatch(.*)*',
+      name: 'Not Found',
+      component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue')
    }
 ];
 

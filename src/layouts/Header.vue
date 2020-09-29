@@ -6,15 +6,16 @@
       <img
          :src="headerLogo.src"
          :alt="headerLogo.alt"
+         @click="goHome"
       >
    </div>
    <div class="header-nav">
       <HeaderNavEle
-         v-for="(item, index) in headerMenus.menus"
+         v-for="(item, index) in menuTree"
          :item="item"
          :index="index"
-         :key="index"
-      >{{ item }}</HeaderNavEle>
+         :key="item.key"
+      >{{ item.name }}</HeaderNavEle>
    </div>
    <div class="header-user">
       <img
@@ -29,6 +30,9 @@
 
 
 <script>
+import { toRefs } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import HeaderNavEle from '../components/navigations/HeaderNavEle';
 
 export default {
@@ -41,7 +45,6 @@ export default {
          src: Object,
          alt: String
       },
-      headerMenus: Object,
       headerUser: {
          signOutImg: {
             src: Object,
@@ -51,11 +54,21 @@ export default {
          userName: String
       }
    },
-   setup(props) {
-      console.log(props.headerMenus);
+   setup() {
+      const router = useRouter();
+      const store = useStore();
+      const { menuTree } = toRefs(store.state.menuTree);
+
+      const goHome = () => {
+         router.push({ path: '/' });
+      }
+
+      const fetch = () => {
+         store._actions['menuTree/fetch'][0]();
+      }
 
       return {
-
+         goHome, menuTree, fetch
       };
    }
 }
