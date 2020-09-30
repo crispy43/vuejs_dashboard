@@ -1,8 +1,6 @@
 <template>
 <div :style="cssRootVar" class="root-layout">
-   <Header
-      :headerLogo="headerLogo"
-   />
+   <Header :headerLogo="headerLogo" />
    <SideNav />
    <Main />
 </div>

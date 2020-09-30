@@ -6,7 +6,8 @@ export default {
    state: () => ({
       tree: [],
       selected: -1,
-      currentPath: []
+      currentPath: [],
+      currentPathIndex: []
    }),
 
 
@@ -27,11 +28,13 @@ export default {
          state.selected = -1;
       },
       setCurrentPath(state, payload) {
-         state.currentPath = payload;
+         state.currentPath = payload.currentPath;
+         state.currentPathIndex = payload.currentPathIndex;
       },
       clearCurrentPath(state) {
          state.currentPath = [];
-      },
+         state.currentPathIndex = [];
+      }
    },
 
 

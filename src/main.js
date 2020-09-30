@@ -2,17 +2,24 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './routers';
 import store from './stores';
-import { mapMutation } from './common/utils';
+import { removeSlash, mapMutation } from './common/utils';
 
 // 진입 path 와 상단 메뉴 selection 설정
 router.beforeEach((to)=> {
    const { tree } = store.state.treeMenu;
-   const pathMatch = to.params.pathMatch;
+   const pathSplit = to.fullPath.split('/');
+   if (!pathSplit[0]) pathSplit.shift();
 
-   if (Array.isArray(pathMatch)) {
-      const selected = tree.findIndex((el) => el.path.replace(/\//gi, "") === pathMatch[0]);
-      mapMutation(store, 'setCurrentPath', 'treeMenu')(pathMatch);
-      mapMutation(store, 'setSelected', 'treeMenu')(selected);
+   if (pathSplit[0]) {
+      const currentPathIndex = [];
+      pathSplit.reduce((acc, path) => {
+         const i = acc.findIndex((el) => removeSlash(el.path) === path);
+         currentPathIndex.push(i);
+         return acc[i].child;
+      }, tree);
+
+      mapMutation(store, 'setCurrentPath', 'treeMenu')({ currentPath: pathSplit, currentPathIndex });
+      mapMutation(store, 'setSelected', 'treeMenu')(currentPathIndex[0]);
 
    } else {
       mapMutation(store, 'clearCurrentPath', 'treeMenu')();

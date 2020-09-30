@@ -10,6 +10,16 @@ const routes = [
       path: '/:pathMatch(.*)*',
       name: 'Not Found',
       component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue')
+   },
+   {
+      path: '/assets/internal/:pathMatch(.*)*',
+      name: 'Internal Assets',
+      component: () => import(/* webpackChunkName: "about" */ '../views/TempView.vue')
+   },
+   {
+      path: '/assets/external/:pathMatch(.*)*',
+      name: 'External Assets',
+      component: () => import(/* webpackChunkName: "about" */ '../views/TempView.vue')
    }
 ];
 

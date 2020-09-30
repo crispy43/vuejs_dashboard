@@ -57,12 +57,8 @@ export default {
          router.push({ path: '/' });
       }
 
-      const fetch = () => {
-         store._actions['treeMenu/fetch'][0]();
-      }
-
       return {
-         goHome, tree, fetch
+         goHome, tree
       };
    }
 }

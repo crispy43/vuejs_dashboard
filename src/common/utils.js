@@ -43,3 +43,15 @@ export const mapGetter = (store, method, module) => {
       store.getters[`${method}`] :
       store.getters[`${module}/${method}`];
 };
+
+
+
+/**
+ * @function removeSlash
+ * @description remove slash
+ * @param {Object} store vuex instance
+ * @return {Any} result
+ */
+export const removeSlash = (string) => {
+   return string.replace(/\//gi, '');
+};

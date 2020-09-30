@@ -38,8 +38,6 @@ export default {
       const pathDepth03 = tree.value[selected.value].child[props.pIndex].child[props.index].path;
       const path = pathDepth01 + pathDepth02 + pathDepth03;
 
-      console.log(currentPath.value);
-
       const isActive = computed(() => '/' + currentPath.value.join('/') === path);
 
       const routerPush = () => {
