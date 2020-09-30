@@ -15,11 +15,6 @@
                      "name": "아스타",
                      "key": "asta",
                      "path": "/asta"
-                  },
-                  {
-                     "name": "용형토큰",
-                     "key": "bmp",
-                     "path": "/bmp"
                   }
                ]
             },
@@ -29,14 +24,14 @@
                "path": "/external",
                "child": [
                   {
-                     "name": "아스타",
-                     "key": "asta",
-                     "path": "/asta"
-                  },
-                  {
-                     "name": "용형토큰",
+                     "name": "뮤직브로",
                      "key": "bmp",
                      "path": "/bmp"
+                  },
+                  {
+                     "name": "EXE",
+                     "key": "exe",
+                     "path": "/exe"
                   }
                ]
             }

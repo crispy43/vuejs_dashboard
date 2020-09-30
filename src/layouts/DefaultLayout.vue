@@ -28,7 +28,7 @@ export default {
    setup() {
       const store = useStore();
       onBeforeMount(() => {
-         store._actions['menuTree/fetch'][0]();
+         store._actions['treeMenu/fetch'][0]();
       });
 
       // css 변수
@@ -69,7 +69,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 .root-layout {
    flex: 1 1 auto;
    display: flex;

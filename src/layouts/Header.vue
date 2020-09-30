@@ -10,12 +10,12 @@
       >
    </div>
    <div class="header-nav">
-      <HeaderNavEle
-         v-for="(item, index) in menuTree"
-         :item="item"
-         :index="index"
+      <HeaderNav
+         v-for="(item, index) in tree"
          :key="item.key"
-      >{{ item.name }}</HeaderNavEle>
+         :index="index"
+         :menu="item.name"
+      />
    </div>
    <div class="header-user">
       <img
@@ -33,12 +33,12 @@
 import { toRefs } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import HeaderNavEle from '../components/navigations/HeaderNavEle';
+import HeaderNav from '../components/navigations/HeaderNav';
 
 export default {
    name: 'Header',
    components: {
-      HeaderNavEle
+      HeaderNav
    },
    props: {
       headerLogo: {
@@ -57,18 +57,18 @@ export default {
    setup() {
       const router = useRouter();
       const store = useStore();
-      const { menuTree } = toRefs(store.state.menuTree);
+      const { tree } = toRefs(store.state.treeMenu);
 
       const goHome = () => {
          router.push({ path: '/' });
       }
 
       const fetch = () => {
-         store._actions['menuTree/fetch'][0]();
+         store._actions['treeMenu/fetch'][0]();
       }
 
       return {
-         goHome, menuTree, fetch
+         goHome, tree, fetch
       };
    }
 }

@@ -14,7 +14,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 .not-found {
    display: block;
    padding: 30px;

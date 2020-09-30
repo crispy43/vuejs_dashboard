@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import menuTree from './modules/treeMenu';
+import treeMenu from './modules/treeMenu';
 
 export default createStore({
    state: () => ({
@@ -12,6 +12,6 @@ export default createStore({
 
    
    modules: {
-      menuTree
+      treeMenu
    }
 });

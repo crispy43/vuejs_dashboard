@@ -17,7 +17,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 .temp-component {
    display: block;
 }

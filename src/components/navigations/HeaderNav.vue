@@ -1,32 +1,32 @@
 <template>
    <div
       class="header-nav-ele"
-      @click="routePush"
+      @click="selectMenu"
    >
-      <slot />
+      {{ menu }}
    </div>
 </template>
 
 
 
 <script>
-import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 export default {
    name: 'HeaderNavEle',
    props: {
-      item: Object,
-      index: Number
+      index: Number,
+      menu: String
    },
    setup(props) {
-      const router = useRouter();
+      const store = useStore();
 
-      const routePush = () => {
-         router.push({ path: props.item.path });
+      const selectMenu = () => {
+         store._mutations['treeMenu/setSelected'][0](props.index);
       }
 
       return {
-         routePush
+         selectMenu
       };
    }
 }

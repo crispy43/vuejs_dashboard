@@ -17,7 +17,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 .main {
    flex: 1 1 auto;
    padding-top: var(--header-height);

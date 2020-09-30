@@ -24,7 +24,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 .temp-view {
    display: block;
 }

@@ -14,7 +14,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 .welcome {
    display: block;
    padding: 30px;

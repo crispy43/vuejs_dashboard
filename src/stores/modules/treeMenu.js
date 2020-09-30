@@ -4,17 +4,26 @@ export default {
 
 
    state: () => ({
-      menuTree: {}
+      tree: [],
+      selected: -1
    }),
 
 
 
    mutations: {
-      setMenuTree(state, payload) {
-         state.menuTree = JSON.parse(JSON.stringify(payload));
+      setTree(state, payload) {
+         state.tree = payload;
+         state.selected = -1;
       },
-      clearMenuTree(state) {
-         state.menuTree = {};
+      clearTree(state) {
+         state.tree = [];
+         state.selected = -1;
+      },
+      setSelected(state, payload) {
+         state.selected = payload;
+      },
+      clearSelected(state) {
+         state.selected = -1;
       }
    },
 
@@ -29,7 +38,7 @@ export default {
        * @return {Boolean} is resolved
        */
       async fetch({ commit }) {
-         commit('setMenuTree', require('../../assets/treeMenu.json').tree);
+         commit('setTree', require('../../assets/treeMenu.json').tree);
          return true;
       }
    },
