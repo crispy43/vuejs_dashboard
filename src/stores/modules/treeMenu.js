@@ -5,7 +5,8 @@ export default {
 
    state: () => ({
       tree: [],
-      selected: -1
+      selected: -1,
+      currentPath: []
    }),
 
 
@@ -24,7 +25,13 @@ export default {
       },
       clearSelected(state) {
          state.selected = -1;
-      }
+      },
+      setCurrentPath(state, payload) {
+         state.currentPath = payload;
+      },
+      clearCurrentPath(state) {
+         state.currentPath = [];
+      },
    },
 
 
@@ -33,9 +40,9 @@ export default {
 
       /**
        * @function fetch
-       * @description 메뉴 트리 적용
+       * @description 트리메뉴 fetch
        * @param {Object} context vuex instance
-       * @param {Object=} payload payload
+       * @param {Object=} params arguments
        * @return {Boolean} is resolved
        */
       async fetch({ commit }) {
@@ -47,5 +54,8 @@ export default {
 
 
    getters: {
+      currentFullPath(state) {
+         return '/' + state.currentPath.join('/');
+      }
    }
 };

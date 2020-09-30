@@ -18,11 +18,7 @@
       />
    </div>
    <div class="header-user">
-      <img
-         :src="headerUser.signOutImg.src"
-         :alt="headerUser.signOutImg.alt"
-         class="user-sign-out"
-      >
+      <FontAwesomeIcon icon="sign-out-alt" />
    </div>
 </div>
 </template>
@@ -30,34 +26,32 @@
 
 
 <script>
-import { toRefs } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import HeaderNav from '../components/navigations/HeaderNav';
 
+// fortawesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(faSignOutAlt);
+
 export default {
    name: 'Header',
    components: {
-      HeaderNav
+      HeaderNav,
+      FontAwesomeIcon
    },
    props: {
       headerLogo: {
          src: Object,
          alt: String
-      },
-      headerUser: {
-         signOutImg: {
-            src: Object,
-            alt: String
-         },
-         userId: String,
-         userName: String
       }
    },
    setup() {
       const router = useRouter();
       const store = useStore();
-      const { tree } = toRefs(store.state.treeMenu);
+      const { tree } = store.state.treeMenu;
 
       const goHome = () => {
          router.push({ path: '/' });
@@ -109,6 +103,11 @@ export default {
    align-items: center;
    align-content: center;
    justify-content: center;
+}
+.header-user > svg {
+   font-size: 20px;
+   color: var(--header-nav-color);
+   cursor: pointer;
 }
 .user-sign-out {
    cursor: pointer;

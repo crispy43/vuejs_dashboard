@@ -2,7 +2,6 @@
 <div :style="cssRootVar" class="root-layout">
    <Header
       :headerLogo="headerLogo"
-      :headerUser="headerUser"
    />
    <SideNav />
    <Main />
@@ -27,20 +26,15 @@ export default {
       Main
    },
    setup() {
-      const store = useStore();
-      const fetchTreeMenu = mapAction(store, 'fetch', 'treeMenu');
-
-      onBeforeMount(() => {
-         fetchTreeMenu();
-      });
-
       // css 변수
       const cssRootVar = reactive({
          '--header-height': '70px',
-         '--header-background-color': 'darkslategray',
+         '--header-background-color': 'rgb(70, 70, 70)',
          '--header-background-color-hover': 'black',
          '--header-nav-color': 'white',
          '--side-nav-width': '200px',
+         '--side-nav-background-color': 'rgb(233, 233, 233)',
+         '--side-nav-items-active-background-color': 'rgb(190, 190, 190)',
          '--header-logo-width': '200px',
          '--header-logo-height': 'auto',
          '--header-user-signout-width': 'auto',
@@ -53,18 +47,14 @@ export default {
          alt: 'bizportal_logo'
       });
 
-      // 해더 유저
-      const headerUser = reactive({
-         signOutImg: {
-            src: require('../assets/tmp_logout.png'),
-            alt: 'logout'
-         },
-         userId: 'test',
-         userName: '테스트'
+      // mount전 트리메뉴 fetch
+      const store = useStore();
+      onBeforeMount(async () => {
+         await mapAction(store, 'fetch', 'treeMenu')();
       });
 
       return {
-         cssRootVar, headerLogo, headerUser
+         cssRootVar, headerLogo
       };
    }
 }

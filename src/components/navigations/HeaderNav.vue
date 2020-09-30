@@ -1,6 +1,6 @@
 <template>
    <div
-      class="header-nav-ele"
+      :class="['header-nav', { 'header-nav-active': isActive }]"
       @click="selectMenu"
    >
       {{ menu }}
@@ -10,26 +10,28 @@
 
 
 <script>
+import { toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
 import { mapMutation } from '../../common/utils';
 
 export default {
-   name: 'HeaderNavEle',
+   name: 'HeaderNav',
    props: {
       index: Number,
       menu: String
    },
    setup(props) {
       const store = useStore();
-      const setSelected = mapMutation(store, 'setSelected', 'treeMenu');
 
       const selectMenu = () => {
-         // store._mutations['treeMenu/setSelected'][0](props.index);
-         setSelected(props.index);
+         mapMutation(store, 'setSelected', 'treeMenu')(props.index);
       }
 
+      const { selected } = toRefs(store.state.treeMenu);
+      const isActive = computed(() => selected.value === props.index);
+
       return {
-         selectMenu
+         selectMenu, isActive
       };
    }
 }
@@ -38,19 +40,26 @@ export default {
 
 
 <style scoped>
-.header-nav-ele {
+.header-nav {
    flex: 1 1 auto;
    display: flex;
    height: var(--header-height);
    align-content: center;
    align-items: center;
    justify-content: center;
-   color: white;
+   color: var(--header-nav-color);
+   font-size: 17px;
+   font-weight: bold;
+   cursor: pointer;
 }
-.header-nav-ele:hover {
+.header-nav:hover {
    background-color: var(--header-background-color-hover);
    border-top: 5px solid var(--header-background-color);
    border-bottom: 5px solid var(--header-background-color);
-   cursor: pointer;
+}
+.header-nav-active {
+   background-color: var(--header-background-color-hover);
+   border-top: 5px solid var(--header-background-color);
+   border-bottom: 5px solid var(--header-background-color);
 }
 </style>

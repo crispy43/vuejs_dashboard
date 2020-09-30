@@ -4,6 +4,8 @@
       class="side-nav-container-name" 
       @click="drop"
    >
+      <FontAwesomeIcon icon="folder-open" v-show="isShowItems" />
+      <FontAwesomeIcon icon="folder" v-show="!isShowItems" />
       <h3>{{ subTree.name }}</h3>
    </div>
    <div v-show="isShowItems">
@@ -24,10 +26,17 @@
 import { ref } from 'vue';
 import SideNavItem from './SideNavItem';
 
+// fortawesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFolder, faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(faFolder, faFolderOpen);
+
 export default {
    name: 'SideNavContainer',
    components: {
-      SideNavItem
+      SideNavItem,
+      FontAwesomeIcon
    },
    props: {
       index: Number,
@@ -52,8 +61,22 @@ export default {
 <style scoped>
 .side-nav-container {
    display: block;
+   width: var(--side-nav-width);
 }
 .side-nav-container-name {
+   display: flex;
+   align-content: center;
+   align-items: center;
+   width: var(--side-nav-width);
+   height: 40px;
    cursor: pointer;
+}
+.side-nav-container-name > svg {
+   flex: 0 1 50px;
+   font-size: 13px;
+}
+.side-nav-container-name > h3 {
+   flex: 1 1 auto;
+   font-size: 15px;
 }
 </style>

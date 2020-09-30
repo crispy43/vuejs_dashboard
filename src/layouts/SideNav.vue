@@ -41,6 +41,6 @@ export default {
 .side-nav {
    flex: 0 1 var(--side-nav-width);
    padding-top: var(--header-height);
-   background-color: aliceblue;
+   background-color: var(--side-nav-background-color);
 }
 </style>
