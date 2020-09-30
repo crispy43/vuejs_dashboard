@@ -14,6 +14,7 @@
 <script>
 import { reactive, onBeforeMount } from 'vue';
 import { useStore } from 'vuex';
+import { mapAction } from '../common/utils';
 import Header from './Header';
 import SideNav from './SideNav';
 import Main from './Main';
@@ -27,8 +28,10 @@ export default {
    },
    setup() {
       const store = useStore();
+      const fetchTreeMenu = mapAction(store, 'fetch', 'treeMenu');
+
       onBeforeMount(() => {
-         store._actions['treeMenu/fetch'][0]();
+         fetchTreeMenu();
       });
 
       // css 변수

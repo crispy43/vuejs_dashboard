@@ -11,6 +11,7 @@
 
 <script>
 import { useStore } from 'vuex';
+import { mapMutation } from '../../common/utils';
 
 export default {
    name: 'HeaderNavEle',
@@ -20,9 +21,11 @@ export default {
    },
    setup(props) {
       const store = useStore();
+      const setSelected = mapMutation(store, 'setSelected', 'treeMenu');
 
       const selectMenu = () => {
-         store._mutations['treeMenu/setSelected'][0](props.index);
+         // store._mutations['treeMenu/setSelected'][0](props.index);
+         setSelected(props.index);
       }
 
       return {

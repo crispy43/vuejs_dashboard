@@ -33,6 +33,7 @@ export default {
 
       /**
        * @function fetch
+       * @description 메뉴 트리 적용
        * @param {Object} context vuex instance
        * @param {Object=} payload payload
        * @return {Boolean} is resolved
