@@ -2,23 +2,24 @@
 <div class="search-box-a">
    <div class="search-box-a-form">
       <div class="search-box-a-date">
-         <label :for="dateId">계약일</label>
+         <label :for="date.id">{{ date.label }}</label>
          <input
             type="date"
-            :name="dateId"
-            :id="dateId"
+            :name="date.id"
+            :id="date.id"
          >
       </div>
       <div class="search-box-a-text">
-         <label :for="textId">계약자명</label>
+         <label :for="text.id">{{ text.label }}</label>
          <input
             type="text"
-            :name="textId"
-            :id="textId"
+            :name="text.id"
+            :id="text.id"
+            :placeholder="text.placeholder" 
          >
       </div>
    </div>
-   <ButtonA>검색</ButtonA>
+   <ButtonA>{{ submitText }}</ButtonA>
 </div>
 </template>
 
@@ -33,13 +34,32 @@ export default {
       ButtonA
    },
    props: {
-      dateId: {
-         type: String,
-         required: true
+      date: {
+         id: {
+            type: String,
+            required: true
+         },
+         label: {
+            type: String,
+            required: true
+         }
       },
-      textId: {
+      text: {
+         id: {
+            type: String,
+            required: true
+         },
+         label: {
+            type: String,
+            required: true
+         },
+         placeholder: {
+            type: String
+         }
+      },
+      submitText: {
          type: String,
-         required: true
+         default: '검색'
       }
    }
 }

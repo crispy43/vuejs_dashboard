@@ -1,15 +1,17 @@
 <template>
 <div class="revenue-sheet">
    <div class="revenue-sheet-left">
+      <TitleA>매출</TitleA>
       <SearchBoxA
-         :dateId="dateId"
-         :textId="textId"
+         :date="contract.date"
+         :text="contract.text"
       />
    </div>
    <div class="revenue-sheet-right">
+      <TitleA>입금</TitleA>
       <SearchBoxA
-         :dateId="dateId"
-         :textId="textId"
+         :date="deposit.date"
+         :text="deposit.text"
       />
    </div>
 </div>
@@ -18,18 +20,40 @@
 
 
 <script>
+import TitleA from '../components/titles/TitleA';
 import SearchBoxA from '../components/forms/SearchBoxA';
 
 export default {
    name: 'RevenueSheet',
    components: {
+      TitleA,
       SearchBoxA
    },
    setup() {
 
       return {
-         dateId: 'revenue_contract_date',
-         textId: 'revenue_contract_text'
+         contract: {
+            date: {
+               id: 'contract-date',
+               label: '계약일'
+            },
+            text: {
+               id: 'contract-text',
+               label: '계약자명',
+               placeholder: '이름을 입력하세요...'
+            }
+         },
+         deposit: {
+            date: {
+               id: 'deposit-date',
+               label: '입금일'
+            },
+            text: {
+               id: 'deposit-text',
+               label: '입금자명',
+               placeholder: '이름을 입력하세요...'
+            }
+         }
       };
    }
 }
@@ -41,7 +65,8 @@ export default {
 .revenue-sheet {
    display: flex;
    width: 100%;
-   padding: 20px var(--main-padding-left-right) 0;
+   padding: 0 var(--main-padding-left-right);
+   margin: 10px 0;
 }
 .revenue-sheet > div {
    flex: 1 1 50%;
