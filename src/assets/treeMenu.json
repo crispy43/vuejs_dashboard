@@ -8,6 +8,7 @@
             {
                "name": "본사 종목",
                "key": "internal",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "아스타",
@@ -19,6 +20,7 @@
             {
                "name": "외부 종목",
                "key": "external",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "뮤직브로",
@@ -28,6 +30,11 @@
                   {
                      "name": "EXE",
                      "key": "exe",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "기타",
+                     "key": "etc",
                      "component": "TempView"
                   }
                ]
@@ -41,6 +48,7 @@
             {
                "name": "매출관리",
                "key": "office",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "매출/입금대사",
@@ -63,6 +71,7 @@
             {
                "name": "depth2",
                "key": "depth2",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "depth3",
@@ -80,6 +89,7 @@
             {
                "name": "depth2",
                "key": "depth2",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "depth3",
@@ -97,6 +107,7 @@
             {
                "name": "depth2",
                "key": "depth2",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "depth3",
@@ -114,6 +125,7 @@
             {
                "name": "depth2",
                "key": "depth2",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "depth3",
@@ -131,6 +143,7 @@
             {
                "name": "depth2",
                "key": "depth2",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "depth3",
@@ -148,6 +161,7 @@
             {
                "name": "depth2",
                "key": "depth2",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "depth3",
@@ -165,6 +179,7 @@
             {
                "name": "depth2",
                "key": "depth2",
+               "component": "MainHeader",
                "child": [
                   {
                      "name": "depth3",

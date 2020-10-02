@@ -31,18 +31,18 @@ export default {
    setup(props) {
       const router = useRouter();
       const store = useStore();
-      const { tree, selected, currentPath } = toRefs(store.state.treeMenu);
+      const { tree, selected, currentKeys } = toRefs(store.state.treeMenu);
 
-      const pathDepth01 = '/' + tree.value[selected.value].key;
-      const pathDepth02 = '/' + tree.value[selected.value].child[props.pIndex].key;
-      const pathDepth03 = '/' + tree.value[selected.value].child[props.pIndex].child[props.index].key;
-      const path = pathDepth01 + pathDepth02 + pathDepth03;
+      const keyDepth01 = tree.value[selected.value].key;
+      const keyDepth02 = tree.value[selected.value].child[props.pIndex].key;
+      const keyDepth03 = tree.value[selected.value].child[props.pIndex].child[props.index].key;
+      const name = `${keyDepth01}-${keyDepth02}-${keyDepth03}`;
 
       const routerPush = () => {
-         router.push({ path });
+         router.push({ name, params: { key: keyDepth03 } });
       }
 
-      const isActive = computed(() => currentPath.value === path);
+      const isActive = computed(() => currentKeys.value.join('-') === name);
 
       return {
          routerPush,

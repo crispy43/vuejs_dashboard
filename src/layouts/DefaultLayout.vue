@@ -9,9 +9,7 @@
 
 
 <script>
-import { reactive, onBeforeMount } from 'vue';
-import { useStore } from 'vuex';
-import { mapAction } from '../common/utils';
+import { reactive } from 'vue';
 import Header from './Header';
 import SideNav from './SideNav';
 import Main from './Main';
@@ -43,12 +41,6 @@ export default {
       const headerLogo = reactive({
          src: require('../assets/tmp_logo.png'),
          alt: 'bizportal_logo'
-      });
-
-      // mount전 트리메뉴 fetch
-      const store = useStore();
-      onBeforeMount(async () => {
-         await mapAction(store, 'fetch', 'treeMenu')();
       });
 
       return {

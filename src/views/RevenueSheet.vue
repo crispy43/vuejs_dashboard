@@ -8,7 +8,7 @@
 
 
 <script>
-import MainHeader from '../components/MainHeader';
+import MainHeader from '../views/MainHeader';
 import TempComponent from '../components/TempComponent';
 
 export default {

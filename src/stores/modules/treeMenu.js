@@ -28,16 +28,21 @@ export default {
       setTree(state, payload) {
          state.tree = payload;
 
-         // tree parser
+         /* tree parser */
+
          // depth 1
          for (let a = 0; a < payload.length; a++) {
+
             // pathMap
-            if (payload[a].component)
+            if (payload[a].header)
                state.pathMap.set(`/${payload[a].key}`, {
                   indexes: [a],
                   keys: [payload[a].key],
+                  lastKey: payload[a].key,
+                  name: payload[a].key,
                   component: payload[a].component
                });
+
             // keyMap
             state.keyMap.set(payload[a].key, [payload[a].name, null, null]);
 
@@ -46,13 +51,19 @@ export default {
 
                // depth 2
                for (let b = 0; b < aChild.length; b++) {
+
                   // pathMap
-                  if (aChild[b].component)
+                  if (aChild[b].component) 
                      state.pathMap.set(`/${payload[a].key}/${aChild[b].key}`, {
                         indexes: [a, b],
                         keys: [payload[a].key, aChild[b].key],
+                        lastKey: aChild[b].key,
+                        name: `${payload[a].key}-${aChild[b].key}`,
+                        parentsName: (payload[a].component) ? payload[a].key : undefined,
+                        childPath: (payload[a].component) ? aChild[b].key : undefined,
                         component: aChild[b].component
                      });
+                     
                   // keyMap
                   let bName; 
                   if (state.keyMap.has(aChild[b].key)) {
@@ -67,13 +78,19 @@ export default {
 
                      // depth 3
                      for (let c = 0; c < bChild.length; c++) {
+
                         // pathMap
                         if (bChild[c].component)
                            state.pathMap.set(`/${payload[a].key}/${aChild[b].key}/${bChild[c].key}`, {
                               indexes: [a, b, c],
                               keys: [payload[a].key, aChild[b].key, bChild[c].key],
+                              lastKey: bChild[c].key,
+                              name: `${payload[a].key}-${aChild[b].key}-${bChild[c].key}`,
+                              parentsName: (aChild[b].component) ? `${payload[a].key}-${aChild[b].key}` : undefined,
+                              childPath: (aChild[b].component) ? bChild[c].key : undefined,
                               component: bChild[c].component
                            });
+
                         // keyMap
                         let cName; 
                         if (state.keyMap.has(bChild[c].key)) {
