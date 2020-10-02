@@ -84,10 +84,10 @@ export default {
    height: 500px;
 }
 .revenue-sheet-left {
-   flex: 1 1 52.5%;
+   flex: 1 1 55%;
 }
 .revenue-sheet-right {
-   flex: 1 1 47.5%;
+   flex: 1 1 45%;
 }
 .revenue-sheet-left {
    margin-right: 10px;

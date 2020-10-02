@@ -6,7 +6,9 @@
          :key="index"
          :index="index"
          :item="item"
-      >{{ item }}</th>
+      >
+         <p>{{ item }}</p>
+      </th>
    </tr>
    <tr
       v-for="(item, index) in standardCells"
@@ -120,8 +122,8 @@ export default {
    margin: 20px 0;
 }
 .table-a th, td {
+   height: 27px;
    border: solid 1px rgb(160, 160, 160);
-   text-align: center;
    font-size: 12px;
    padding: 5px;
 }
@@ -129,8 +131,22 @@ export default {
    background-color: rgb(100, 100, 100);
    color: white;
 }
-.table-a td {
-   
+.table-a th > p {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 26px;
+}
+.table-a td > input, td > p {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 26px;
+   margin: auto;
+}
+.table-a td > input[type=text] {
+   width: 100%;
+   margin: auto;
 }
 .table-a tr:nth-child(2n) {
    background-color: white;
