@@ -22,7 +22,9 @@ import { mapMutation, mapAction } from './common/utils';
    // router nav guard
    // 라우터 진입 후 selection 및 current location 적용
    router.afterEach((to)=> {
+      console.log('--- router to ---');
       console.log(to);
+
       let fullPath = to.fullPath.split('/');
       for (let i in fullPath) {
          if (!fullPath[i]) fullPath.shift();
@@ -33,6 +35,11 @@ import { mapMutation, mapAction } from './common/utils';
       try {
          mapMutation(store, 'setCurrentLocation', 'treeMenu')(fullPath);
          mapMutation(store, 'setSelected', 'treeMenu')(store.state.treeMenu.currentIndexes[0]);
+         if (!to.params.key) {
+            to.params.key = store.state.treeMenu.currentKeys[store.state.treeMenu.currentKeys.length - 1];
+         }
+         console.log('--- router to params ---');
+         console.log(to.params);
 
       } catch (error) {
          console.error(error);

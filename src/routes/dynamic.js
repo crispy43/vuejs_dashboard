@@ -35,6 +35,7 @@ export default (store) => {
       }
    }
 
+   console.log('--- routes ---');
    console.log(routes);
 
    return routes;
