@@ -1,26 +1,35 @@
 <template>
 <div class="revenue-sheet">
-   <MainHeader />
-   <temp-component :param="param" />
+   <div class="revenue-sheet-left">
+      <SearchBoxA
+         :dateId="dateId"
+         :textId="textId"
+      />
+   </div>
+   <div class="revenue-sheet-right">
+      <SearchBoxA
+         :dateId="dateId"
+         :textId="textId"
+      />
+   </div>
 </div>
 </template>
 
 
 
 <script>
-import MainHeader from '../views/MainHeader';
-import TempComponent from '../components/TempComponent';
+import SearchBoxA from '../components/forms/SearchBoxA';
 
 export default {
    name: 'RevenueSheet',
    components: {
-      MainHeader,
-      TempComponent
+      SearchBoxA
    },
    setup() {
 
       return {
-         param: 'RevenueSheet'
+         dateId: 'revenue_contract_date',
+         textId: 'revenue_contract_text'
       };
    }
 }
@@ -30,6 +39,18 @@ export default {
 
 <style scoped>
 .revenue-sheet {
-   display: block;
+   display: flex;
+   width: 100%;
+   padding: 20px var(--main-padding-left-right) 0;
+}
+.revenue-sheet > div {
+   flex: 1 1 50%;
+   height: 200px;
+}
+.revenue-sheet-left {
+   margin-right: 10px;
+}
+.revenue-sheet-right {
+   margin-left: 10px;
 }
 </style>

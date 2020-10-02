@@ -53,12 +53,12 @@
                   {
                      "name": "매출/입금대사",
                      "key": "sheet",
-                     "component": "TempView"
+                     "component": "RevenueSheet"
                   },
                   {
                      "name": "계약목록",
                      "key": "contracts",
-                     "component": "TempView"
+                     "component": "RevenueSheet"
                   }
                ]
             }

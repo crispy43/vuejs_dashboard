@@ -5,12 +5,12 @@ export default (store) => {
       {
          path: '/',
          name: 'Home',
-         component: () => import(/* webpackChunkName: "home" */ '../views/Welcome.vue')
+         component: () => import('../views/Welcome.vue')
       },
       {
          path: '/:pathMatch(.*)*',
          name: 'Not Found',
-         component: () => import(/* webpackChunkName: "home" */ '../views/NotFound.vue')
+         component: () => import('../views/NotFound.vue')
       }
    ];
 
@@ -35,7 +35,7 @@ export default (store) => {
       }
    }
 
-   console.log('--- routes ---');
+   console.log('--- dynamic routes ---');
    console.log(routes);
 
    return routes;

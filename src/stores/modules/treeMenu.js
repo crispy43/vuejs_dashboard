@@ -139,13 +139,16 @@ export default {
 
       /**
        * @function fetch
-       * @description 트리메뉴 fetch
+       * @description 메뉴 데이터 커밋, 동적 Nav 생성
        * @param {Object} context vuex instance
        * @param {Object=} params arguments
        * @return {Boolean} is resolved
        */
       async fetch({ commit }) {
-         commit('setTree', require('../../assets/treeMenu.json').tree);
+         const data = require('../../assets/treeMenu.json').tree;
+         console.log('--- tree menu data ---');
+         console.log(data);
+         commit('setTree', data);
          return true;
       }
    }

@@ -2,25 +2,45 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import store from './stores';
-// import staticRoutes from './routes/static';
+import staticRoutes from './routes/static';
 import dynamicRoutes from './routes/dynamic';
 import { mapMutation, mapAction } from './common/utils';
 
 
 
 (async ()=> {
-   // fetch treeMap
+
+   /**
+    * @name FetchTreeMenu
+    * @global
+    * @description 메뉴 데이터 패치
+    */
+   
    await mapAction(store, 'fetch', 'treeMenu')();
 
-   // routes
+
+
+   /**
+    * @name Router
+    * @global
+    * @description Router 인스턴스 생성
+    * @param {Array} [routes = staticRoutes] 라우트 배열 (동적 생성 또는 staticRoutes)
+    */
+
    const router = createRouter({
       history: createWebHistory(process.env.BASE_URL),
-      // routes: staticRoutes
-      routes: dynamicRoutes(store)
+      routes: dynamicRoutes(store) || staticRoutes
    });
 
-   // router nav guard
-   // 라우터 진입 후 selection 및 current location 적용
+
+
+   /**
+    * @name afterEach
+    * @global
+    * @description 라우터 진입 이후마다 menu selection 및 current location 적용
+    * @param {Function} callback
+    */
+
    router.afterEach((to)=> {
       console.log('--- router to ---');
       console.log(to);
@@ -35,9 +55,9 @@ import { mapMutation, mapAction } from './common/utils';
       try {
          mapMutation(store, 'setCurrentLocation', 'treeMenu')(fullPath);
          mapMutation(store, 'setSelected', 'treeMenu')(store.state.treeMenu.currentIndexes[0]);
-         if (!to.params.key) {
+         if (!to.params.key) 
             to.params.key = store.state.treeMenu.currentKeys[store.state.treeMenu.currentKeys.length - 1];
-         }
+         
          console.log('--- router to params ---');
          console.log(to.params);
 
@@ -48,6 +68,7 @@ import { mapMutation, mapAction } from './common/utils';
       }
    });
 
-   // createApp
+   
+
    createApp(App).use(store).use(router).mount('#app');
 })();

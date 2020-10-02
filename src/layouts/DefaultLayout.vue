@@ -34,7 +34,9 @@ export default {
          '--header-logo-width': '200px',
          '--header-logo-height': 'auto',
          '--header-user-signout-width': 'auto',
-         '--header-user-signout-height': 'auto'
+         '--header-user-signout-height': 'auto',
+         '--main-padding-top': '20px',
+         '--main-padding-left-right': '20px'
       });
 
       // 해더 로고

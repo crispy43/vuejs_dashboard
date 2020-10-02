@@ -2,7 +2,7 @@
 <div class="main-header">
    <div>
       <div class="main-header-title">
-         <h4>{{ pathNames[0].name }}</h4>
+         <h4>{{ pathNames[2].name }}</h4>
       </div>
       <div class="main-header-depth">
          <div
@@ -60,14 +60,13 @@ export default {
 .main-header {
    display: block;
    width: 100%;
+   padding: var(--main-padding-top) var(--main-padding-left-right) 0;
 }
 .main-header > div {
    display: flex;
    align-items: center;
-   align-content: center;
    justify-content: space-between;
    border-bottom: 1px solid black;
-   margin: 20px;
    padding: 20px 0;
 }
 .main-header-depth > div {
