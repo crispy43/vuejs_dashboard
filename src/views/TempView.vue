@@ -1,26 +1,33 @@
 <template>
 <div class="temp-view">
-   <MainHeader />
-   <temp-component :param="param" />
+   <temp-component :param="key" />
 </div>
 </template>
 
 
 
 <script>
-import MainHeader from '../components/MainHeader';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import TempComponent from '../components/TempComponent';
 
 export default {
    name: 'TempView',
    components: {
-      MainHeader,
       TempComponent
    },
    setup() {
+      const route = useRoute();
+      const key = ref(route.params.key);
+
+      watch(() => route.params,
+         (params) => {
+            key.value = params.key;
+         }
+      );
 
       return {
-         param: 'Template'
+         key
       };
    }
 }

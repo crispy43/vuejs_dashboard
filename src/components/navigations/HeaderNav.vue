@@ -28,6 +28,7 @@ export default {
       }
 
       const { selected } = toRefs(store.state.treeMenu);
+      
       const isActive = computed(() => selected.value === props.index);
 
       return {

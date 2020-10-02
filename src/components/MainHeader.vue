@@ -2,17 +2,23 @@
 <div class="main-header">
    <div>
       <div class="main-header-title">
-         <h4>{{ pathNames[0] }}</h4>
+         <h4>{{ pathNames[0].name }}</h4>
       </div>
       <div class="main-header-depth">
-         <p>{{ pathNames[0] }}</p>
-         <span>{{ symbol }}</span>
-         <p>{{ pathNames[1] }}</p>
-         <span>{{ symbol }}</span>
-         <p>{{ pathNames[2] }}</p>
+         <div
+            class="main-header-depth-items"
+            v-for="(item, index) in pathNames"
+            :key="index"
+            :index="index"
+            :item="item"
+         >
+            <p>{{ item.name }}</p>
+            <span v-if="!item.isLast">{{ symbol }}</span>
+         </div>
       </div>
    </div>
 </div>
+<router-view />
 </template>
 
 
@@ -25,14 +31,17 @@ export default {
    name: 'MainHeader',
    setup() {
       const store = useStore();
-      const { tree, currentPathIndex } = toRefs(store.state.treeMenu);
+      const { currentKeys, keyMap } = toRefs(store.state.treeMenu);
 
       const pathNames = computed(() => {
+         const keys = Array.from(currentKeys.value);
          const names = [];
-         currentPathIndex.value.reduce((acc, pathIndex) => {
-            names.push(acc[pathIndex].name);
-            return acc[pathIndex].child;
-         }, tree.value);
+         for (let i = 0; i < keys.length; i++) {
+            names.push({
+               name: keyMap.value.get(keys[i])[i],
+               isLast: (i === keys.length - 1)
+            });
+         }
          return names;
       });
 
@@ -61,10 +70,13 @@ export default {
    margin: 20px;
    padding: 20px 0;
 }
-.main-header-depth > p {
+.main-header-depth > div {
+   display: inline-block;
+}
+.main-header-depth-items > p {
    display: inline;
 }
-.main-header-depth > span {
+.main-header-depth-items > span {
    margin: 0 10px;
 }
 </style>

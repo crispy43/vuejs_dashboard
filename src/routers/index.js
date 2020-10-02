@@ -4,23 +4,30 @@ const routes = [
    {
       path: '/',
       name: 'Home',
-      component: () => import(/* webpackChunkName: "about" */ '../views/Welcome.vue')
+      component: () => import(/* webpackChunkName: "home" */ '../views/Welcome.vue')
    },
    {
       path: '/:pathMatch(.*)*',
       name: 'Not Found',
-      component: () => import(/* webpackChunkName: "about" */ '../views/NotFound.vue')
+      component: () => import(/* webpackChunkName: "home" */ '../views/NotFound.vue')
    },
    {
-      path: '/assets/internal/:pathMatch(.*)*',
-      name: 'Internal Assets',
-      component: () => import(/* webpackChunkName: "about" */ '../views/TempView.vue')
+      path: '/assets',
+      name: 'Assets',
+      component: () => import(/* webpackChunkName: "home" */ '../components/MainHeader.vue'),
+      children: [
+         {
+            path: '/assets/internal/:key',
+            name: 'Internal Asset',
+            component: () => import(/* webpackChunkName: "home" */ '../views/TempView.vue')
+         },
+         {
+            path: '/assets/external/:key',
+            name: 'External Asset',
+            component: () => import(/* webpackChunkName: "home" */ '../views/TempView.vue')
+         }
+      ]
    },
-   {
-      path: '/assets/external/:pathMatch(.*)*',
-      name: 'External Assets',
-      component: () => import(/* webpackChunkName: "about" */ '../views/TempView.vue')
-   }
 ];
 
 const router = createRouter({

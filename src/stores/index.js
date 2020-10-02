@@ -13,8 +13,6 @@ export default createStore({
    },
    actions: {
    },
-   getters: {
-   },
 
 
    
