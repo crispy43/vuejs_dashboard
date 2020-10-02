@@ -76,6 +76,7 @@ export default {
    background-color: rgb(233, 233, 233);
    border: 1px solid black;
    padding: 15px 20px;
+   margin: 10px 0;
 }
 .search-box-a-form {
    flex: 1 1 auto;

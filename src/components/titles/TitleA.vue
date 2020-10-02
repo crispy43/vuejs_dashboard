@@ -17,9 +17,8 @@ export default {
 <style scoped>
 .title-a {
    display: block;
-   padding: 10px 0;
-   padding-left: 10px;
-   margin-left: 10px;
+   padding: 5px 0 5px 10px;
+   margin: 5px 0 5px 10px;
    font-size: 15px;
    font-weight: bold;
 }

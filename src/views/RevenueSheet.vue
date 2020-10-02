@@ -6,12 +6,20 @@
          :date="contract.date"
          :text="contract.text"
       />
+      <TableA
+         :columns="contractData.columns"
+         :rows="contractData.rows"
+      />
    </div>
    <div class="revenue-sheet-right">
       <TitleA>입금</TitleA>
       <SearchBoxA
          :date="deposit.date"
          :text="deposit.text"
+      />
+      <TableA
+         :columns="depositData.columns"
+         :rows="depositData.rows"
       />
    </div>
 </div>
@@ -22,12 +30,14 @@
 <script>
 import TitleA from '../components/titles/TitleA';
 import SearchBoxA from '../components/forms/SearchBoxA';
+import TableA from '../components/tables/TableA';
 
 export default {
    name: 'RevenueSheet',
    components: {
       TitleA,
-      SearchBoxA
+      SearchBoxA,
+      TableA
    },
    setup() {
 
@@ -53,7 +63,9 @@ export default {
                label: '입금자명',
                placeholder: '이름을 입력하세요...'
             }
-         }
+         },
+         contractData: require('../assets/contracts.json'),
+         depositData: require('../assets/deposits.json')
       };
    }
 }
@@ -66,11 +78,16 @@ export default {
    display: flex;
    width: 100%;
    padding: 0 var(--main-padding-left-right);
-   margin: 10px 0;
+   margin: 20px 0;
 }
 .revenue-sheet > div {
-   flex: 1 1 50%;
-   height: 200px;
+   height: 500px;
+}
+.revenue-sheet-left {
+   flex: 1 1 52.5%;
+}
+.revenue-sheet-right {
+   flex: 1 1 47.5%;
 }
 .revenue-sheet-left {
    margin-right: 10px;
