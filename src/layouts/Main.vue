@@ -20,7 +20,8 @@ export default {
 <style scoped>
 .main {
    flex: 1 1 auto;
-   padding-top: var(--header-height);
+   padding: calc(var(--header-height) + var(--main-padding-top)) var(--main-padding-left-right) 0;
+   margin-bottom: 20px;
    background-color: white;
 }
 </style>

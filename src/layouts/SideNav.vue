@@ -59,7 +59,6 @@ export default {
 
       return {
          treeMenu, isNavOn, navToggle, navOnClass, navOffClass
-
       };
    }
 }
@@ -71,6 +70,9 @@ export default {
 .side-nav {
    padding-top: var(--header-height);
    background-color: var(--side-nav-background-color);
+}
+.side-nav > div {
+   margin-top: 10px;
 }
 .side-nav-on {
    flex: 0 0 var(--side-nav-width);

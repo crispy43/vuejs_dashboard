@@ -24,7 +24,7 @@ export default {
    setup() {
       // css 변수
       const cssRootVar = reactive({
-         '--header-height': '70px',
+         '--header-height': '55px',
          '--header-background-color': 'rgb(70, 70, 70)',
          '--header-background-color-hover': 'black',
          '--header-nav-color': 'white',
@@ -36,8 +36,8 @@ export default {
          '--header-logo-height': 'auto',
          '--header-user-signout-width': 'auto',
          '--header-user-signout-height': 'auto',
-         '--main-padding-top': '20px',
-         '--main-padding-left-right': '20px',
+         '--main-padding-top': '5px',
+         '--main-padding-left-right': '35px',
          '--scrollbar-width': '6px'
       });
 

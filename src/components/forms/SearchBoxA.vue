@@ -75,7 +75,7 @@ export default {
    justify-content: space-between;
    background-color: rgb(233, 233, 233);
    border: 1px solid black;
-   padding: 15px 20px;
+   padding: 12.5px 15px;
    margin: 10px 0;
 }
 .search-box-a-form {
@@ -92,7 +92,7 @@ export default {
    flex: 1 1 35%;
    display: flex;
    align-items: center;
-   font-size: 15px;
+   font-size: 14px;
    margin-right: 20px;
 }
 .search-box-a-form > div > input {
@@ -101,7 +101,7 @@ export default {
    min-width: 50px;
    align-items: center;
    height: 35px;
-   font-size: 15px;
+   font-size: 14px;
    margin-right: 20px;
    padding: 5px 10px;
 }

@@ -60,7 +60,6 @@ export default {
 .main-header {
    display: block;
    width: 100%;
-   padding: var(--main-padding-top) var(--main-padding-left-right) 0;
 }
 .main-header > div {
    display: flex;
@@ -68,6 +67,7 @@ export default {
    justify-content: space-between;
    border-bottom: 1px solid black;
    padding: 20px 0;
+   margin-bottom: 15px;
 }
 .main-header-depth > div {
    display: inline-block;

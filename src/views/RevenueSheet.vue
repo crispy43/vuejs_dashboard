@@ -28,7 +28,6 @@
          />
       </div>
    </div>
-   
 </div>
 </template>
 
@@ -79,7 +78,7 @@ export default {
                placeholder: '이름을 입력하세요...'
             }
          },
-         tbodyMaxHeight: '350px',
+         tbodyMaxHeight: '325px',
          pendingsHeaders,
          pendingsData,
          depositsHeaders,
@@ -95,8 +94,6 @@ export default {
 .revenue-sheet {
    display: flex;
    width: 100%;
-   padding: 0 var(--main-padding-left-right);
-   margin: 20px 0;
 }
 .revenue-sheet-a {
    flex: 1 1 100%;

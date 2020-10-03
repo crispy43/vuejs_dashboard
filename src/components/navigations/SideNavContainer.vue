@@ -4,8 +4,14 @@
       class="side-nav-container-name" 
       @click="drop"
    >
-      <FontAwesomeIcon icon="folder-open" v-if="isShowItems" />
-      <FontAwesomeIcon icon="folder" v-else />
+      <FontAwesomeIcon
+         v-if="isShowItems"
+         icon="folder-open"
+      />
+      <FontAwesomeIcon
+         v-else
+         icon="folder"
+      />
       <h3>{{ subTree.name }}</h3>
    </div>
    <div v-show="isShowItems">
