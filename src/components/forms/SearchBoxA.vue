@@ -89,16 +89,19 @@ export default {
    margin-right: 20px;
 }
 .search-box-a-form > div > label {
-   flex: 1 1 30%;
+   flex: 1 1 35%;
    display: flex;
    align-items: center;
+   font-size: 15px;
    margin-right: 20px;
 }
 .search-box-a-form > div > input {
-   flex: 1 1 70%;
+   flex: 1 1 65%;
    display: flex;
+   min-width: 50px;
    align-items: center;
    height: 35px;
+   font-size: 15px;
    margin-right: 20px;
    padding: 5px 10px;
 }

@@ -1,20 +1,25 @@
 <template>
 <table class="table-a">
-   <tr>
-      <th
-         v-for="(prop, index) in headers"
+   <thead>
+      <tr>
+         <th
+            v-for="(prop, index) in headers"
+            :key="index"
+            :index="index"
+            :style="{ width: prop.width }"
+         >
+            <p>{{ prop.value }}</p>
+         </th>
+      </tr>
+   </thead>
+   <tbody :style="{ maxHeight: tbodyMaxHeight }">
+      <tr v-is="'RowA'"
+         v-for="(rowData, index) in typedData"
          :key="index"
          :index="index"
-      >
-         <p>{{ prop.value }}</p>
-      </th>
-   </tr>
-   <tr v-is="'RowA'"
-      v-for="(rowData, index) in typedData"
-      :key="index"
-      :index="index"
-      :rowData="rowData"
-   />
+         :rowData="rowData"
+      />
+   </tbody>
 </table>
 </template>
 
@@ -31,8 +36,18 @@ export default {
       RowA
    },
    props: {
-      headers: Array,
-      data: Array
+      headers: {
+         type: Array,
+         required: true
+      },
+      data: {
+         type: Array,
+         required: true
+      },
+      tbodyMaxHeight: {
+         type: String,
+         default: '500px'
+      }
    },
    setup(props) { 
       const data = reactive(props.data);
@@ -52,13 +67,34 @@ export default {
    display: table;
    width: 100%;
    border-collapse: collapse;
-   table-layout: auto;
    margin: 20px 0;
+}
+.table-a thead {
+   float: left;
+   width: 100%;
+}
+.table-a thead tr {
+   display: table;
+   table-layout: fixed;
+   width: 100%;
+}
+.table-a tbody {
+   float: left;
+   width: calc(100% + var(--scrollbar-width));
+   overflow-y: scroll;
+}
+.table-a tbody tr {
+   display: table;
+   table-layout: fixed;
+   width: 100%;
+}
+.table-a tbody tr:last-child {
+   border-bottom: none;
 }
 .table-a th, td {
    height: 27px;
    border: solid 1px rgb(160, 160, 160);
-   font-size: 12px;
+   font-size: 13px;
    padding: 5px;
 }
 .table-a th {
@@ -75,17 +111,19 @@ export default {
    display: flex;
    align-items: center;
    justify-content: center;
+   flex-wrap: nowrap;
    height: 26px;
    margin: auto;
 }
 .table-a td > input[type=text] {
    width: 100%;
+   font-size: 12px;
    margin: auto;
 }
 .table-a tr:nth-child(2n) {
    background-color: white;
 }
 .table-a tr:nth-child(2n+1) {
-   background-color: rgb(240, 240, 240);
+   background-color: rgb(250, 250, 250);
 }
 </style>

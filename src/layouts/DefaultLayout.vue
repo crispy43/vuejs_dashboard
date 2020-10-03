@@ -29,6 +29,7 @@ export default {
          '--header-background-color-hover': 'black',
          '--header-nav-color': 'white',
          '--side-nav-width': '200px',
+         '--side-nav-min-width': '50px',
          '--side-nav-background-color': 'rgb(233, 233, 233)',
          '--side-nav-items-active-background-color': 'rgb(190, 190, 190)',
          '--header-logo-width': '200px',
@@ -36,7 +37,8 @@ export default {
          '--header-user-signout-width': 'auto',
          '--header-user-signout-height': 'auto',
          '--main-padding-top': '20px',
-         '--main-padding-left-right': '20px'
+         '--main-padding-left-right': '20px',
+         '--scrollbar-width': '6px'
       });
 
       // 해더 로고
@@ -54,9 +56,23 @@ export default {
 
 
 
-<style scoped>
+<style>
 .root-layout {
    flex: 1 1 auto;
    display: flex;
+}
+::-webkit-scrollbar {
+   width: var(--scrollbar-width);
+}
+::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+   border-radius: 3px;
+   background-color: gray;
+}
+::-webkit-scrollbar-button {
+   width: 0;
+   height: 0;
 }
 </style>

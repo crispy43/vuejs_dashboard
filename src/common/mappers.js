@@ -89,6 +89,7 @@ export const mapTableData = (data, target) => {
                break;
          }
          if (target[i].filter) typed.filter = target[i].filter;
+         typed.width = (target[i].width) ? target[i].width : 1;
          typedRow.push(typed);
       }
       typedData.push(typedRow);

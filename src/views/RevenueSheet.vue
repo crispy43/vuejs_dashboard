@@ -1,27 +1,34 @@
 <template>
 <div class="revenue-sheet">
-   <div class="revenue-sheet-left">
-      <TitleA>매출</TitleA>
-      <SearchBoxA
-         :date="contract.date"
-         :text="contract.text"
-      />
-      <TableA
-         :headers="pendingsHeaders"
-         :data="pendingsData"
-      />
+   <div class="revenue-sheet-a">
+      <div class="revenue-sheet-a-left">
+         <TitleA>매출</TitleA>
+         <SearchBoxA
+            :date="contract.date"
+            :text="contract.text"
+         />
+         <div class="scroll-div">
+            <TableA
+               :headers="pendingsHeaders"
+               :data="pendingsData"
+               :tbodyMaxHeight="tbodyMaxHeight"
+            />
+         </div>
+      </div>
+      <div class="revenue-sheet-a-right">
+         <TitleA>입금</TitleA>
+         <SearchBoxA
+            :date="deposit.date"
+            :text="deposit.text"
+         />
+         <TableA
+            :headers="depositsHeaders"
+            :data="depositsData"
+            :tbodyMaxHeight="tbodyMaxHeight"
+         />
+      </div>
    </div>
-   <div class="revenue-sheet-right">
-      <TitleA>입금</TitleA>
-      <SearchBoxA
-         :date="deposit.date"
-         :text="deposit.text"
-      />
-      <TableA
-         :headers="depositsHeaders"
-         :data="depositsData"
-      />
-   </div>
+   
 </div>
 </template>
 
@@ -72,6 +79,7 @@ export default {
                placeholder: '이름을 입력하세요...'
             }
          },
+         tbodyMaxHeight: '350px',
          pendingsHeaders,
          pendingsData,
          depositsHeaders,
@@ -90,19 +98,16 @@ export default {
    padding: 0 var(--main-padding-left-right);
    margin: 20px 0;
 }
-.revenue-sheet > div {
-   height: 500px;
+.revenue-sheet-a {
+   flex: 1 1 100%;
+   display: flex;
 }
-.revenue-sheet-left {
+.revenue-sheet-a-left {
    flex: 1 1 55%;
-}
-.revenue-sheet-right {
-   flex: 1 1 45%;
-}
-.revenue-sheet-left {
    margin-right: 10px;
 }
-.revenue-sheet-right {
+.revenue-sheet-a-right {
+   flex: 1 1 45%;
    margin-left: 10px;
 }
 </style>

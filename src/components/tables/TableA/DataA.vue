@@ -1,5 +1,5 @@
 <template>
-<td>
+<td :style="{ width: data.width }">
    <input
       v-if="data.tag === 'input' && data.type === 'checkbox'"
       :type="data.type"
@@ -30,7 +30,7 @@ export default {
          required: true
       }
    },
-   setup(props) {
+   setup(props, { emit }) {
       let reactiveValue, onChange;
       switch (props.data.tag) {
 
@@ -41,6 +41,7 @@ export default {
                   onChange = (e) => {
                      console.log(e.target.checked);
                      reactiveValue.value = e.target.checked;
+                     emit('row-select', e.target.checked);
                   }
                   break;
 
@@ -67,7 +68,7 @@ export default {
       });
 
       return {
-         reactiveValue, onChange, filtered
+         reactiveValue, filtered, onChange
       };
    }
 }

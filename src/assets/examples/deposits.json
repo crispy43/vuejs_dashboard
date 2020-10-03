@@ -9,5 +9,27 @@
       "amount": "1000000",
       "createdAt": "2020-10-01T10:01:02.000Z",
       "updatedAt": ""
+   },
+   {
+      "checked": false,
+      "key": "X00002",
+      "depositedAt": "2020-10-03T10:01:01.000Z",
+      "bank": "신한은행",
+      "bankAccount": "301234123456789",
+      "contractor": "김철수",
+      "amount": "2000000",
+      "createdAt": "2020-10-03T10:01:02.000Z",
+      "updatedAt": ""
+   },
+   {
+      "checked": false,
+      "key": "X00003",
+      "depositedAt": "2020-10-05T10:01:01.000Z",
+      "bank": "국민은행",
+      "bankAccount": "401234123456789",
+      "contractor": "최은혜",
+      "amount": "3000000",
+      "createdAt": "2020-10-05T10:01:02.000Z",
+      "updatedAt": ""
    }
 ]

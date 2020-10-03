@@ -59,7 +59,7 @@ export default {
    display: flex;
    align-content: center;
    align-items: center;
-   width: var(--side-nav-width);
+   width: 100%;
    height: 35px;
    cursor: pointer;
 }

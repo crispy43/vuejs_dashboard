@@ -1,4 +1,5 @@
 import { parseAndMapObjectProps } from '../../common/parsers';
+import { witPer } from '../../common/utils';
 
 
 
@@ -30,17 +31,38 @@ export default {
          // set headers
          const pendingsHeaders = [];
          for (const i in props) {
-            let type, filter;
+            let type, filter, width;
             switch (props[i]) {
-               case 'checked': type = 'checkbox'; break;
-               case 'remark': type = 'input'; break;
-               case 'amount': filter = 'comma'; break;
-               case 'createdAt': filter = 'date/yMD'; break;
-               default: type = 'text'; break;
+               case 'checked':
+                  type = 'checkbox';
+                  width = witPer(0.5, props.length);
+                  break;
+               case 'remark':
+                  type = 'input';
+                  width = witPer(1.5, props.length);
+                  break;
+               case 'amount':
+                  filter = 'comma';
+                  width = witPer(1, props.length);
+                  break;
+               case 'bankAccount':
+                  width = witPer(1.5, props.length);
+                  break;
+               case 'status':
+                  width = witPer(0.75, props.length);
+                  break;
+               case 'createdAt':
+                  filter = 'date/yMD';
+                  width = witPer(0.75, props.length);
+                  break;
+               default:
+                  width = witPer(1, props.length);
+                  break;
             }
             pendingsHeaders.push({
                type,
                filter,
+               width,
                value: namedProps[i]
             });
          }
@@ -73,16 +95,37 @@ export default {
          // set headers
          const depositsHeaders = [];
          for (const i in props) {
-            let type, filter;
+            let type, filter, width;
             switch (props[i]) {
-               case 'checked': type = 'checkbox'; break;
-               case 'amount': filter = 'comma'; break;
-               case 'depositedAt': filter = 'date/YMDHMS'; break;
-               default: type = 'text'; break;
+               case 'checked':
+                  type = 'checkbox';
+                  width = witPer(0.5, props.length);
+                  break;
+               case 'key':
+                  width = witPer(0.75, props.length);
+                  break;
+               case 'contractor':
+                  width = witPer(0.75, props.length);
+                  break;
+               case 'amount':
+                  filter = 'comma';
+                  width = witPer(1, props.length);
+                  break;
+               case 'bankAccount':
+                  width = witPer(1.5, props.length);
+                  break;
+               case 'depositedAt':
+                  filter = 'date/YMDHMS';
+                  width = witPer(1.5, props.length);
+                  break;
+               default:
+                  width = witPer(1, props.length);
+                  break;
             }
             depositsHeaders.push({
                type,
                filter,
+               width,
                value: namedProps[i]
             });
          }

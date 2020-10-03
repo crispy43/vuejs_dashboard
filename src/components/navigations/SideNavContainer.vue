@@ -61,13 +61,13 @@ export default {
 <style scoped>
 .side-nav-container {
    display: block;
-   width: var(--side-nav-width);
+   width: 100%;
 }
 .side-nav-container-name {
    display: flex;
    align-content: center;
    align-items: center;
-   width: var(--side-nav-width);
+   width: 100%;
    height: 40px;
    cursor: pointer;
 }
