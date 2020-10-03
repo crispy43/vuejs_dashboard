@@ -1,0 +1,79 @@
+<template>
+<td>
+   <input
+      v-if="data.tag === 'input' && data.type === 'checkbox'"
+      :type="data.type"
+      :checked="reactiveValue"
+      @change="onChange"
+   />
+   <input
+      v-else-if="data.tag === 'input' && data.type === 'text'"
+      :type="data.type"
+      :value="reactiveValue"
+      @input="onChange"
+   />
+   <p v-else>{{ (!data.filter) ? data.value : filtered }}</p>
+</td>
+</template>
+
+
+
+<script>
+import { ref, computed } from 'vue';
+import filters from '../../../common/filters';
+
+export default {
+   name: 'DataA',
+   props: {
+      data: {
+         type: Object,
+         required: true
+      }
+   },
+   setup(props) {
+      let reactiveValue, onChange;
+      switch (props.data.tag) {
+
+         case 'input':
+            switch (props.data.type) {
+               case 'checkbox':
+                  reactiveValue = ref((props.data.value));
+                  onChange = (e) => {
+                     console.log(e.target.checked);
+                     reactiveValue.value = e.target.checked;
+                  }
+                  break;
+
+               default:
+                  reactiveValue = ref(props.data.value);
+                  onChange = (e) => {
+                     console.log(e.target.value);
+                     reactiveValue.value = e.target.value;
+                  }
+                  break;
+            }
+            break;
+
+         default:
+            reactiveValue = ref(props.data.value);
+            break;
+      }
+
+      const filtered = computed(() => {
+         if (props.data.filter) {
+            const [funcName, param] = props.data.filter.split('/');
+            return filters[funcName](reactiveValue.value, param);
+         }
+      });
+
+      return {
+         reactiveValue, onChange, filtered
+      };
+   }
+}
+</script>
+
+
+
+<style scoped>
+</style>

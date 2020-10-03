@@ -1,0 +1,12 @@
+{
+   "checked": "체크",
+   "key": "매출코드",
+   "contractor": "계약자",
+   "amount": "매매대금",
+   "bank": "입금은행",
+   "bankAccount": "입금계좌",
+   "status": "입금상태",
+   "remark": "비고",
+   "createdAt": "계약일",
+   "depositedAt": "입금시간"
+}

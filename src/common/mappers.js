@@ -46,3 +46,52 @@ export const mapGetter = (store, method, module) => {
       store.getters[`${method}`] :
       store.getters[`${module}/${method}`];
 };
+
+
+
+/**
+ * @function mapTableData
+ * @description 테이블 데이터 해더 속성에 맵핑
+ * @param {Object} data
+ * @param {Object} target
+ * @return {Array} result
+ */
+
+export const mapTableData = (data, target) => {
+   const typedData = [];
+   for (const row of data) {
+      const typedRow = [];
+      for (let i in row) {
+         let typed;
+         switch (target[i].type) {
+            
+            case 'checkbox':
+               typed = {
+                  tag: 'input',
+                  type: 'checkbox',
+                  value: row[i]
+               };
+               break;
+            
+            case 'input':
+               typed = {
+                  tag: 'input',
+                  type: 'text',
+                  value: row[i]
+               };
+               break;
+            
+            default:
+               typed = {
+                  tag: 'p',
+                  value: row[i]
+               };
+               break;
+         }
+         if (target[i].filter) typed.filter = target[i].filter;
+         typedRow.push(typed);
+      }
+      typedData.push(typedRow);
+   }
+   return typedData;
+};

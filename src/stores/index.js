@@ -1,5 +1,6 @@
 import { createStore } from 'vuex';
 import treeMenu from './modules/treeMenu';
+import revenues from './modules/revenues';
 const { name, version, bugs } = require('../../package.json');
 
 export default createStore({
@@ -17,6 +18,7 @@ export default createStore({
 
    
    modules: {
-      treeMenu
+      treeMenu,
+      revenues
    }
 });

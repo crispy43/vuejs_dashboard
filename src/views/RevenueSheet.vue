@@ -7,8 +7,8 @@
          :text="contract.text"
       />
       <TableA
-         :columns="contractData.columns"
-         :rows="contractData.rows"
+         :headers="pendingsHeaders"
+         :data="pendingsData"
       />
    </div>
    <div class="revenue-sheet-right">
@@ -18,8 +18,8 @@
          :text="deposit.text"
       />
       <TableA
-         :columns="depositData.columns"
-         :rows="depositData.rows"
+         :headers="depositsHeaders"
+         :data="depositsData"
       />
    </div>
 </div>
@@ -28,9 +28,12 @@
 
 
 <script>
+import { onBeforeMount, toRefs } from 'vue';
+import { useStore } from 'vuex';
+import { mapAction } from '../common/utils';
 import TitleA from '../components/titles/TitleA';
 import SearchBoxA from '../components/forms/SearchBoxA';
-import TableA from '../components/tables/TableA';
+import TableA from '../components/tables/TableA/TableA';
 
 export default {
    name: 'RevenueSheet',
@@ -40,6 +43,11 @@ export default {
       TableA
    },
    setup() {
+      const store = useStore();
+      onBeforeMount(() => {
+         mapAction(store, 'fetch', 'revenues')();
+      });
+      const { pendingsHeaders, pendingsData, depositsHeaders, depositsData } = toRefs(store.state.revenues);
 
       return {
          contract: {
@@ -64,8 +72,10 @@ export default {
                placeholder: '이름을 입력하세요...'
             }
          },
-         contractData: require('../assets/contracts.json'),
-         depositData: require('../assets/deposits.json')
+         pendingsHeaders,
+         pendingsData,
+         depositsHeaders,
+         depositsData
       };
    }
 }

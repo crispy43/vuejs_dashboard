@@ -16,17 +16,10 @@ export default {
 
 
    mutations: {
-      clearTree(state) {
-         state.tree = [];
-         state.pathMap.clear();
-         state.keyMap.clear();
-         state.selected = -1;
-         state.currentIndexes = [];
-         state.currentPath = '';
-         state.currentKeys = [];
-      },
       setTree(state, payload) {
          state.tree = payload;
+         state.pathMap.clear();
+         state.keyMap.clear();
 
          /* tree parser */
 
@@ -141,6 +134,7 @@ export default {
        * @function fetch
        * @description 메뉴 데이터 커밋, 동적 Nav 생성
        * @param {Object} context vuex instance
+       * @param {function} context.commit commit handler
        * @param {Object=} params arguments
        * @return {Boolean} is resolved
        */
