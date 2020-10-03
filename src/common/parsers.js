@@ -7,7 +7,7 @@
  * @return {Array} properties
  */
 
-export const parseObjectProps = (payload, bannedProps) => {
+export const parseObjectProps = (payload, bannedProps = []) => {
    const props = new Set();
    for (const data of payload) {
       if (!data.key) continue;
@@ -31,7 +31,7 @@ export const parseObjectProps = (payload, bannedProps) => {
  * @return {Array} properties
  */
 
-export const parseAndMapObjectProps = (payload, lang, bannedProps) => {
+export const parseAndMapObjectProps = (payload, lang, bannedProps = []) => {
    let langMap;
    try { langMap = require(`../assets/languages/${lang}.json`);
    } catch (error) { throw new Error('language map not found'); }

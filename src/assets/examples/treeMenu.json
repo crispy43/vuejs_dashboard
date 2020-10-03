@@ -58,7 +58,7 @@
                   {
                      "name": "계약목록",
                      "key": "contracts",
-                     "component": "RevenueSheet"
+                     "component": "TempView"
                   }
                ]
             }

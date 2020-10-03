@@ -23,5 +23,6 @@ export default {
    padding: calc(var(--header-height) + var(--main-padding-top)) var(--main-padding-left-right) 0;
    margin-bottom: 20px;
    background-color: white;
+   overflow-y: auto;
 }
 </style>

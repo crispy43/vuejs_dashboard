@@ -15,7 +15,11 @@ export default {
 
       deposits: new Map(),
       depositsHeaders: [],
-      depositsData: []
+      depositsData: [],
+
+      finalizeds: new Map(),
+      finalizedsHeaders: [],
+      finalizedsData: []
    }),
 
 
@@ -147,6 +151,62 @@ export default {
             depositsData.push(parsedValues);
          }
          state.depositsData = depositsData;
+      },
+      setFinalizeds(state, payload) {
+         state.finalizeds.clear();
+         state.finalizedsHeaders = [];
+         state.finalizedsData = [];
+         const { props, namedProps } = parseAndMapObjectProps(payload, 'revenues');
+         // set headers
+         const finalizedsHeaders = [];
+         for (const i in props) {
+            let type, filter, width;
+            switch (props[i]) {
+               case 'remark':
+                  type = 'input';
+                  width = witPer(1, props.length);
+                  break;
+               case 'amount':
+                  filter = 'comma';
+                  width = witPer(1, props.length);
+                  break;
+               case 'createdAt':
+                  filter = 'date/yMDHM';
+                  width = witPer(1, props.length);
+                  break;
+               case 'updatedAt':
+                  filter = 'date/yMDHM';
+                  width = witPer(1, props.length);
+                  break;
+               default:
+                  width = witPer(1, props.length);
+                  break;
+            }
+            finalizedsHeaders.push({
+               type,
+               filter,
+               width,
+               value: namedProps[i]
+            });
+         }
+         state.finalizedsHeaders = finalizedsHeaders;
+         // set map and data
+         const finalizedsData = [];
+         for (const data of payload) {
+            if (!data.key) continue;
+            const parsedData = {};
+            const parsedValues = [];
+            for (const prop of props) {
+               const parsedValue = 
+                  (typeof data[prop] === 'undefined' || data[prop] === 'null') ?
+                     "" : data[prop];
+               parsedData[prop] = parsedValue;
+               parsedValues.push(parsedValue);
+            }
+            state.finalizeds.set(parsedData.key, parsedData);
+            finalizedsData.push(parsedValues);
+         }
+         state.finalizedsData = finalizedsData;
       }
    },
 
@@ -172,6 +232,11 @@ export default {
          console.log('--- deposits data ---');
          console.log(depositsData);
          commit('setDeposits', depositsData);
+
+         const finalizedsData = require('../../assets/examples/finalizeds.json');
+         console.log('--- finalizeds data ---');
+         console.log(finalizedsData);
+         commit('setFinalizeds', finalizedsData);
          return true;
       }
    }

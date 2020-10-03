@@ -2,7 +2,7 @@
 <div class="revenue-sheet">
    <div class="revenue-sheet-a">
       <div class="revenue-sheet-a-left">
-         <TitleA>매출</TitleA>
+         <TitleA>매출 내역</TitleA>
          <SearchBoxA
             :date="contract.date"
             :text="contract.text"
@@ -16,7 +16,7 @@
          </div>
       </div>
       <div class="revenue-sheet-a-right">
-         <TitleA>입금</TitleA>
+         <TitleA>입금 내역</TitleA>
          <SearchBoxA
             :date="deposit.date"
             :text="deposit.text"
@@ -27,6 +27,14 @@
             :tbodyMaxHeight="tbodyMaxHeight"
          />
       </div>
+   </div>
+   <div class="revenue-sheet-b">
+      <TitleA>입금 확인</TitleA>
+      <TableA
+         :headers="finalizedsHeaders"
+         :data="finalizedsData"
+         :tbodyMaxHeight="tbodyMaxHeight"
+      />
    </div>
 </div>
 </template>
@@ -53,7 +61,14 @@ export default {
       onBeforeMount(() => {
          mapAction(store, 'fetch', 'revenues')();
       });
-      const { pendingsHeaders, pendingsData, depositsHeaders, depositsData } = toRefs(store.state.revenues);
+      const {
+         pendingsHeaders,
+         pendingsData,
+         depositsHeaders,
+         depositsData,
+         finalizedsHeaders,
+         finalizedsData
+      } = toRefs(store.state.revenues);
 
       return {
          contract: {
@@ -78,11 +93,13 @@ export default {
                placeholder: '이름을 입력하세요...'
             }
          },
-         tbodyMaxHeight: '325px',
+         tbodyMaxHeight: '40vh',
          pendingsHeaders,
          pendingsData,
          depositsHeaders,
-         depositsData
+         depositsData,
+         finalizedsHeaders,
+         finalizedsData
       };
    }
 }
@@ -93,6 +110,7 @@ export default {
 <style scoped>
 .revenue-sheet {
    display: flex;
+   flex-direction: column;
    width: 100%;
 }
 .revenue-sheet-a {
@@ -106,5 +124,9 @@ export default {
 .revenue-sheet-a-right {
    flex: 1 1 45%;
    margin-left: 10px;
+}
+.revenue-sheet-b {
+   flex: 1 1 100%;
+   display: block;
 }
 </style>

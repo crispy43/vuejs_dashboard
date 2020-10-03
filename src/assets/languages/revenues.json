@@ -2,11 +2,14 @@
    "checked": "체크",
    "key": "매출코드",
    "contractor": "계약자",
+   "type": "계약구분",
    "amount": "매매대금",
    "bank": "입금은행",
    "bankAccount": "입금계좌",
    "status": "입금상태",
    "remark": "비고",
-   "createdAt": "계약일",
+   "operator": "처리자",
+   "createdAt": "계약일자",
+   "updatedAt": "처리일자",
    "depositedAt": "입금시간"
 }
