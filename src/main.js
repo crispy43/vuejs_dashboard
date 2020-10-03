@@ -4,7 +4,7 @@ import App from './App.vue';
 import store from './stores';
 import staticRoutes from './routes/static';
 import dynamicRoutes from './routes/dynamic';
-import { mapMutation, mapAction } from './common/utils';
+import { mapMutation, mapAction } from './common/mappers';
 
 
 

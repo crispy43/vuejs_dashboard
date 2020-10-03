@@ -139,7 +139,7 @@ export default {
        * @return {Boolean} is resolved
        */
       async fetch({ commit }) {
-         const data = require('../../assets/treeMenu.json').tree;
+         const data = require('../../assets/examples/treeMenu.json').tree;
          console.log('--- tree menu data ---');
          console.log(data);
          commit('setTree', data);

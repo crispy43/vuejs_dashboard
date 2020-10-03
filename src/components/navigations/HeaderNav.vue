@@ -12,7 +12,7 @@
 <script>
 import { toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
-import { mapMutation } from '../../common/utils';
+import { mapMutation } from '../../common/mappers';
 
 export default {
    name: 'HeaderNav',

@@ -120,12 +120,12 @@ export default {
        * @return {Boolean} is resolved
        */
       async fetch({ commit }) {
-         const pendingsData = require('../../assets/pendings.json');
+         const pendingsData = require('../../assets/examples/pendings.json');
          console.log('--- pendings data ---');
          console.log(pendingsData);
          commit('setPendings', pendingsData);
 
-         const depositsData = require('../../assets/deposits.json');
+         const depositsData = require('../../assets/examples/deposits.json');
          console.log('--- deposits data ---');
          console.log(depositsData);
          commit('setDeposits', depositsData);

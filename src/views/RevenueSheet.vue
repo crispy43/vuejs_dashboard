@@ -30,7 +30,7 @@
 <script>
 import { onBeforeMount, toRefs } from 'vue';
 import { useStore } from 'vuex';
-import { mapAction } from '../common/utils';
+import { mapAction } from '../common/mappers';
 import TitleA from '../components/titles/TitleA';
 import SearchBoxA from '../components/forms/SearchBoxA';
 import TableA from '../components/tables/TableA/TableA';
