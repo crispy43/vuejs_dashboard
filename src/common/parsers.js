@@ -109,7 +109,7 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
  */
 
 export const parseTableData = (payload, {
-   model = 'dictionary', strict = false, bannedProps
+   model = 'dictionary', strict = true, bannedProps
 }) => {
    const { props, propModels } = parseAndMapObjectProps(payload, model, strict, bannedProps);
    const parsedPayload = [];
