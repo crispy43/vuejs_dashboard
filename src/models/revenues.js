@@ -26,7 +26,7 @@ export default {
    amount: {
       name: '금액',
       filter: 'comma',
-      width: 125
+      width: 150
    },
    bank: {
       name: '은행',
@@ -42,20 +42,27 @@ export default {
    },
    remark: {
       name: '비고',
-      width: 150
+      tag: 'input',
+      type: 'text',
+      width: 125
    },
    operator: {
       name: '관리자',
-      width: 75
+      width: 100
    },
    createdAt: {
-      name: '등록 일자',
-      filter: 'date/yMDHM',
+      name: '등록일자',
+      filter: 'date/yMD',
       width: 75
    },
    updatedAt: {
-      name: '수정 일자',
+      name: '처리일자',
       filter: 'date/yMDHM',
-      width: 75
+      width: 100
+   },
+   depositedAt: {
+      name: '입금시간',
+      filter: 'date/yMDHMS',
+      width: 125
    }
 };

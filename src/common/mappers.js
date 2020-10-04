@@ -62,34 +62,13 @@ export const mapTableData = (data, target) => {
    for (const row of data) {
       const typedRow = [];
       for (let i in row) {
-         let typed;
-         switch (target[i].type) {
-            
-            case 'checkbox':
-               typed = {
-                  tag: 'input',
-                  type: 'checkbox',
-                  value: row[i]
-               };
-               break;
-            
-            case 'input':
-               typed = {
-                  tag: 'input',
-                  type: 'text',
-                  value: row[i]
-               };
-               break;
-            
-            default:
-               typed = {
-                  tag: 'p',
-                  value: row[i]
-               };
-               break;
-         }
-         if (target[i].filter) typed.filter = target[i].filter;
-         typed.width = (target[i].width) ? target[i].width : 1;
+         const typed = {
+            tag: target[i].tag || 'p',
+            type: target[i].type,
+            filter: target[i].filter,
+            width: target[i].width || 'auto',
+            value: row[i]
+         };
          typedRow.push(typed);
       }
       typedData.push(typedRow);

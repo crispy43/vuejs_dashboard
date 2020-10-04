@@ -1,3 +1,3 @@
-export const witPer = (width, count) => {
-   return parseFloat(width) / parseFloat(count) * 100 + '%';
+export const calcWidthPer = (width, sum) => {
+   return parseInt(width) / sum * 100 + '%';
 };

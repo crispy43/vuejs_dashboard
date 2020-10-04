@@ -3,12 +3,12 @@
    <thead>
       <tr>
          <th
-            v-for="(prop, index) in headers"
+            v-for="(item, index) in headers"
             :key="index"
             :index="index"
-            :style="{ width: prop.width }"
+            :style="{ width: item.width }"
          >
-            <p>{{ prop.value }}</p>
+            <p>{{ item.name }}</p>
          </th>
       </tr>
    </thead>
@@ -46,7 +46,7 @@ export default {
       },
       tbodyMaxHeight: {
          type: String,
-         default: '500px'
+         default: '750px'
       }
    },
    setup(props) { 
@@ -111,7 +111,6 @@ export default {
    display: flex;
    align-items: center;
    justify-content: center;
-   flex-wrap: nowrap;
    height: 26px;
    margin: auto;
 }

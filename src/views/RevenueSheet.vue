@@ -7,13 +7,11 @@
             :date="contract.date"
             :text="contract.text"
          />
-         <div class="scroll-div">
-            <TableA
-               :headers="pendingsHeaders"
-               :data="pendingsData"
-               :tbodyMaxHeight="tbodyMaxHeight"
-            />
-         </div>
+         <TableA
+            :headers="pendingsHeaders"
+            :data="pendingsData"
+            :tbodyMaxHeight="tbodyMaxHeight"
+         />
       </div>
       <div class="revenue-sheet-a-right">
          <TitleA>입금 내역</TitleA>
