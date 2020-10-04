@@ -17,9 +17,9 @@ export default {
       depositsHeaders: [],
       depositsData: [],
 
-      finalizeds: new Map(),
-      finalizedsHeaders: [],
-      finalizedsData: []
+      paymentConfirms: new Map(),
+      paymentConfirmsHeaders: [],
+      paymentConfirmsData: []
    }),
 
 
@@ -152,13 +152,13 @@ export default {
          }
          state.depositsData = depositsData;
       },
-      setFinalizeds(state, payload) {
-         state.finalizeds.clear();
-         state.finalizedsHeaders = [];
-         state.finalizedsData = [];
+      setPaymentConfirms(state, payload) {
+         state.paymentConfirms.clear();
+         state.paymentConfirmsHeaders = [];
+         state.paymentConfirmsData = [];
          const { props, namedProps } = parseAndMapObjectProps(payload, 'revenues');
          // set headers
-         const finalizedsHeaders = [];
+         const paymentConfirmsHeaders = [];
          for (const i in props) {
             let type, filter, width;
             switch (props[i]) {
@@ -182,16 +182,16 @@ export default {
                   width = witPer(1, props.length);
                   break;
             }
-            finalizedsHeaders.push({
+            paymentConfirmsHeaders.push({
                type,
                filter,
                width,
                value: namedProps[i]
             });
          }
-         state.finalizedsHeaders = finalizedsHeaders;
+         state.paymentConfirmsHeaders = paymentConfirmsHeaders;
          // set map and data
-         const finalizedsData = [];
+         const paymentConfirmsData = [];
          for (const data of payload) {
             if (!data.key) continue;
             const parsedData = {};
@@ -203,10 +203,10 @@ export default {
                parsedData[prop] = parsedValue;
                parsedValues.push(parsedValue);
             }
-            state.finalizeds.set(parsedData.key, parsedData);
-            finalizedsData.push(parsedValues);
+            state.paymentConfirms.set(parsedData.key, parsedData);
+            paymentConfirmsData.push(parsedValues);
          }
-         state.finalizedsData = finalizedsData;
+         state.paymentConfirmsData = paymentConfirmsData;
       }
    },
 
@@ -233,10 +233,10 @@ export default {
          console.log(depositsData);
          commit('setDeposits', depositsData);
 
-         const finalizedsData = require('../../assets/examples/finalizeds.json');
-         console.log('--- finalizeds data ---');
-         console.log(finalizedsData);
-         commit('setFinalizeds', finalizedsData);
+         const paymentConfirmsData = require('../../assets/examples/paymentConfirms.json');
+         console.log('--- paymentConfirms data ---');
+         console.log(paymentConfirmsData);
+         commit('setPaymentConfirms', paymentConfirmsData);
          return true;
       }
    }

@@ -31,8 +31,8 @@
    <div class="revenue-sheet-b">
       <TitleA>입금 확인</TitleA>
       <TableA
-         :headers="finalizedsHeaders"
-         :data="finalizedsData"
+         :headers="paymentConfirmsHeaders"
+         :data="paymentConfirmsData"
          :tbodyMaxHeight="tbodyMaxHeight"
       />
    </div>
@@ -66,8 +66,8 @@ export default {
          pendingsData,
          depositsHeaders,
          depositsData,
-         finalizedsHeaders,
-         finalizedsData
+         paymentConfirmsHeaders,
+         paymentConfirmsData
       } = toRefs(store.state.revenues);
 
       return {
@@ -98,8 +98,8 @@ export default {
          pendingsData,
          depositsHeaders,
          depositsData,
-         finalizedsHeaders,
-         finalizedsData
+         paymentConfirmsHeaders,
+         paymentConfirmsData
       };
    }
 }

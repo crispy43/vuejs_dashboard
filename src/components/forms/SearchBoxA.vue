@@ -92,6 +92,7 @@ export default {
    flex: 1 1 35%;
    display: flex;
    align-items: center;
+   justify-content: flex-end;
    font-size: 14px;
    margin-right: 20px;
 }
