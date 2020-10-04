@@ -32,38 +32,50 @@ export const parseObjectProps = (payload, bannedProps = []) => {
  * @param {Object[]} payload
  * @param {String} payload[].key object unique key
  * @param {String} model property model
- * @param {Array=} bannedProps except properties
+ * @param {Boolean} strict mapping type
+ * @param {Array} [bannedProps = []] except properties
  * @return {Object} props, propModels
  */
 
-export const parseAndMapObjectProps = (payload, model = 'dictionary', bannedProps = []) => {
+export const parseAndMapObjectProps = (payload, model, strict, bannedProps = []) => {
    const props = new Set();
-   const propModels = [];
+   let propModels;
    let totalWidth = 0;
-   const modelPath = model.split('/');
+   const modelPathSplit = model.split('/');
 
-   for (const data of payload) {
-      if (!data.key) continue;
-      for (const prop in data) {
-         if (bannedProps.indexOf(prop) > -1) continue;
-         else if (props.has(prop)) continue;
-         let propModel;
-         switch (modelPath.length) {
+   // refmodel
+   const refModel = modelPathSplit.reduce((acc, path) => {
+      return acc[path];
+   }, models);
+   if (!refModel) throw new Error('model not found');
 
-            case 1:
-               propModel = (models[model][prop]) ?
-                  models[model][prop] : (models[model]._default(prop)) ?
-                     models[model]._default(prop) : false;
-               break;
+   // no strict
+   if (!strict) {
+      propModels = [];
 
-            case 2:
-               propModel = (models[modelPath[0]][modelPath[1]][prop]) ?
-                  models[modelPath[0]][modelPath[1]][prop] : (models[modelPath[0]][modelPath[1]]._default(prop)) ?
-                     models[modelPath[0]][modelPath[1]]._default(prop) : false;
-               break;
+      for (const data of payload) {
+         if (!data.key) continue;
+
+         for (const prop in data) {
+            if (bannedProps.indexOf(prop) > -1) continue;
+            else if (props.has(prop)) continue;
+            props.add(prop);
+            const propModel = Object.assign({},
+               (refModel[prop]) ?
+                  (refModel[prop]) : (typeof refModel._default === 'function') ?
+                     refModel._default(prop) : { name: prop, width: 100 }
+            );
+            propModels.push(propModel);
+            totalWidth += propModel.width;
          }
-         if (!propModel) continue;
+      }
 
+   // strict
+   } else {
+      propModels = [];
+      for (const prop in refModel) {
+         if (bannedProps.indexOf(prop) > -1) continue;
+         const propModel = Object.assign({}, refModel[prop]);
          props.add(prop);
          propModels.push(propModel);
          totalWidth += propModel.width;
@@ -73,6 +85,8 @@ export const parseAndMapObjectProps = (payload, model = 'dictionary', bannedProp
    for (let i in propModels) {
       propModels[i].width = parseInt(propModels[i].width) / totalWidth * 100 + '%';
    }
+
+   console.log(props);
 
    return {
       props: Array.from(props),
@@ -87,13 +101,17 @@ export const parseAndMapObjectProps = (payload, model = 'dictionary', bannedProp
  * @description 테이블 데이터 파서
  * @param {Object[]} payload
  * @param {String} payload[].key object unique key
- * @param {String} model property model
- * @param {Array=} bannedProps except properties
+ * @param {Object} options parse options
+ * @param {String} [options.model = dictionary] property model
+ * @param {Boolean} [options.strict = true] mapping type
+ * @param {Array=} options.bannedProps except properties
  * @return {Object} map, headers, data
  */
 
-export const parseTableData = (payload, model, bannedProps) => {
-   const { props, propModels } = parseAndMapObjectProps(payload, model, bannedProps);
+export const parseTableData = (payload, {
+   model = 'dictionary', strict = false, bannedProps
+}) => {
+   const { props, propModels } = parseAndMapObjectProps(payload, model, strict, bannedProps);
    const parsedPayload = [];
    const payloadMap = new Map();
 

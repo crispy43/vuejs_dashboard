@@ -28,27 +28,27 @@ export default {
 
    mutations: {
       setPendings(state, payload) {
-         const { map, headers, data } = parseTableData(payload,
-            'revenues/pendings',
-            ['updatedAt']
-         );
+         const { map, headers, data } = parseTableData(payload, {
+            model: 'revenues/pendings',
+            bannedProps: ['updatedAt']
+         });
          state.pendings = map;
          state.pendingsHeaders = headers;
          state.pendingsData = data;
       },
       setDeposits(state, payload) {
-         const { map, headers, data } = parseTableData(payload,
-            'revenues/deposits',
-            ['createdAt', 'updatedAt']
-         );
+         const { map, headers, data } = parseTableData(payload, {
+            model: 'revenues/deposits',
+            bannedProps: ['createdAt', 'updatedAt']
+         });
          state.deposits = map;
          state.depositsHeaders = headers;
          state.depositsData = data;
       },
       setPaymentConfirms(state, payload) {
-         const { map, headers, data } = parseTableData(payload,
-            'revenues/paymentConfirms'
-         );
+         const { map, headers, data } = parseTableData(payload, {
+            model: 'revenues/paymentConfirms'
+         });
          state.paymentConfirms = map;
          state.paymentConfirmsHeaders = headers;
          state.paymentConfirmsData = data;

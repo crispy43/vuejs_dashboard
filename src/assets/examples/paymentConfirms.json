@@ -6,6 +6,7 @@
       "amount": "1000000",
       "bank": "기업은행",
       "bankAccount": "201234123456789",
+      "depositedAt": "2020-10-02T10:01:02.000Z",
       "status": 5,
       "remark": "",
       "operator": "관리자",
