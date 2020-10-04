@@ -40,14 +40,31 @@ export const parseAndMapObjectProps = (payload, model = 'dictionary', bannedProp
    const props = new Set();
    const propModels = [];
    let totalWidth = 0;
+   const modelPath = model.split('/');
 
    for (const data of payload) {
       if (!data.key) continue;
       for (const prop in data) {
          if (bannedProps.indexOf(prop) > -1) continue;
          else if (props.has(prop)) continue;
+         let propModel;
+         switch (modelPath.length) {
+
+            case 1:
+               propModel = (models[model][prop]) ?
+                  models[model][prop] : (models[model]._default(prop)) ?
+                     models[model]._default(prop) : false;
+               break;
+
+            case 2:
+               propModel = (models[modelPath[0]][modelPath[1]][prop]) ?
+                  models[modelPath[0]][modelPath[1]][prop] : (models[modelPath[0]][modelPath[1]]._default(prop)) ?
+                     models[modelPath[0]][modelPath[1]]._default(prop) : false;
+               break;
+         }
+         if (!propModel) continue;
+
          props.add(prop);
-         const propModel = Object.assign({}, models[model][prop] || models[model]._default(prop));
          propModels.push(propModel);
          totalWidth += propModel.width;
       }
@@ -67,7 +84,7 @@ export const parseAndMapObjectProps = (payload, model = 'dictionary', bannedProp
 
 /**
  * @function parseTableHeaders
- * @description 
+ * @description 테이블 데이터 파서
  * @param {Object[]} payload
  * @param {String} payload[].key object unique key
  * @param {String} model property model

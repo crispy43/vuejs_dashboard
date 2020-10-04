@@ -1,16 +1,4 @@
 export default {
-   _default(prop) {
-      return {
-         name: prop,
-         width: 100
-      };
-   },
-   checked: {
-      name: '체크',
-      tag: 'input',
-      type: 'checkbox',
-      width: 50
-   },
    key: {
       name: '코드',
       width: 100
@@ -40,6 +28,11 @@ export default {
       name: '상태',
       width: 75
    },
+   depositedAt: {
+      name: '입금시간',
+      filter: 'date/yMDHMS',
+      width: 125
+   },
    remark: {
       name: '비고',
       tag: 'input',
@@ -59,10 +52,5 @@ export default {
       name: '처리일자',
       filter: 'date/yMDHM',
       width: 100
-   },
-   depositedAt: {
-      name: '입금시간',
-      filter: 'date/yMDHMS',
-      width: 125
    }
 };
