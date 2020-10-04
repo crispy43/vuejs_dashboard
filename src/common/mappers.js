@@ -1,3 +1,7 @@
+// import { toRefs } from 'vue';
+
+
+
 /**
  * @function mapMutation
  * @description map mutation helper
@@ -52,7 +56,7 @@ export const mapGetter = (store, method, module) => {
 /**
  * @function mapTableData
  * @description 테이블 데이터 해더 속성에 맵핑
- * @param {Object} data
+ * @param {Object} data *ref data
  * @param {Object} target
  * @return {Array} result
  */

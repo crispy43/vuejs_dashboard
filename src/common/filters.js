@@ -11,6 +11,7 @@ export default {
     * @param {String} [type = yMDHMS]
     * @return {String} filtered
     */
+   
    date: (originDate, type = 'yMDHMS') => {
       try {
          let formated;
@@ -55,6 +56,7 @@ export default {
     * @param {Number} [float = 4] maximumFractionDigits
     * @return {String} filtered
     */
+
    comma(amount, float = 4) {
       const parsedAmount = parseFloat(amount);
       return (!isNaN(parsedAmount)) ? parsedAmount.toLocaleString(undefined, { maximumFractionDigits: float }) : NaN;

@@ -6,7 +6,10 @@
             v-for="(item, index) in headers"
             :key="index"
             :index="index"
-            :style="{ width: item.width }"
+            :style="{
+               width: item.width,
+               height: thHeight
+            }"
          >
             <p>{{ item.name }}</p>
          </th>
@@ -26,7 +29,7 @@
 
 
 <script>
-import { reactive } from 'vue';
+import { computed } from 'vue';
 import { mapTableData } from '../../../common/mappers';
 import RowA from './RowA';
 
@@ -44,14 +47,19 @@ export default {
          type: Array,
          required: true
       },
+      thHeight: {
+         type: String,
+         default: 'auto'
+      },
       tbodyMaxHeight: {
          type: String,
-         default: '750px'
+         default: 'auto'
       }
    },
-   setup(props) { 
-      const data = reactive(props.data);
-      const typedData = mapTableData(data, props.headers);
+   setup(props) {
+      const typedData = computed(() => {
+         return mapTableData(props.data, props.headers);
+      });
       
       return {
          typedData

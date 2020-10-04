@@ -52,6 +52,12 @@ export default {
          state.paymentConfirms = map;
          state.paymentConfirmsHeaders = headers;
          state.paymentConfirmsData = data;
+      },
+      popPendings(state) {
+         state.pendingsData.pop();
+      },
+      pushPendings(state, payload) {
+         state.pendingsData.push(payload);
       }
    },
 

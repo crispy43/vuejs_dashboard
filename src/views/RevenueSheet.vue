@@ -7,11 +7,21 @@
             :date="contract.date"
             :text="contract.text"
          />
-         <TableA
-            :headers="pendingsHeaders"
-            :data="pendingsData"
-            :tbodyMaxHeight="tbodyMaxHeight"
-         />
+         <div :style="{
+            height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')',
+            margin: '20px 0'
+         }">
+            <transition name="fade" appear>
+               <AsyncTableA
+                  :headers="pendingsHeaders"
+                  :data="pendingsData"
+                  :thHeight="thHeight"
+                  :tbodyMaxHeight="tbodyMaxHeight"
+               />
+            </transition>
+         </div>
+         <!-- <button @click="pushPendings">추가</button> -->
+         <!-- <button @click="popPendings">제거</button> -->
       </div>
       <div class="revenue-sheet-a-right">
          <TitleA>입금 내역</TitleA>
@@ -19,11 +29,19 @@
             :date="deposit.date"
             :text="deposit.text"
          />
-         <TableA
-            :headers="depositsHeaders"
-            :data="depositsData"
-            :tbodyMaxHeight="tbodyMaxHeight"
-         />
+         <div :style="{
+            height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')',
+            margin: '20px 0'
+         }">
+            <transition name="fade" appear>
+               <AsyncTableA
+                  :headers="depositsHeaders"
+                  :data="depositsData"
+                  :thHeight="thHeight"
+                  :tbodyMaxHeight="tbodyMaxHeight"
+               />
+            </transition>
+         </div>
       </div>
    </div>
    <div class="revenue-sheet-b">
@@ -31,7 +49,7 @@
       <TableA
          :headers="paymentConfirmsHeaders"
          :data="paymentConfirmsData"
-         :tbodyMaxHeight="tbodyMaxHeight"
+         :thHeight="thHeight"
       />
    </div>
 </div>
@@ -40,19 +58,31 @@
 
 
 <script>
-import { onBeforeMount, toRefs } from 'vue';
+import { onBeforeMount, toRefs, defineAsyncComponent } from 'vue';
 import { useStore } from 'vuex';
-import { mapAction } from '../common/mappers';
+import { mapAction, mapMutation } from '../common/mappers';
 import TitleA from '../components/titles/TitleA';
 import SearchBoxA from '../components/forms/SearchBoxA';
 import TableA from '../components/tables/TableA/TableA';
+import LoaderA from '../components/loaders/LoaderA';
 
 export default {
    name: 'RevenueSheet',
    components: {
       TitleA,
       SearchBoxA,
-      TableA
+      TableA,
+      AsyncTableA: defineAsyncComponent({
+         loader: () => {
+            return new Promise(res => {
+               setTimeout(() => {
+               res(TableA)
+               }, 500)
+            });
+         },
+         loadingComponent: LoaderA,
+         delay: 0
+      })
    },
    setup() {
       const store = useStore();
@@ -67,6 +97,14 @@ export default {
          paymentConfirmsHeaders,
          paymentConfirmsData
       } = toRefs(store.state.revenues);
+
+      const pushPendings = () => {
+         mapMutation(store, 'pushPendings', 'revenues')([false,'','',0,'','','','','']);
+      }
+
+      const popPendings = () => {
+         mapMutation(store, 'popPendings', 'revenues')();
+      }
 
       return {
          contract: {
@@ -91,13 +129,16 @@ export default {
                placeholder: '이름을 입력하세요...'
             }
          },
+         thHeight: '40px',
          tbodyMaxHeight: '40vh',
          pendingsHeaders,
          pendingsData,
          depositsHeaders,
          depositsData,
          paymentConfirmsHeaders,
-         paymentConfirmsData
+         paymentConfirmsData,
+         pushPendings,
+         popPendings
       };
    }
 }

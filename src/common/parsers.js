@@ -86,8 +86,6 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
       propModels[i].width = parseInt(propModels[i].width) / totalWidth * 100 + '%';
    }
 
-   console.log(props);
-
    return {
       props: Array.from(props),
       propModels

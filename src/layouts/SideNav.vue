@@ -89,6 +89,7 @@ export default {
    bottom: 25px;
 }
 .side-nav-bottom svg {
+   position: absolute;
    font-size: 25px;
    cursor: pointer;
 }
