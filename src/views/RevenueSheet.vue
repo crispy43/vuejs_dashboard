@@ -27,7 +27,8 @@
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
                   :checkMutName="'checkPending'"
-                  :checkMutStore="'revenues'"
+                  :hideStateName="'pendingsMatched'"
+                  :storeName="'revenues'"
                />
             </transition>
          </div>
@@ -58,7 +59,8 @@
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
                   :checkMutName="'checkDeposit'"
-                  :checkMutStore="'revenues'"
+                  :hideStateName="'depositsMatched'"
+                  :storeName="'revenues'"
                />
             </transition>
          </div>
@@ -109,7 +111,7 @@ export default {
       onBeforeMount(() => {
          refreshPendings();
          refreshDeposits();
-         mapAction(store, 'fetchPaymentConfirms', 'revenues')();
+         mapMutation(store, 'confirm', 'revenues')();
       });
       const {
          pendingsHeaders,

@@ -66,14 +66,16 @@ export const mapTableData = (data, target) => {
    for (const row of data) {
       const typedRow = [];
       for (let i in row) {
-         const typed = {
-            tag: target[i].tag || 'p',
-            type: target[i].type,
-            filter: target[i].filter,
-            width: target[i].width || 'auto',
-            value: row[i]
-         };
-         typedRow.push(typed);
+         if (typeof row[i] !== 'object') {
+            const typed = {
+               tag: target[i].tag || 'p',
+               type: target[i].type,
+               filter: target[i].filter,
+               width: target[i].width || 'auto',
+               value: row[i]
+            };
+            typedRow.push(typed);
+         }
       }
       typedData.push(typedRow);
    }

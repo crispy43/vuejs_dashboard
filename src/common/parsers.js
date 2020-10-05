@@ -112,9 +112,11 @@ export const parseTableData = (payload, {
    const { props, propModels } = parseAndMapObjectProps(payload, model, strict, bannedProps);
    const parsedPayload = [];
    const payloadMap = new Map();
+   let skip = 0;
 
    for (let i in payload) {
       if (!payload[i].key) {
+         skip++;
          continue;
       }
       const parsedValues = [];
@@ -123,6 +125,9 @@ export const parseTableData = (payload, {
             payload[i][prop] = '';
          }
          parsedValues.push(payload[i][prop]);
+      }
+      payload[i]._ = {
+         index: parseInt(i) - skip
       }
       parsedPayload.push(parsedValues);
       payloadMap.set(payload[i].key, payload[i]);
@@ -164,9 +169,6 @@ export const getDataFromMap = (payload, bannedProps) => {
       }
       dataY.push(dataX);
    }
-
-   console.log('--- dataY ---');
-   console.log(dataY);
    
    return dataY;
 };

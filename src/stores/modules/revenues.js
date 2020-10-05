@@ -14,12 +14,14 @@ export default {
       pendingsHeaders: [],
       pendingsData: [],
       pendingsChecked: new Set(),
+      pendingsMatched: new Set(),
 
       // deposits
       deposits: new Map(),
       depositsHeaders: [],
       depositsData: [],
       depositsChecked: new Set(),
+      depositsMatched: new Set(),
 
       // paymentConfirms
       paymentConfirms: new Map(),
@@ -67,16 +69,10 @@ export default {
             state.depositsChecked.add(payload);
       },
       confirm(state) {
-         console.log('--- confirm ---');
          const pendingsChecked = Array.from(state.pendingsChecked);
          const depositsChecked = Array.from(state.depositsChecked);
          const pendingItems = Array.from(state.pendings[Symbol.iterator]());
          const depositItems = Array.from(state.deposits[Symbol.iterator]());
-
-         console.log(pendingsChecked);
-         console.log(depositsChecked);
-         console.log(pendingItems);
-         console.log(depositItems);
 
          const pendings = pendingsChecked.map((i) => {
             return pendingItems[i][1];
@@ -85,12 +81,7 @@ export default {
             return depositItems[i][1];
          });
 
-         console.log(pendings);
-         console.log(deposits);
-
          const matchedArray = [];
-         const matchedPendings = [];
-         const matchedDeposits = [];
 
          for (const pending of pendings) {
             for (const deposit of deposits) {
@@ -98,8 +89,10 @@ export default {
                   pending.contractor === deposit.contractor &&
                   pending.amount === deposit.amount
                ) {
-                  matchedPendings.push(pending.key);
-                  matchedDeposits.push(deposit.key);
+                  state.pendingsMatched.add(pending._.index);
+                  state.pendingsChecked.delete(pending._.index);
+                  state.depositsMatched.add(deposit._.index);
+                  state.depositsChecked.delete(deposit._.index);
                   matchedArray.push({
                      key: pending.key,
                      contractor: pending.contractor,
@@ -119,40 +112,21 @@ export default {
 
          console.log('--- matched ---');
          console.log(matchedArray);
-         console.log('--- matched p ---');
-         console.log(matchedPendings);
-         console.log('--- matched d ---');
-         console.log(matchedDeposits);
 
-         state.pendingsChecked.clear();
-         state.depositsChecked.clear();
+         if (matchedArray.length > 0) {
+            const pendingsData = getDataFromMap(state.pendings, ['updatedAt']);
+            state.pendingsData = pendingsData;
 
-         for (const key of matchedPendings) {
-            state.pendings.delete(key);
+            const depositsData = getDataFromMap(state.deposits, ['createdAt', 'updatedAt']);
+            state.depositsData = depositsData;
+
+            const { map, headers, data } = parseTableData(matchedArray, {
+               model: 'revenues/paymentConfirms'
+            });
+            state.paymentConfirms = map;
+            state.paymentConfirmsHeaders = headers;
+            state.paymentConfirmsData = data;
          }
-
-         for (const key of matchedDeposits) {
-            state.deposits.delete(key);
-         }
-
-         const pendingsData = getDataFromMap(state.pendings, ['updatedAt']);
-         state.pendingsData = pendingsData;
-
-         console.log('--- pendingsData ---');
-         console.log(pendingsData);
-
-         const depositsData = getDataFromMap(state.deposits, ['createdAt', 'updatedAt']);
-         state.depositsData = depositsData;
-
-         console.log('--- depositsData ---');
-         console.log(depositsData);
-
-         const { map, headers, data } = parseTableData(matchedArray, {
-            model: 'revenues/paymentConfirms'
-         });
-         state.paymentConfirms = map;
-         state.paymentConfirmsHeaders = headers;
-         state.paymentConfirmsData = data;
       }
    },
 

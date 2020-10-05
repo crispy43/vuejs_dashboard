@@ -22,7 +22,8 @@
          :index="index"
          :rowData="rowData"
          :checkMutName="checkMutName"
-         :checkMutStore="checkMutStore"
+         :hideStateName="hideStateName"
+         :storeName="storeName"
       />
    </tbody>
 </table>
@@ -58,13 +59,11 @@ export default {
          default: 'auto'
       },
       checkMutName: String,
-      checkMutStore: String
+      hideStateName: String,
+      storeName: String
    },
    setup(props) {
       const typedData = computed(() => {
-         console.log('--- typedData ---')
-         console.log(props.headers);
-         console.log(props.data);
          return mapTableData(props.data, props.headers);
       });
       
