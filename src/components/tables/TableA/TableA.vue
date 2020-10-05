@@ -21,6 +21,8 @@
          :key="index"
          :index="index"
          :rowData="rowData"
+         :checkMutName="checkMutName"
+         :checkMutStore="checkMutStore"
       />
    </tbody>
 </table>
@@ -54,10 +56,15 @@ export default {
       tbodyMaxHeight: {
          type: String,
          default: 'auto'
-      }
+      },
+      checkMutName: String,
+      checkMutStore: String
    },
    setup(props) {
       const typedData = computed(() => {
+         console.log('--- typedData ---')
+         console.log(props.headers);
+         console.log(props.data);
          return mapTableData(props.data, props.headers);
       });
       
@@ -75,7 +82,7 @@ export default {
    display: table;
    width: 100%;
    border-collapse: collapse;
-   margin: 20px 0;
+   margin: 0 0 20px;
 }
 .table-a thead {
    float: left;

@@ -82,4 +82,16 @@ export default {
 .fade-enter-from, .fade-leave-to {
    opacity: 0;
 }
+.fade-i-enter-active {
+   transition: opacity 0.5s;
+}
+.fade-i-enter-from {
+   opacity: 0;
+}
+.fade-o-leave-active {
+   transition: opacity 0.5s;
+}
+.fade-o-leave-to {
+   opacity: 0;
+}
 </style>

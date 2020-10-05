@@ -113,17 +113,19 @@ export const parseTableData = (payload, {
    const parsedPayload = [];
    const payloadMap = new Map();
 
-   for (const data of payload) {
-      if (!data.key) continue;
+   for (let i in payload) {
+      if (!payload[i].key) {
+         continue;
+      }
       const parsedValues = [];
       for (const prop of props) {
-         if (typeof data[prop] === 'undefined' || data[prop] === null) {
-            data[prop] = '';
+         if (typeof payload[i][prop] === 'undefined' || payload[i][prop] === null) {
+            payload[i][prop] = '';
          }
-         parsedValues.push(data[prop]);
+         parsedValues.push(payload[i][prop]);
       }
       parsedPayload.push(parsedValues);
-      payloadMap.set(data.key, data);
+      payloadMap.set(payload[i].key, payload[i]);
    }
    
    return {
@@ -131,4 +133,40 @@ export const parseTableData = (payload, {
       headers: propModels,
       data: parsedPayload
    };
+};
+
+
+
+/**
+ * @function parseTableHeaders
+ * @description 테이블 데이터 파서
+ * @param {Object[]} payload
+ * @param {String} payload[].key object unique key
+ * @param {Object} options parse options
+ * @param {String} [options.model = dictionary] property model
+ * @param {Boolean} [options.strict = true] mapping type
+ * @param {Array=} options.bannedProps except properties
+ * @return {Object} map, headers, data
+ */
+
+export const getDataFromMap = (payload, bannedProps) => {
+   const array = Array.from(payload[Symbol.iterator]());
+
+   const dataY = [];
+
+   for (let i in array) {
+      const data = array[i][1];
+      const dataX = [];
+
+      for (let prop in data) {
+         if (bannedProps.indexOf(prop) > -1) continue;
+         dataX.push(data[prop]);
+      }
+      dataY.push(dataX);
+   }
+
+   console.log('--- dataY ---');
+   console.log(dataY);
+   
+   return dataY;
 };

@@ -2,50 +2,76 @@
 <div class="revenue-sheet">
    <div class="revenue-sheet-a">
       <div class="revenue-sheet-a-left">
-         <TitleA>매출 내역</TitleA>
+         <div class="revenue-sheet-header">
+            <TitleA>매출 내역</TitleA>
+            <ButtonB @click="refreshPendings">새로고침</ButtonB>
+         </div>
          <SearchBoxA
             :date="contract.date"
             :text="contract.text"
          />
-         <div :style="{
-            height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')',
-            margin: '20px 0'
-         }">
-            <transition name="fade" appear>
-               <AsyncTableA
+         <div class="revenue-sheet-header">
+            <TitleB>입금대기</TitleB>
+            <!-- <ButtonB @click="delPendings(0)">저장</ButtonB> -->
+         </div>
+         <div
+            class="revenue-sheet-a-table"
+            :style="{ height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')' }"
+         >
+            <transition name="fade-i" mode="out-in" appear>
+               <LoaderA v-if="isLoadPendings" />
+               <TableA
+                  v-else
                   :headers="pendingsHeaders"
                   :data="pendingsData"
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
+                  :checkMutName="'checkPending'"
+                  :checkMutStore="'revenues'"
                />
             </transition>
          </div>
-         <!-- <button @click="pushPendings">추가</button> -->
-         <!-- <button @click="popPendings">제거</button> -->
       </div>
       <div class="revenue-sheet-a-right">
-         <TitleA>입금 내역</TitleA>
+         <div class="revenue-sheet-header">
+            <TitleA>입금 내역</TitleA>
+            <ButtonB @click="refreshDeposits">새로고침</ButtonB>
+         </div>
          <SearchBoxA
             :date="deposit.date"
             :text="deposit.text"
          />
-         <div :style="{
-            height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')',
-            margin: '20px 0'
-         }">
-            <transition name="fade" appear>
-               <AsyncTableA
+         <div class="revenue-sheet-header">
+            <TitleB>은행 거래내역</TitleB>
+            <ButtonB @click="confirm">업로드</ButtonB>
+         </div>
+         <div
+            class="revenue-sheet-a-table"
+            :style="{ height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')' }"
+         >
+            <transition name="fade-i" mode="out-in" appear>
+               <LoaderA v-if="isLoadDeposits" />
+               <TableA
+                  v-else
                   :headers="depositsHeaders"
                   :data="depositsData"
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
+                  :checkMutName="'checkDeposit'"
+                  :checkMutStore="'revenues'"
                />
             </transition>
          </div>
       </div>
    </div>
    <div class="revenue-sheet-b">
-      <TitleA>입금 확인</TitleA>
+      <div class="revenue-sheet-header">
+         <TitleA>입금 확인</TitleA>
+         <div class="revenue-sheet-header-right">
+            <ButtonB>입금 확인 취소</ButtonB>
+            <ButtonB>저장</ButtonB>
+         </div>
+      </div>
       <TableA
          :headers="paymentConfirmsHeaders"
          :data="paymentConfirmsData"
@@ -58,10 +84,12 @@
 
 
 <script>
-import { onBeforeMount, toRefs, defineAsyncComponent } from 'vue';
+import { onBeforeMount, ref, toRefs } from 'vue';
 import { useStore } from 'vuex';
 import { mapAction, mapMutation } from '../common/mappers';
 import TitleA from '../components/titles/TitleA';
+import TitleB from '../components/titles/TitleB';
+import ButtonB from '../components/buttons/ButtonB';
 import SearchBoxA from '../components/forms/SearchBoxA';
 import TableA from '../components/tables/TableA/TableA';
 import LoaderA from '../components/loaders/LoaderA';
@@ -70,24 +98,18 @@ export default {
    name: 'RevenueSheet',
    components: {
       TitleA,
+      TitleB,
+      ButtonB,
       SearchBoxA,
       TableA,
-      AsyncTableA: defineAsyncComponent({
-         loader: () => {
-            return new Promise(res => {
-               setTimeout(() => {
-               res(TableA)
-               }, 500)
-            });
-         },
-         loadingComponent: LoaderA,
-         delay: 0
-      })
+      LoaderA
    },
    setup() {
       const store = useStore();
       onBeforeMount(() => {
-         mapAction(store, 'fetch', 'revenues')();
+         refreshPendings();
+         refreshDeposits();
+         mapAction(store, 'fetchPaymentConfirms', 'revenues')();
       });
       const {
          pendingsHeaders,
@@ -98,12 +120,23 @@ export default {
          paymentConfirmsData
       } = toRefs(store.state.revenues);
 
-      const pushPendings = () => {
-         mapMutation(store, 'pushPendings', 'revenues')([false,'','',0,'','','','','']);
+      const isLoadPendings = ref(false);
+      const isLoadDeposits = ref(false);
+
+      const refreshPendings = async () => {
+         isLoadPendings.value = true;
+         await mapAction(store, 'fetchPendings', 'revenues')();
+         isLoadPendings.value = false;
       }
 
-      const popPendings = () => {
-         mapMutation(store, 'popPendings', 'revenues')();
+      const refreshDeposits = async () => {
+         isLoadDeposits.value = true;
+         await mapAction(store, 'fetchDeposits', 'revenues')();
+         isLoadDeposits.value = false;
+      }
+
+      const confirm = () => {
+         mapMutation(store, 'confirm', 'revenues')();
       }
 
       return {
@@ -137,8 +170,11 @@ export default {
          depositsData,
          paymentConfirmsHeaders,
          paymentConfirmsData,
-         pushPendings,
-         popPendings
+         isLoadPendings,
+         isLoadDeposits,
+         refreshPendings,
+         refreshDeposits,
+         confirm
       };
    }
 }
@@ -152,9 +188,20 @@ export default {
    flex-direction: column;
    width: 100%;
 }
+.revenue-sheet-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.revenue-sheet-header-right > * {
+   margin-left: 10px;
+}
 .revenue-sheet-a {
    flex: 1 1 100%;
    display: flex;
+}
+.revenue-sheet-a-table {
+   margin-bottom: 20px;
 }
 .revenue-sheet-a-left {
    flex: 1 1 55%;

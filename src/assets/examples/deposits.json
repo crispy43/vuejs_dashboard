@@ -1,7 +1,7 @@
 [
    {
       "checked": false,
-      "key": "X00001",
+      "key": "Y00001",
       "depositedAt": "2020-10-01T10:01:01.000Z",
       "bank": "기업은행",
       "bankAccount": "201234123456789",
@@ -12,7 +12,7 @@
    },
    {
       "checked": false,
-      "key": "X00002",
+      "key": "Y00002",
       "depositedAt": "2020-10-03T10:01:01.000Z",
       "bank": "신한은행",
       "bankAccount": "301234123456789",
@@ -23,7 +23,7 @@
    },
    {
       "checked": false,
-      "key": "X00003",
+      "key": "Y00003",
       "depositedAt": "2020-10-05T10:01:01.000Z",
       "bank": "국민은행",
       "bankAccount": "401234123456789",
