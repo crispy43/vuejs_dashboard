@@ -37,6 +37,7 @@ export default {
             model: 'revenues/pendings',
             bannedProps: ['updatedAt']
          });
+         state.pendingsChecked.clear();
          state.pendings = map;
          state.pendingsHeaders = headers;
          state.pendingsData = data;
@@ -46,6 +47,7 @@ export default {
             model: 'revenues/deposits',
             bannedProps: ['createdAt', 'updatedAt']
          });
+         state.depositsChecked.clear();
          state.deposits = map;
          state.depositsHeaders = headers;
          state.depositsData = data;
@@ -67,6 +69,14 @@ export default {
          (state.depositsChecked.has(payload)) ?
             state.depositsChecked.delete(payload) :
             state.depositsChecked.add(payload);
+      },
+      clearMatched(state) {
+         state.pendingsChecked.clear();
+         state.depositsChecked.clear();
+         state.pendingsMatched.clear();
+         state.depositsMatched.clear();
+         state.paymentConfirms = new Map;
+         state.paymentConfirmsData = [];
       },
       confirm(state) {
          const pendingsChecked = Array.from(state.pendingsChecked);
@@ -123,9 +133,12 @@ export default {
             const { map, headers, data } = parseTableData(matchedArray, {
                model: 'revenues/paymentConfirms'
             });
+            for (const data of Array.from(map.values())) {
+               state.paymentConfirms.set(data.key, data);
+            }
             state.paymentConfirms = map;
             state.paymentConfirmsHeaders = headers;
-            state.paymentConfirmsData = data;
+            state.paymentConfirmsData = [state.paymentConfirmsData, data].flat();
          }
       }
    },

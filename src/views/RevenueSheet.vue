@@ -27,6 +27,7 @@
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
                   :checkMutName="'checkPending'"
+                  :checkStateName="'pendingsChecked'"
                   :hideStateName="'pendingsMatched'"
                   :storeName="'revenues'"
                />
@@ -59,6 +60,7 @@
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
                   :checkMutName="'checkDeposit'"
+                  :checkStateName="'depositsChecked'"
                   :hideStateName="'depositsMatched'"
                   :storeName="'revenues'"
                />
@@ -70,8 +72,8 @@
       <div class="revenue-sheet-header">
          <TitleA>입금 확인</TitleA>
          <div class="revenue-sheet-header-right">
-            <ButtonB>입금 확인 취소</ButtonB>
-            <ButtonB>저장</ButtonB>
+            <ButtonB @click="cancelConfirm">입금 확인 취소</ButtonB>
+            <!-- <ButtonB>저장</ButtonB> -->
          </div>
       </div>
       <TableA
@@ -111,7 +113,8 @@ export default {
       onBeforeMount(() => {
          refreshPendings();
          refreshDeposits();
-         mapMutation(store, 'confirm', 'revenues')();
+         if (store.state.revenues.paymentConfirms.size === 0)
+            mapMutation(store, 'setPaymentConfirms', 'revenues')([]);
       });
       const {
          pendingsHeaders,
@@ -127,18 +130,24 @@ export default {
 
       const refreshPendings = async () => {
          isLoadPendings.value = true;
+         mapMutation(store, 'clearMatched', 'revenues')();
          await mapAction(store, 'fetchPendings', 'revenues')();
          isLoadPendings.value = false;
       }
 
       const refreshDeposits = async () => {
          isLoadDeposits.value = true;
+         mapMutation(store, 'clearMatched', 'revenues')();
          await mapAction(store, 'fetchDeposits', 'revenues')();
          isLoadDeposits.value = false;
       }
 
       const confirm = () => {
          mapMutation(store, 'confirm', 'revenues')();
+      }
+
+      const cancelConfirm = () => {
+         mapMutation(store, 'clearMatched', 'revenues')();
       }
 
       return {
@@ -176,7 +185,8 @@ export default {
          isLoadDeposits,
          refreshPendings,
          refreshDeposits,
-         confirm
+         confirm,
+         cancelConfirm
       };
    }
 }

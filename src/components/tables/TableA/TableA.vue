@@ -22,6 +22,7 @@
          :index="index"
          :rowData="rowData"
          :checkMutName="checkMutName"
+         :checkStateName="checkStateName"
          :hideStateName="hideStateName"
          :storeName="storeName"
       />
@@ -59,6 +60,7 @@ export default {
          default: 'auto'
       },
       checkMutName: String,
+      checkStateName: String,
       hideStateName: String,
       storeName: String
    },

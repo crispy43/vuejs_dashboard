@@ -39,7 +39,6 @@ export default {
                case 'checkbox':
                   reactiveValue = ref((props.data.value));
                   onChange = (e) => {
-                     console.log(e.target.checked);
                      reactiveValue.value = e.target.checked;
                      emit('row-select', e.target.checked);
                   }
@@ -48,7 +47,6 @@ export default {
                default:
                   reactiveValue = ref(props.data.value);
                   onChange = (e) => {
-                     console.log(e.target.value);
                      reactiveValue.value = e.target.value;
                   }
                   break;
