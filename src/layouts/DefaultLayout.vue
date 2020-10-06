@@ -77,19 +77,19 @@ export default {
 }
 /* fade */
 .fade-enter-active, .fade-leave-active {
-   transition: opacity 0.5s;
+   transition: opacity 0.4s;
 }
 .fade-enter-from, .fade-leave-to {
    opacity: 0;
 }
 .fade-i-enter-active {
-   transition: opacity 0.5s;
+   transition: opacity 0.4s;
 }
 .fade-i-enter-from {
    opacity: 0;
 }
 .fade-o-leave-active {
-   transition: opacity 0.5s;
+   transition: opacity 0.4s;
 }
 .fade-o-leave-to {
    opacity: 0;

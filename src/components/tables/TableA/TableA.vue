@@ -107,7 +107,7 @@ export default {
 .table-a tbody tr:last-child {
    border-bottom: none;
 }
-.table-a th, td {
+.table-a > thead th, .table-a > tbody td {
    height: 27px;
    border: solid 1px rgb(160, 160, 160);
    font-size: 13px;
@@ -135,10 +135,10 @@ export default {
    font-size: 12px;
    margin: auto;
 }
-.table-a tr:nth-child(2n) {
+.table-a tr:nth-child(2n+1) {
    background-color: white;
 }
-.table-a tr:nth-child(2n+1) {
+.table-a tr:nth-child(2n) {
    background-color: rgb(250, 250, 250);
 }
 </style>

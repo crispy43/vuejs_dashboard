@@ -12,7 +12,7 @@
          />
          <div class="revenue-sheet-header">
             <TitleB>입금대기</TitleB>
-            <!-- <ButtonB @click="delPendings(0)">저장</ButtonB> -->
+            <!-- <ButtonB>저장</ButtonB> -->
          </div>
          <div
             class="revenue-sheet-a-table"

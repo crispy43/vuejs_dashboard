@@ -56,9 +56,9 @@
                      "component": "RevenueSheet"
                   },
                   {
-                     "name": "계약목록",
+                     "name": "계약관리",
                      "key": "contracts",
-                     "component": "TempView"
+                     "component": "Contracts"
                   }
                ]
             }
