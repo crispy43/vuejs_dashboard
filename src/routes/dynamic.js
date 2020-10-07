@@ -9,9 +9,14 @@ export default (store) => {
       },
       {
          path: '/:pathMatch(.*)*',
-         name: 'Not Found',
+         name: 'NotFound',
          component: () => import('../views/NotFound.vue')
-      }
+      },
+      {
+        path: '/signin/:pathMatch(.*)*',
+        name: 'SignIn',
+        component: () => import('../views/SignIn.vue')
+     }
    ];
 
    for (const [path, { name, parentsName, childPath, component, params }] of pathMap) {

@@ -3,14 +3,20 @@ import treeMenu from './modules/treeMenu';
 import revenues from './modules/revenues';
 const { name, version, bugs } = require('../../package.json');
 
+
+
 export default createStore({
    state: () => ({
       name,
       version,
       env: process.env.NODE_ENV,
-      bugs
+      bugs,
+      isAuthenticated: false
    }),
    mutations: {
+      setIsAuthenticated(state, payload) {
+         state.isAuthenticated = payload;
+      }
    },
    actions: {
    },

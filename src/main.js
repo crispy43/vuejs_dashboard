@@ -35,6 +35,26 @@ import { mapMutation, mapAction } from './common/mappers';
 
 
    /**
+    * @name beforeEach
+    * @global
+    * @description 라우터 진입시 인증 여부 확인
+    * @param {Function} callback
+    */
+
+   router.beforeEach((to, from, next) => {
+      const accessToken = localStorage.getItem('accessToken');
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      if (to.name !== 'SignIn' && !accessToken && !refreshToken) {
+         mapMutation(store, 'setIsAuthenticated')(false);
+         next({ path: '/signin' });
+      }
+      next();
+   });
+
+
+
+   /**
     * @name afterEach
     * @global
     * @description 라우터 진입 이후마다 menu selection 및 current location 적용

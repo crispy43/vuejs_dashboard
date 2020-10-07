@@ -18,7 +18,10 @@
       />
    </div>
    <div class="header-user">
-      <FontAwesomeIcon icon="sign-out-alt" />
+      <FontAwesomeIcon
+         icon="sign-out-alt"
+         @click="signOut"
+      />
    </div>
 </div>
 </template>
@@ -57,8 +60,16 @@ export default {
          router.push({ path: '/' });
       }
 
+      const signOut = () => {
+         localStorage.removeItem('accessToken');
+         localStorage.removeItem('refreshToken');
+         router.push({ path: '/' });
+      }
+
       return {
-         goHome, tree
+         goHome,
+         tree,
+         signOut
       };
    }
 }

@@ -1,5 +1,5 @@
 <template>
-<div class="main">
+<div :class="['main', { 'is-authenticated': isAuthenticated }]">
    <router-view />
 </div>
 </template>
@@ -7,10 +7,21 @@
 
 
 <script>
+import { toRefs } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
    name: 'Main',
    props: {
       headerHeight: String
+   },
+   setup() {
+      const store = useStore();
+      const { isAuthenticated } = toRefs(store.state);
+
+      return {
+         isAuthenticated
+      };
    }
 }
 </script>
@@ -20,9 +31,11 @@ export default {
 <style scoped>
 .main {
    flex: 1 1 auto;
-   padding: calc(var(--header-height) + var(--main-padding-top)) var(--main-padding-left-right) 0;
    margin-bottom: 20px;
    background-color: white;
    overflow-y: auto;
+}
+.is-authenticated {
+   padding: calc(var(--header-height) + var(--main-padding-top)) var(--main-padding-left-right) 0;
 }
 </style>

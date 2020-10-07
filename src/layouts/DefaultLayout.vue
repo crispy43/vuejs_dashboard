@@ -1,7 +1,7 @@
 <template>
 <div :style="cssRootVar" class="root-layout">
-   <Header :headerLogo="headerLogo" />
-   <SideNav />
+   <Header v-if="isAuthenticated" :headerLogo="headerLogo" />
+   <SideNav v-if="isAuthenticated" />
    <Main />
 </div>
 </template>
@@ -9,7 +9,8 @@
 
 
 <script>
-import { reactive } from 'vue';
+import { toRefs, reactive } from 'vue';
+import { useStore } from 'vuex';
 import Header from './Header';
 import SideNav from './SideNav';
 import Main from './Main';
@@ -47,8 +48,13 @@ export default {
          alt: 'bizportal_logo'
       });
 
+      const store = useStore();
+      const { isAuthenticated } = toRefs(store.state);
+
       return {
-         cssRootVar, headerLogo
+         cssRootVar,
+         headerLogo,
+         isAuthenticated
       };
    }
 }
