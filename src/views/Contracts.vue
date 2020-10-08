@@ -152,6 +152,7 @@ export default {
 .contracts {
    display: block;
    width: 100%;
+   margin-bottom: 20px;
 }
 .contracts-search-buttons {
    display: flex;

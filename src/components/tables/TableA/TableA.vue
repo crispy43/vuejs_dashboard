@@ -83,6 +83,7 @@ export default {
    display: table;
    width: 100%;
    border-collapse: collapse;
+   border: var(--table-a-border);
    margin: 0 0 20px;
 }
 .table-a thead {
@@ -109,36 +110,40 @@ export default {
 }
 .table-a > thead th, .table-a > tbody td {
    height: 27px;
-   border: solid 1px rgb(160, 160, 160);
+   border: var(--table-a-cell-border);
    font-size: 13px;
    padding: 5px;
 }
 .table-a th {
-   background-color: rgb(100, 100, 100);
-   color: white;
+   background-color: var(--table-a-th-background-color);
 }
 .table-a th > p {
    display: flex;
    align-items: center;
    justify-content: center;
    height: 26px;
+   color: var(--table-a-th-color);
+   font-size: var(--table-a-th-font-size);
+   font-weight: normal;
 }
 .table-a td > input, td > p {
    display: flex;
    align-items: center;
    justify-content: center;
    height: 26px;
+   color: var(--table-a-td-color);
+   font-size: var(--table-a-td-font-size);
    margin: auto;
 }
 .table-a td > input[type=text] {
    width: 100%;
-   font-size: 12px;
-   margin: auto;
+   border: var(--table-a-td-input-border);
+   font-size: var(--table-a-td-font-size);
 }
 .table-a tr:nth-child(2n+1) {
-   background-color: white;
+   background-color: var(--table-a-td-odd-background-color);
 }
 .table-a tr:nth-child(2n) {
-   background-color: rgb(250, 250, 250);
+   background-color: var(--table-a-td-even-background-color);
 }
 </style>

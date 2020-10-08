@@ -60,14 +60,13 @@ export default {
    display: table;
    width: 100%;
    border-collapse: collapse;
+   border: var(--table-b-border);
    table-layout: fixed;
    margin: 10px 0;
 }
 .table-b td {
    height: auto;
-   border: solid 2px rgb(160, 160, 160);
-   font-size: 14px;
-   font-weight: bold;
+   border: var(--table-b-cell-border);
 }
 .table-b td > div {
    display: flex;
@@ -78,11 +77,14 @@ export default {
    padding: 10px;
 }
 .table-b td > div > div:first-child {
-   background-color: rgb(100, 100, 100);
-   color: white;
+   background-color: var(--table-b-th-background-color);
+   color: var(--table-b-th-color);
+   font-size: var(--table-b-th-font-size);
 }
 .table-b td > div > div:last-child {
-   background-color: white;
-   color: black;
+   background-color: var(--table-b-td-background-color);
+   color: var(--table-b-td-color);
+   font-size: var(--table-b-td-font-size);
+
 }
 </style>

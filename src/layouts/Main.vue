@@ -31,7 +31,6 @@ export default {
 <style scoped>
 .main {
    flex: 1 1 auto;
-   margin-bottom: 20px;
    background-color: white;
    overflow-y: auto;
 }

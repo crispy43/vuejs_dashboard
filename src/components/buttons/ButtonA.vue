@@ -1,5 +1,5 @@
 <template>
-<button class="button-a">
+<button class="button-a" :style="{ 'width': width }">
    <slot />
 </button>
 </template>
@@ -8,7 +8,13 @@
 
 <script>
 export default {
-   name: 'ButtonA'
+   name: 'ButtonA',
+   props: {
+      width: {
+         type: String,
+         default: '100px'
+      }
+   }
 }
 </script>
 
@@ -16,13 +22,13 @@ export default {
 
 <style scoped>
 .button-a {
-   width: 75px;
-   height: 35px;
-   border: 1px solid black;
-   border-radius: 3px;
-   background-color: rgb(240, 240, 240);
-   font-size: 13px;
+   border: none;
+   border-radius: 5px;
+   background-color: var(--button-a-background-color);
+   box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+   color: var(--button-a-color);
+   font-size: var(--button-a-font-size);
    cursor: pointer;
-   padding: 5px 10px;
+   padding: 7.5px 10px;
 }
 </style>

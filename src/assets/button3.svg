@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="115" height="38" viewBox="0 0 115 38">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.445" x2="0.444" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1778d5"/>
+      <stop offset="0.502" stop-color="#0f6cc4"/>
+      <stop offset="1" stop-color="#0a5caa"/>
+    </linearGradient>
+  </defs>
+  <g id="search" transform="translate(4 2)">
+    <rect id="Rectangle_697" data-name="Rectangle 697" width="115" height="38" rx="4" transform="translate(-4 -2)" fill="url(#linear-gradient)"/>
+    <text id="수기입력" transform="translate(44 22)" fill="#fff" font-size="13" font-family="AppleSDGothicNeo-Regular, Apple SD Gothic Neo" letter-spacing="0.009em"><tspan x="0" y="0">수기입력</tspan></text>
+    <g id="Smock_Draft_18_N" transform="translate(18 8)">
+      <rect id="Canvas" width="18" height="18" fill="#fff" opacity="0"/>
+      <path id="Path_11753" data-name="Path 11753" d="M10,1V6h5Z" fill="#fff"/>
+      <path id="Path_11754" data-name="Path 11754" d="M17.892,10.861,16.14,9.108A.37.37,0,0,0,15.877,9h-.012a.417.417,0,0,0-.282.123l-5.411,5.411a.3.3,0,0,0-.076.128l-1.014,3c-.035.115.139.258.238.258h.019c.084-.02,2.562-.882,3-1.014a.3.3,0,0,0,.126-.076l5.412-5.415A.417.417,0,0,0,18,11.15.372.372,0,0,0,17.892,10.861Zm-5.8,5.482c-.657.2-1.65.615-2.215.784l.78-2.215Z" fill="#fff"/>
+      <path id="Path_11755" data-name="Path 11755" d="M9.5,7A.5.5,0,0,1,9,6.5V1H3.5a.5.5,0,0,0-.5.5v15a.5.5,0,0,0,.5.5H8.04l.92-2.722a1.413,1.413,0,0,1,.376-.6L15,8.064V7Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

@@ -64,7 +64,7 @@ export default {
    cursor: pointer;
 }
 .side-nav-item-active {
-   background-color: var(--side-nav-items-active-background-color);
+   background-color: var(--side-nav-items-background-color-active);
 }
 .side-nav-item > svg {
    flex: 0 1 50px;

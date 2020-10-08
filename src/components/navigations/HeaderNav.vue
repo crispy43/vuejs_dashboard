@@ -49,7 +49,7 @@ export default {
    align-items: center;
    justify-content: center;
    color: var(--header-nav-color);
-   font-size: 17px;
+   font-size: var(--header-nav-font-size);
    font-weight: bold;
    cursor: pointer;
 }

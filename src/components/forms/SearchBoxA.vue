@@ -73,8 +73,8 @@ export default {
    width: 100%;
    align-items: center;
    justify-content: space-between;
-   background-color: rgb(233, 233, 233);
-   border: 1px solid black;
+   background-color: var(--search-box-background-color);
+   border: var(--search-box-border);
    padding: 12.5px 15px;
    margin: 10px 0;
 }
@@ -89,10 +89,11 @@ export default {
    margin-right: 20px;
 }
 .search-box-a-form > div > label {
-   flex: 1 1 35%;
+   flex: 1 1 40%;
    display: flex;
    align-items: center;
    justify-content: flex-end;
+   color: var(--search-box-color);
    font-size: 14px;
    margin-right: 20px;
 }
@@ -102,11 +103,13 @@ export default {
    min-width: 50px;
    align-items: center;
    height: 35px;
+   border: var(--search-box-input-border);
+   color: var(--search-box-color);
    font-size: 14px;
    margin-right: 20px;
    padding: 5px 10px;
 }
 .search-box-a button {
-   flex: 0 1 auto;
+   flex: 0 1 100px;
 }
 </style>

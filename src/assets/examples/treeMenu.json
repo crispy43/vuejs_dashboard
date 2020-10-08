@@ -6,35 +6,35 @@
          "key": "assets",
          "child": [
             {
-               "name": "본사 종목",
-               "key": "internal",
+               "name": "종목",
+               "key": "assets",
                "component": "MainHeader",
                "child": [
                   {
-                     "name": "아스타",
-                     "key": "asta",
+                     "name": "종목조회",
+                     "key": "board",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "종목등록",
+                     "key": "register",
                      "component": "TempView"
                   }
                ]
             },
             {
-               "name": "외부 종목",
+               "name": "실적",
                "key": "external",
                "component": "MainHeader",
                "child": [
                   {
-                     "name": "뮤직브로",
-                     "key": "bmp",
+                     "name": "실적현황",
+                     "key": "profits",
                      "component": "TempView"
                   },
                   {
-                     "name": "EXE",
-                     "key": "exe",
-                     "component": "TempView"
-                  },
-                  {
-                     "name": "기타",
-                     "key": "etc",
+                     "name": "전송현황",
+                     "key": "transfers",
                      "component": "TempView"
                   }
                ]
