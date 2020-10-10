@@ -15,12 +15,12 @@ npm run serve
 npm run build
 ```
 
-### JS 문서 최신화
+### JSDOC 최신화
 ```
 npm run jsdoc
 ```
 
-### JS 문서페이지 열기
+### JSDOC 오픈
 ```
 npm run docs
 ```
