@@ -130,6 +130,7 @@ export const parseTableData = (payload, {
             index: parseInt(x),
             tag: propModels[x].tag || 'p',
             type: propModels[x].type,
+            align: propModels[x].align,
             filter: propModels[x].filter,
             width: propModels[x].width || 'auto',
             value: payload[y][props[x]]

@@ -102,8 +102,7 @@ export default {
    width: 100%;
 }
 .table-a > thead th, .table-a > tbody td {
-   height: 27px;
-   font-size: 13px;
+   height: 36px;
    padding: 5px;
 }
 .table-a > thead th {
@@ -128,21 +127,27 @@ export default {
    height: 26px;
    color: var(--table-a-th-color);
    font-size: var(--table-a-th-font-size);
-   font-weight: normal;
+   font-weight: var(--table-a-th-font-weight);
+   padding: 0 5px 0;
 }
 .table-a td > input, td > p {
    display: flex;
    align-items: center;
-   justify-content: center;
    height: 26px;
    color: var(--table-a-td-color);
    font-size: var(--table-a-td-font-size);
+   font-weight: var(--table-a-td-font-weight);
+}
+.table-a td > input {
+   padding: 0 5px 0;
    margin: auto;
+}
+.table-a td > p {
+   padding: 0 5px 0;
 }
 .table-a td > input[type=text] {
    width: 100%;
    border: var(--table-a-td-input-border);
-   font-size: var(--table-a-td-font-size);
 }
 .table-a tr:nth-child(2n+1) {
    background-color: var(--table-a-td-odd-background-color);

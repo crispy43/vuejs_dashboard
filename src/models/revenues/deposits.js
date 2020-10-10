@@ -12,7 +12,7 @@ export default {
    depositedAt: {
       name: '입금시간',
       filter: 'date/yMDHMS',
-      width: 125
+      width: 150
    },
    bank: {
       name: '은행',
@@ -24,12 +24,13 @@ export default {
    },
    contractor: {
       name: '계약자',
-      width: 100
+      width: 90
    },
    amount: {
       name: '금액',
+      align: 'right',
       filter: 'comma',
-      width: 150
+      width: 125
    },
    createdAt: {
       name: '등록일자',

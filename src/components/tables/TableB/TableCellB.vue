@@ -1,26 +1,28 @@
 <template>
-<td :style="{ width: cellData.width }">
-   <input
-      v-if="cellData.tag === 'input' && cellData.type === 'checkbox'"
-      :type="cellData.type"
-      :checked="reactiveValue"
-      @change="onChange"
-   />
-   <input
-      v-else-if="cellData.tag === 'input' && cellData.type === 'text'"
-      :type="cellData.type"
-      :value="reactiveValue"
-      :class="isFocus ? 'focused' : 'blurred'"
-      @input="onChange"
-      @focus="focus"
-      @blur="blur"
-   />
-   <p
-      v-else
-      :style="{ justifyContent: textAlign }"
-   >
-      {{ (!cellData.filter) ? cellData.value : filtered }}
-   </p>
+<td>
+   <div>
+      <div>
+         <p>{{ cellData.name }}</p>
+      </div>
+      <div :style="{ justifyContent: textAlign }">
+         <input
+            v-if="cellData.tag === 'input' && cellData.type === 'checkbox'"
+            :type="cellData.type"
+            :checked="reactiveValue"
+            @change="onChange"
+         />
+         <input
+            v-else-if="cellData.tag === 'input' && cellData.type === 'text'"
+            :type="cellData.type"
+            :value="reactiveValue"
+            :class="isFocus ? 'focused' : 'blurred'"
+            @input="onChange"
+            @focus="focus"
+            @blur="blur"
+         />
+         <p v-else>{{ (!cellData.filter) ? cellData.value : filtered }}</p>
+      </div>
+   </div>
 </td>
 </template>
 
@@ -31,10 +33,10 @@ import { ref, computed } from 'vue';
 import filters from '../../../common/filters';
 
 export default {
-   name: 'TableCellA',
+   name: 'TableCellB',
    props: {
       cellData: {
-         type: [Object, String],
+         type: Object,
          required: true
       }
    },

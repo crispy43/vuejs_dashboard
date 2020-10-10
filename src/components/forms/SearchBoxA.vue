@@ -89,23 +89,25 @@ export default {
    margin-right: 20px;
 }
 .search-box-a-form > div > label {
-   flex: 1 1 40%;
+   flex: 1 1 30%;
    display: flex;
    align-items: center;
-   justify-content: flex-end;
+   justify-content: flex-start;
    color: var(--search-box-color);
-   font-size: 14px;
+   font-size: var(--search-box-prop-font-size);
+   font-weight: var(--search-box-prop-font-weight);
    margin-right: 20px;
 }
 .search-box-a-form > div > input {
-   flex: 1 1 65%;
+   flex: 1 1 70%;
    display: flex;
    min-width: 50px;
    align-items: center;
    height: 35px;
    border: var(--search-box-input-border);
    color: var(--search-box-color);
-   font-size: 14px;
+   font-size: var(--search-box-value-font-size);
+   font-weight: var(--search-box-value-font-weight);
    margin-right: 20px;
    padding: 5px 10px;
 }

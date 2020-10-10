@@ -13,6 +13,7 @@ export default {
    },
    amount: {
       name: '금액',
+      align: 'right',
       filter: 'comma',
       width: 150
    },

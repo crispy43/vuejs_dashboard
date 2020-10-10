@@ -36,7 +36,7 @@
       </td>
       <td class="value">
          <select>
-            <option>라디오</option>
+            <option>전체</option>
          </select>
       </td>
       <td class="prop">
@@ -127,12 +127,14 @@ export default {
    background-color: var(--search-box-prop-background-color);
    color: var(--search-box-prop-color);
    font-size: var(--search-box-prop-font-size);
+   font-weight: var(--search-box-prop-font-weight);
 }
 .value {
    width: 20%;
    background-color: var(--search-box-value-background-color);
    color: var(--search-box-prop-color);
    font-size: var(--search-box-value-font-size);
+   font-weight: var(--search-box-value-font-weight);
 }
 .value > * {
    margin-right: 10px;
@@ -147,6 +149,7 @@ export default {
    border: var(--search-box-input-border);
    color: var(--search-box-value-color);
    font-size: var(--search-box-value-font-size);
+   font-weight: var(--search-box-value-font-weight);
    padding-left: 5px;
 }
 .contract-search-box select {
@@ -155,6 +158,7 @@ export default {
    border: var(--search-box-input-border);
    color: var(--search-box-value-color);
    font-size: var(--search-box-value-font-size);
+   font-weight: var(--search-box-value-font-weight);
    padding-left: 5px;
 }
 </style>

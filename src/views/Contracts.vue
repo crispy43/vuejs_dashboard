@@ -5,7 +5,9 @@
       <ButtonA>검색</ButtonA>
       <ButtonA>초기화</ButtonA>
    </div>
-   <TableB />
+   <TableB
+      :data="resultData"
+   />
    <div>
       <div class="contracts-sheet-header">
          <TitleA>리스트</TitleA>
@@ -29,7 +31,6 @@
 
 
 <script>
-import { useStore } from 'vuex';
 import ContractsSearchBox from './components/ContractsSearchBox';
 import TableA from '../components/tables/TableA/TableA';
 import TableB from '../components/tables/TableB/TableB';
@@ -48,9 +49,6 @@ export default {
       ButtonB
    },
    setup() {
-      const store = useStore();
-      console.log(store);
-
       return {
          contractsHeaders: [
             {
@@ -140,6 +138,34 @@ export default {
             ['','','','','','','','','','','','','','','','','','','','',],
             ['','','','','','','','','','','','','','','','','','','','',],
             ['','','','','','','','','','','','','','','','','','','','',]
+         ],
+         resultData: [
+            [
+               {
+                  name: '총 매출건수',
+                  filter: 'comma',
+                  align: 'right',
+                  value: 25
+               },
+               {
+                  name: '총 매매대금',
+                  filter: 'comma',
+                  align: 'right',
+                  value: 2000000000
+               },
+               {
+                  name: '총 입금액',
+                  filter: 'comma',
+                  align: 'right',
+                  value: 1000000000
+               },
+               {
+                  name: '입금처리 건',
+                  filter: 'comma',
+                  align: 'right',
+                  value: 12
+               }
+            ]
          ]
       };
    }

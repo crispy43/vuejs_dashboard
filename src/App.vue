@@ -33,11 +33,31 @@ export default {
 
 
 <style>
+@font-face {
+   font-family: 'NanumSquareRound';
+   font-weight: 300;
+   src: local('NanumSquareRoundL'), url('assets/fonts/NanumSquareRoundL.ttf') format("truetype");
+}
+@font-face {
+   font-family: 'NanumSquareRound';
+   font-weight: 400;
+   src: local('NanumSquareRoundR'), url('assets/fonts/NanumSquareRoundR.ttf') format("truetype");
+}
+@font-face {
+   font-family: 'NanumSquareRound';
+   font-weight: 700;
+   src: local('NanumSquareRoundB'), url('assets/fonts/NanumSquareRoundB.ttf') format("truetype");
+}
+@font-face {
+   font-family: 'NanumSquareRound';
+   font-weight: 800;
+   src: local('NanumSquareRoundEB'), url('assets/fonts/NanumSquareRoundEB.ttf') format("truetype");
+}
 * {
    padding: 0;
    margin: 0;
    box-sizing: border-box;
-   font-family: 'Noto Sans KR', sans-serif;
+   font-family: 'NanumSquareRound', sans-serif;
 }
 html, body {
    display: flex;

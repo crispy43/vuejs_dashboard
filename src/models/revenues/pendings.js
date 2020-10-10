@@ -15,8 +15,9 @@ export default {
    },
    amount: {
       name: '금액',
+      align: 'right',
       filter: 'comma',
-      width: 150
+      width: 125
    },
    bank: {
       name: '은행',
@@ -24,7 +25,7 @@ export default {
    },
    bankAccount: {
       name: '계좌번호',
-      width: 150
+      width: 175
    },
    status: {
       name: '상태',

@@ -1,55 +1,50 @@
 <template>
 <table class="table-b">
-   <tr>
-      <td>
-         <div>
-            <div>
-               총 매출 건수
-            </div>
-            <div>
-               0
-            </div>
-         </div>
-      </td>
-      <td>
-         <div>
-            <div>
-               총 매매 대금
-            </div>
-            <div>
-               0
-            </div>
-         </div>
-      </td>
-      <td>
-         <div>
-            <div>
-               총 입금액
-            </div>
-            <div>
-               0
-            </div>
-         </div>
-      </td>
-      <td>
-         <div>
-            <div>
-               입금처리 건
-            </div>
-            <div>
-               0
-            </div>
-         </div>
-      </td>
-   </tr>
+   <tbody :style="{ height: tbodyHeight, maxHeight: tbodyMaxHeight }">
+      <tr v-is="'TableRowB'"
+         v-for="(rowData, index) in data"
+         :key="index"
+         :index="index"
+         :rowData="rowData"
+         :selectRowMutName="selectRowMutName"
+         :selectRowStateName="selectRowStateName"
+         :hideRowMutName="hideRowMutName"
+         :hideRowStateName="hideRowStateName"
+         :storeName="storeName"
+      />
+   </tbody>
 </table>
 </template>
 
 
 
 <script>
+import TableRowB from './TableRowB';
+
 export default {
-   name: 'TableB'
+   name: 'TableB',
+   components: {
+      TableRowB
+   },
+   props: {
+      data: {
+         type: Array,
+         required: true
+      },
+      tbodyHeight: {
+         type: String,
+         default: 'auto'
+      },
+      tbodyMaxHeight: {
+         type: String,
+         default: 'auto'
+      },
+      selectRowMutName: String,
+      selectRowStateName: String,
+      hideRowMutName: String,
+      hideRowStateName: String,
+      storeName: String
+   }
 }
 </script>
 
@@ -74,17 +69,27 @@ export default {
 }
 .table-b td > div > div {
    flex: 1 1 50%;
-   padding: 10px;
+   display: flex;
+   align-items: center;
+   height: 36px;
+   padding: 5px 15px;
 }
 .table-b td > div > div:first-child {
    background-color: var(--table-b-th-background-color);
    color: var(--table-b-th-color);
+}
+.table-b td > div > div:first-child > p {
    font-size: var(--table-b-th-font-size);
+   font-weight: var(--table-b-th-font-weight);
 }
 .table-b td > div > div:last-child {
    background-color: var(--table-b-td-background-color);
    color: var(--table-b-td-color);
    font-size: var(--table-b-td-font-size);
-
+   font-weight: var(--table-b-td-font-weight);
+}
+.table-b td > div > div:last-child > p {
+   font-size: var(--table-b-td-font-size);
+   font-weight: var(--table-b-td-font-weight);
 }
 </style>
