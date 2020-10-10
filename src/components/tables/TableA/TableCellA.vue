@@ -1,5 +1,8 @@
 <template>
-<td :style="{ width: cellData.width }">
+<td
+   :style="{ width: cellData.width }"
+   
+>
    <input
       v-if="cellData.tag === 'input' && cellData.type === 'checkbox'"
       :type="cellData.type"
@@ -10,7 +13,10 @@
       v-else-if="cellData.tag === 'input' && cellData.type === 'text'"
       :type="cellData.type"
       :value="reactiveValue"
+      :class="isFocus ? 'focused' : 'blurred'"
       @input="onChange"
+      @focus="focus"
+      @blur="blur"
    />
    <p v-else>{{ (!cellData.filter) ? cellData.value : filtered }}</p>
 </td>
@@ -71,8 +77,23 @@ export default {
          }
       });
 
+      const isFocus = ref(false);
+
+      const focus = () => {
+         isFocus.value = true;
+      }
+
+      const blur = () => {
+         isFocus.value = false;
+      }
+
       return {
-         reactiveValue, filtered, onChange
+         reactiveValue,
+         filtered,
+         onChange,
+         isFocus,
+         focus,
+         blur
       };
    }
 }
@@ -81,4 +102,15 @@ export default {
 
 
 <style scoped>
+.focused {
+   border: 2px solid #106EC7 !important;
+   border-radius: 3px;
+   background-color: white;
+   outline: none;
+}
+.blurred {
+   border-radius: 3px;
+   background-color: rgb(0, 0, 0, 0);
+   outline: none;
+}
 </style>
