@@ -84,7 +84,8 @@ export default {
          '--button-a-font-size': '13px',
 
          /* animations */
-         '--fade-time': '0.3s'
+         '--fade-time': '0.25s',
+         '--slide-time': '0.25s'
       });
 
       // 해더 로고

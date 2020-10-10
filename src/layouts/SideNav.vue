@@ -76,9 +76,19 @@ export default {
 }
 .side-nav-on {
    flex: 0 0 var(--side-nav-width);
+   animation-name: nav-on;
+   animation-duration: var(--slide-time);
 }
 .side-nav-off {
    flex: 0 0 var(--side-nav-min-width);
+   animation-name: nav-off;
+   animation-duration: var(--slide-time);
+   animation-timing-function: ease-in-out;
+}
+.side-nav-on > *, .side-nav-off > * {
+   animation-name: nav-items;
+   animation-duration: var(--slide-time);
+   animation-timing-function: ease-in-out;
 }
 .side-nav-bottom {
    display: flex;
@@ -92,5 +102,29 @@ export default {
    position: absolute;
    font-size: 25px;
    cursor: pointer;
+}
+@keyframes nav-on {
+   from {
+      flex: 0 0 var(--side-nav-min-width);
+   }
+   to {
+      flex: 0 0 var(--side-nav-width);
+   }
+}
+@keyframes nav-off {
+   from {
+      flex: 0 0 var(--side-nav-width);
+   }
+   to {
+      flex: 0 0 var(--side-nav-min-width);
+   }
+}
+@keyframes nav-items {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 0;
+   }
 }
 </style>
