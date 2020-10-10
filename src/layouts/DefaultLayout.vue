@@ -82,6 +82,7 @@ export default {
          '--button-a-background-color': '#5e72e4',
          '--button-a-color': 'white',
          '--button-a-font-size': '13px',
+         '--loader-color': '#5e72e4',
 
          /* animations */
          '--fade-time': '0.25s',
