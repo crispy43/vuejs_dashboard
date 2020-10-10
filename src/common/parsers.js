@@ -7,16 +7,14 @@ import models from '../models';
  * @function parseObjectProps
  * @description 오브젝트 property만 get
  * @param {Object[]} payload
- * @param {String} payload[].key object unique key
  * @param {Array=} bannedProps except properties
  * @return {Array} properties
  */
 
 export const parseObjectProps = (payload, bannedProps = []) => {
    const props = new Set();
-   for (const data of payload) {
-      if (!data.key) continue;
-      for (const prop in data) {
+   for (const i in payload) {
+      for (const prop in payload[i]) {
          if (bannedProps.indexOf(prop) > -1) continue;
          props.add(prop);
       }
@@ -30,7 +28,6 @@ export const parseObjectProps = (payload, bannedProps = []) => {
  * @function parseAndMapObjectProps
  * @description 오브젝트 property 모델 맵핑 후 get
  * @param {Object[]} payload
- * @param {String} payload[].key object unique key
  * @param {String} model property model
  * @param {Boolean} strict mapping type
  * @param {Array} [bannedProps = []] except properties
@@ -48,17 +45,13 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
       return acc[path];
    }, models);
    if (!refModel) throw new Error('model not found');
+   propModels = [];
 
    // no strict
    if (!strict) {
-      propModels = [];
-
-      for (const data of payload) {
-         if (!data.key) continue;
-
-         for (const prop in data) {
+      for (const i in payload) {
+         for (const prop in payload[i]) {
             if (bannedProps.indexOf(prop) > -1) continue;
-            else if (props.has(prop)) continue;
             props.add(prop);
             const propModel = Object.assign({},
                (refModel[prop]) ?
@@ -72,7 +65,6 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
 
    // strict
    } else {
-      propModels = [];
       for (const prop in refModel) {
          if (bannedProps.indexOf(prop) > -1) continue;
          const propModel = Object.assign({}, refModel[prop]);
@@ -82,7 +74,7 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
       }
    }
 
-   for (let i in propModels) {
+   for (const i in propModels) {
       propModels[i].width = parseInt(propModels[i].width) / totalWidth * 100 + '%';
    }
 
@@ -95,10 +87,9 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
 
 
 /**
- * @function parseTableHeaders
+ * @function parseTableData
  * @description 테이블 데이터 파서
  * @param {Object[]} payload
- * @param {String} payload[].key object unique key
  * @param {Object} options parse options
  * @param {String} [options.model = dictionary] property model
  * @param {Boolean} [options.strict = true] mapping type
@@ -112,25 +103,31 @@ export const parseTableData = (payload, {
    const { props, propModels } = parseAndMapObjectProps(payload, model, strict, bannedProps);
    const parsedPayload = [];
    const payloadMap = new Map();
-   let skip = 0;
 
-   for (let i in payload) {
-      if (!payload[i].key) {
-         skip++;
-         continue;
+   for (const y in payload) {
+      const parsedCellData = [];
+      for (const x in props) {
+         if (typeof payload[y][props[x]] === 'undefined' || payload[y][props[x]] === null)
+            payload[y][props[x]] = '';
+         parsedCellData.push({
+            key: `${y}.${x}`,
+            index: parseInt(x),
+            tag: propModels[x].tag || 'p',
+            type: propModels[x].type,
+            filter: propModels[x].filter,
+            width: propModels[x].width || 'auto',
+            value: payload[y][props[x]]
+         });
       }
-      const parsedValues = [];
-      for (const prop of props) {
-         if (typeof payload[i][prop] === 'undefined' || payload[i][prop] === null) {
-            payload[i][prop] = '';
-         }
-         parsedValues.push(payload[i][prop]);
+      payload[y]._ = {
+         key: y,
+         index: parseInt(y),
+         model,
+         props,
+         bannedProps
       }
-      payload[i]._ = {
-         index: parseInt(i) - skip
-      }
-      parsedPayload.push(parsedValues);
-      payloadMap.set(payload[i].key, payload[i]);
+      parsedPayload.push(parsedCellData);
+      payloadMap.set(y, payload[y]);
    }
    
    return {
@@ -138,37 +135,4 @@ export const parseTableData = (payload, {
       headers: propModels,
       data: parsedPayload
    };
-};
-
-
-
-/**
- * @function parseTableHeaders
- * @description 테이블 데이터 파서
- * @param {Object[]} payload
- * @param {String} payload[].key object unique key
- * @param {Object} options parse options
- * @param {String} [options.model = dictionary] property model
- * @param {Boolean} [options.strict = true] mapping type
- * @param {Array=} options.bannedProps except properties
- * @return {Object} map, headers, data
- */
-
-export const getDataFromMap = (payload, bannedProps) => {
-   const array = Array.from(payload[Symbol.iterator]());
-
-   const dataY = [];
-
-   for (let i in array) {
-      const data = array[i][1];
-      const dataX = [];
-
-      for (let prop in data) {
-         if (bannedProps.indexOf(prop) > -1) continue;
-         dataX.push(data[prop]);
-      }
-      dataY.push(dataX);
-   }
-   
-   return dataY;
 };

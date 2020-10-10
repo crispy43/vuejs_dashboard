@@ -26,9 +26,9 @@
                   :data="pendingsData"
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
-                  :checkMutName="'checkPending'"
-                  :checkStateName="'pendingsChecked'"
-                  :hideStateName="'pendingsMatched'"
+                  :selectRowMutName="'checkPending'"
+                  :selectRowStateName="'pendingsChecked'"
+                  :hideRowStateName="'pendingsMatched'"
                   :storeName="'revenues'"
                />
             </transition>
@@ -59,9 +59,9 @@
                   :data="depositsData"
                   :thHeight="thHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
-                  :checkMutName="'checkDeposit'"
-                  :checkStateName="'depositsChecked'"
-                  :hideStateName="'depositsMatched'"
+                  :selectRowMutName="'checkDeposit'"
+                  :selectRowStateName="'depositsChecked'"
+                  :hideRowStateName="'depositsMatched'"
                   :storeName="'revenues'"
                />
             </transition>

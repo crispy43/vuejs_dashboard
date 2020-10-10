@@ -16,14 +16,15 @@
       </tr>
    </thead>
    <tbody :style="{ maxHeight: tbodyMaxHeight }">
-      <tr v-is="'RowA'"
-         v-for="(rowData, index) in typedData"
+      <tr v-is="'TableRowA'"
+         v-for="(rowData, index) in data"
          :key="index"
          :index="index"
          :rowData="rowData"
-         :checkMutName="checkMutName"
-         :checkStateName="checkStateName"
-         :hideStateName="hideStateName"
+         :selectRowMutName="selectRowMutName"
+         :selectRowStateName="selectRowStateName"
+         :hideRowMutName="hideRowMutName"
+         :hideRowStateName="hideRowStateName"
          :storeName="storeName"
       />
    </tbody>
@@ -33,14 +34,12 @@
 
 
 <script>
-import { computed } from 'vue';
-import { mapTableData } from '../../../common/mappers';
-import RowA from './RowA';
+import TableRowA from './TableRowA';
 
 export default {
    name: 'TableA',
    components: {
-      RowA
+      TableRowA
    },
    props: {
       headers: {
@@ -59,19 +58,11 @@ export default {
          type: String,
          default: 'auto'
       },
-      checkMutName: String,
-      checkStateName: String,
-      hideStateName: String,
+      selectRowMutName: String,
+      selectRowStateName: String,
+      hideRowMutName: String,
+      hideRowStateName: String,
       storeName: String
-   },
-   setup(props) {
-      const typedData = computed(() => {
-         return mapTableData(props.data, props.headers);
-      });
-      
-      return {
-         typedData
-      };
    }
 }
 </script>

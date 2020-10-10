@@ -1,18 +1,18 @@
 <template>
-<td :style="{ width: data.width }">
+<td :style="{ width: cellData.width }">
    <input
-      v-if="data.tag === 'input' && data.type === 'checkbox'"
-      :type="data.type"
+      v-if="cellData.tag === 'input' && cellData.type === 'checkbox'"
+      :type="cellData.type"
       :checked="reactiveValue"
       @change="onChange"
    />
    <input
-      v-else-if="data.tag === 'input' && data.type === 'text'"
-      :type="data.type"
+      v-else-if="cellData.tag === 'input' && cellData.type === 'text'"
+      :type="cellData.type"
       :value="reactiveValue"
       @input="onChange"
    />
-   <p v-else>{{ (!data.filter) ? data.value : filtered }}</p>
+   <p v-else>{{ (!cellData.filter) ? cellData.value : filtered }}</p>
 </td>
 </template>
 
@@ -23,21 +23,23 @@ import { ref, computed } from 'vue';
 import filters from '../../../common/filters';
 
 export default {
-   name: 'DataA',
+   name: 'TableCellA',
    props: {
-      data: {
-         type: Object,
+      cellData: {
+         type: [Object, String],
          required: true
       }
    },
    setup(props, { emit }) {
       let reactiveValue, onChange;
-      switch (props.data.tag) {
+      switch (props.cellData.tag) {
 
          case 'input':
-            switch (props.data.type) {
+            switch (props.cellData.type) {
                case 'checkbox':
-                  reactiveValue = ref((props.data.value));
+                  reactiveValue = (typeof props.cellData === 'object')
+                     ? ref((props.cellData.value))
+                     : ref((props.cellData));
                   onChange = (e) => {
                      reactiveValue.value = e.target.checked;
                      emit('row-select', e.target.checked);
@@ -45,7 +47,9 @@ export default {
                   break;
 
                default:
-                  reactiveValue = ref(props.data.value);
+                  reactiveValue = (typeof props.cellData === 'object')
+                     ? ref((props.cellData.value))
+                     : ref((props.cellData));
                   onChange = (e) => {
                      reactiveValue.value = e.target.value;
                   }
@@ -54,13 +58,15 @@ export default {
             break;
 
          default:
-            reactiveValue = ref(props.data.value);
+            reactiveValue = (typeof props.cellData === 'object')
+               ? ref((props.cellData.value))
+               : ref((props.cellData));
             break;
       }
 
       const filtered = computed(() => {
-         if (props.data.filter) {
-            const [funcName, param] = props.data.filter.split('/');
+         if (props.cellData.filter) {
+            const [funcName, param] = props.cellData.filter.split('/');
             return filters[funcName](reactiveValue.value, param);
          }
       });

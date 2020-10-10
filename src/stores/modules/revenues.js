@@ -1,4 +1,4 @@
-import { parseTableData, getDataFromMap } from '../../common/parsers';
+import { parseTableData } from '../../common/parsers';
 import { tmpPromise } from '../../common/utils';
 
 
@@ -71,51 +71,56 @@ export default {
             state.depositsChecked.add(payload);
       },
       clearMatched(state) {
-         state.pendingsChecked.clear();
-         state.depositsChecked.clear();
+         const pendingsMatched = Array.from(state.pendingsMatched);
+         const depositsMatched = Array.from(state.depositsMatched);
+         for (const index of pendingsMatched) {
+            state.pendingsChecked.delete(index);
+         }
+         for (const index of depositsMatched) {
+            state.depositsMatched.delete(index);
+         }
          state.pendingsMatched.clear();
          state.depositsMatched.clear();
          state.paymentConfirms = new Map;
          state.paymentConfirmsData = [];
       },
       confirm(state) {
-         const pendingsChecked = Array.from(state.pendingsChecked);
-         const depositsChecked = Array.from(state.depositsChecked);
-         const pendingItems = Array.from(state.pendings[Symbol.iterator]());
-         const depositItems = Array.from(state.deposits[Symbol.iterator]());
-
-         const pendings = pendingsChecked.map((i) => {
-            return pendingItems[i][1];
-         });
-         const deposits = depositsChecked.map((i) => {
-            return depositItems[i][1];
-         });
-
+         let pendingsChecked = Array.from(state.pendingsChecked);
+         let depositsChecked = Array.from(state.depositsChecked);
+         const pendingsItems = Array.from(state.pendings.values());
+         const depositsItems = Array.from(state.deposits.values());
+         pendingsChecked = pendingsChecked.map((i) => pendingsItems[i]);
+         depositsChecked = depositsChecked.map((i) => depositsItems[i]);
          const matchedArray = [];
 
-         for (const pending of pendings) {
-            for (const deposit of deposits) {
+         for (const pending of pendingsChecked) {
+            for (const deposit of depositsChecked) {
                if (
                   pending.contractor === deposit.contractor &&
                   pending.amount === deposit.amount
                ) {
-                  state.pendingsMatched.add(pending._.index);
-                  state.pendingsChecked.delete(pending._.index);
-                  state.depositsMatched.add(deposit._.index);
-                  state.depositsChecked.delete(deposit._.index);
-                  matchedArray.push({
-                     key: pending.key,
-                     contractor: pending.contractor,
-                     type: '테스트',
-                     amount: pending.amount,
-                     bank: pending.bank,
-                     bankAccount: pending.bankAccount,
-                     status: 5,
-                     remark: '',
-                     operator: '관리자',
-                     createdAt: pending.createdAt,
-                     updatedAt: new Date().toISOString()
-                  });
+                  if (
+                     state.pendingsChecked.has(pending._.index) &&
+                     state.depositsChecked.has(deposit._.index)
+                  ) {
+                     state.pendingsMatched.add(pending._.index);
+                     state.pendingsChecked.delete(pending._.index);
+                     state.depositsMatched.add(deposit._.index);
+                     state.depositsChecked.delete(deposit._.index);
+                     matchedArray.push({
+                        key: pending.key,
+                        contractor: pending.contractor,
+                        type: '테스트',
+                        amount: pending.amount,
+                        bank: pending.bank,
+                        bankAccount: pending.bankAccount,
+                        status: 5,
+                        remark: '',
+                        operator: '관리자',
+                        createdAt: pending.createdAt,
+                        updatedAt: new Date().toISOString()
+                     });
+                  }
                }
             }
          }
@@ -124,12 +129,6 @@ export default {
          console.log(matchedArray);
 
          if (matchedArray.length > 0) {
-            const pendingsData = getDataFromMap(state.pendings, ['updatedAt']);
-            state.pendingsData = pendingsData;
-
-            const depositsData = getDataFromMap(state.deposits, ['createdAt', 'updatedAt']);
-            state.depositsData = depositsData;
-
             const { map, headers, data } = parseTableData(matchedArray, {
                model: 'revenues/paymentConfirms'
             });
