@@ -9,36 +9,27 @@ import { mapMutation, mapAction } from './common/mappers';
 
 
 (async ()=> {
-
-   /**
-    * @name FetchTreeMenu
-    * @global
-    * @description 메뉴 데이터 패치
-    */
-   
+   // treeMenu fetch
    await mapAction(store, 'fetch', 'treeMenu')();
 
-
-
-   /**
-    * @name Router
-    * @global
-    * @description Router 인스턴스 생성
-    * @param {Array} [routes = staticRoutes] 라우트 배열 (동적 생성 또는 staticRoutes)
-    */
-
+   // router instance create (dynamic or static)
    const router = createRouter({
       history: createWebHistory(process.env.BASE_URL),
-      routes: dynamicRoutes(store) || staticRoutes
+      routes: dynamicRoutes(store) || staticRoutes,
    });
 
 
 
    /**
-    * @name beforeEach
-    * @global
+    * @namespace router
+    * @description router 인스턴스
+    */
+
+   /**
+    * @function beforeEach
     * @description 라우터 진입시 인증 여부 확인
     * @param {Function} callback
+    * @memberof router#
     */
 
    router.beforeEach((to, from, next) => {
@@ -55,16 +46,13 @@ import { mapMutation, mapAction } from './common/mappers';
 
 
    /**
-    * @name afterEach
-    * @global
-    * @description 라우터 진입 이후마다 menu selection 및 current location 적용
+    * @function afterEach
+    * @description 라우터 진입 이후 menu selection 및 current location 적용
     * @param {Function} callback
+    * @memberof router#
     */
 
    router.afterEach((to)=> {
-      console.log('--- router to ---');
-      console.log(to);
-
       let fullPath = to.fullPath.split('/');
       for (let i in fullPath) {
          if (!fullPath[i]) fullPath.shift();
@@ -77,9 +65,6 @@ import { mapMutation, mapAction } from './common/mappers';
          mapMutation(store, 'setSelected', 'treeMenu')(store.state.treeMenu.currentIndexes[0]);
          if (!to.params.key) 
             to.params.key = store.state.treeMenu.currentKeys[store.state.treeMenu.currentKeys.length - 1];
-         
-         console.log('--- router to params ---');
-         console.log(to.params);
 
       } catch (error) {
          console.error(error);
@@ -88,7 +73,8 @@ import { mapMutation, mapAction } from './common/mappers';
       }
    });
 
-   
 
+
+   // create app
    createApp(App).use(store).use(router).mount('#app');
 })();

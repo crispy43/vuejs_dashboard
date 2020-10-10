@@ -1,14 +1,21 @@
 import models from '../models';
-// import utils from '../common/utils';
 
 
 
 /**
+ * @namespace parsers
+ * @description 파서 유틸 모음
+ */
+
+ /**
  * @function parseObjectProps
- * @description 오브젝트 property만 get
+ * @description 원본 배열 객체 property만 가져오기
  * @param {Object[]} payload
- * @param {Array=} bannedProps except properties
+ * @param {Array=} bannedProps 제외할 property 목록
+ * @example
+ * const props = parseObjectProps(dataArray);
  * @return {Array} properties
+ * @memberof parsers#
  */
 
 export const parseObjectProps = (payload, bannedProps = []) => {
@@ -26,12 +33,15 @@ export const parseObjectProps = (payload, bannedProps = []) => {
 
 /**
  * @function parseAndMapObjectProps
- * @description 오브젝트 property 모델 맵핑 후 get
+ * @description 원본 배열 객체 모델 매핑 후 리턴
  * @param {Object[]} payload
- * @param {String} model property model
- * @param {Boolean} strict mapping type
- * @param {Array} [bannedProps = []] except properties
+ * @param {String=} model 매핑할 모델 네임
+ * @param {Boolean=} strict 엄격한 매핑 여부
+ * @param {Array=} bannedProps 제외할 property 목록
+ * @example
+ * const { props, propModels } = parseAndMapObjectProps(dataArray, 'pathName/modelName');
  * @return {Object} props, propModels
+ * @memberof parsers#
  */
 
 export const parseAndMapObjectProps = (payload, model, strict, bannedProps = []) => {
@@ -89,17 +99,23 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
 /**
  * @function parseTableData
  * @description 테이블 데이터 파서
- * @param {Object[]} payload
- * @param {Object} options parse options
- * @param {String} [options.model = dictionary] property model
- * @param {Boolean} [options.strict = true] mapping type
- * @param {Array=} options.bannedProps except properties
+ * @param {Object[]} payload 파싱할 원본 테이블 데이터 배열
+ * @param {Object=} options 파싱 옵션
+ * @param {String} [options.model = dictionary] 모델 네임
+ * @param {Boolean} [options.strict = true] 엄격한 매핑 여부
+ * @param {Array=} options.bannedProps 제외할 property 목록
+ * @example
+ * const { map, headers, data } = parseTableData(dataArray, {
+ *    model: 'pathName/modelName',
+ *    bannedProps: ['prop']
+ * });
  * @return {Object} map, headers, data
+ * @memberof parsers#
  */
 
 export const parseTableData = (payload, {
    model = 'dictionary', strict = true, bannedProps
-}) => {
+} = {}) => {
    const { props, propModels } = parseAndMapObjectProps(payload, model, strict, bannedProps);
    const parsedPayload = [];
    const payloadMap = new Map();

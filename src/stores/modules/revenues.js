@@ -3,6 +3,12 @@ import { tmpPromise } from '../../common/utils';
 
 
 
+/**
+ * @namespace revenues
+ * @description 매출 데이터 모듈
+ * @memberof store#
+ */
+
 export default {
    namespaced: true,
 
@@ -149,10 +155,12 @@ export default {
       /**
        * @function fetchPendings
        * @description 매출내역 데이터 커밋
-       * @param {Object} context vuex instance
-       * @param {function} context.commit commit handler
-       * @param {Object=} options arguments
+       * @async
+       * @example
+       * import { mapAction } from './common/mappers';
+       * await mapAction(store, 'fetchPendings', 'revenues')();
        * @return {Boolean} is resolved
+       * @memberof store#revenues#
        */
 
       async fetchPendings({ commit }) {
@@ -167,10 +175,12 @@ export default {
       /**
        * @function fetchDeposits
        * @description 입금내역 데이터 커밋
-       * @param {Object} context vuex instance
-       * @param {function} context.commit commit handler
-       * @param {Object=} options arguments
+       * @async
+       * @example
+       * import { mapAction } from './common/mappers';
+       * await mapAction(store, 'fetchDeposits', 'revenues')();
        * @return {Boolean} is resolved
+       * @memberof store#revenues#
        */
 
       async fetchDeposits({ commit }) {
@@ -185,10 +195,12 @@ export default {
       /**
        * @function fetchPaymentConfirms
        * @description 입금확인 데이터 커밋
-       * @param {Object} context vuex instance
-       * @param {function} context.commit commit handler
-       * @param {Object=} options arguments
+       * @async
+       * @example
+       * import { mapAction } from './common/mappers';
+       * await mapAction(store, 'fetchPaymentConfirms', 'revenues')();
        * @return {Boolean} is resolved
+       * @memberof store#revenues#
        */
 
       async fetchPaymentConfirms({ commit }) {

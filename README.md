@@ -1,24 +1,26 @@
 # bizportal
 
-## Project setup
+## 의존성 패키지 설치
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 개발용으로 실행
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 운영 배포용으로 빌드
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### JS 문서 최신화
 ```
-npm run lint
+npm run jsdoc
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### JS 문서페이지 열기
+```
+npm run docs
+```

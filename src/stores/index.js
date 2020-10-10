@@ -4,7 +4,10 @@ import revenues from './modules/revenues';
 const { name, version, bugs } = require('../../package.json');
 
 
-
+/**
+ * @namespace store
+ * @description vuex 데이터 스토어
+ */
 export default createStore({
    state: () => ({
       name,

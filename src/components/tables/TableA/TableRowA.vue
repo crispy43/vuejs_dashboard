@@ -9,7 +9,7 @@
       :key="cellData.key"
       :index="index"
       :cellData="cellData"
-      @row-select="select()"
+      @row-select="select"
    />
 </tr>
 </template>

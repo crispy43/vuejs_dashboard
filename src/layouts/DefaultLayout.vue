@@ -23,8 +23,14 @@ export default {
       Main
    },
    setup() {
+
+      /**
+       * @name cssRootVar
+       * @description 전체 컴포넌트 스타일 변수 정의
+       */
+
       const cssRootVar = reactive({
-         // layout
+         // layouts
          '--header-height': '55px',
          '--header-background-color': '#5e72e4',
          '--header-background-color-hover': '#576ada',
@@ -77,7 +83,8 @@ export default {
          '--button-a-color': 'white',
          '--button-a-font-size': '13px',
 
-
+         /* animations */
+         '--fade-time': '0.3s'
       });
 
       // 해더 로고
@@ -121,19 +128,19 @@ export default {
 }
 /* fade */
 .fade-enter-active, .fade-leave-active {
-   transition: opacity 0.4s;
+   transition: opacity var(--fade-time);
 }
 .fade-enter-from, .fade-leave-to {
    opacity: 0;
 }
 .fade-i-enter-active {
-   transition: opacity 0.4s;
+   transition: opacity var(--fade-time);
 }
 .fade-i-enter-from {
    opacity: 0;
 }
 .fade-o-leave-active {
-   transition: opacity 0.4s;
+   transition: opacity var(--fade-time);
 }
 .fade-o-leave-to {
    opacity: 0;

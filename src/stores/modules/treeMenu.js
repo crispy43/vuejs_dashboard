@@ -1,3 +1,9 @@
+/**
+ * @namespace treeMenu
+ * @description 메뉴 트리 데이터 모듈
+ * @memberof store#
+ */
+
 export default {
    namespaced: true,
 
@@ -132,11 +138,13 @@ export default {
 
       /**
        * @function fetch
-       * @description 메뉴 데이터 커밋, 동적 Nav 생성
-       * @param {Object} context vuex instance
-       * @param {function} context.commit commit handler
-       * @param {Object=} params arguments
+       * @description 메뉴 트리 동적 생성
+       * @async
+       * @example
+       * import { mapAction } from './common/mappers';
+       * await mapAction(store, 'fetch', 'treeMenu')();
        * @return {Boolean} is resolved
+       * @memberof store#treeMenu#
        */
       async fetch({ commit }) {
          const data = require('../../assets/examples/treeMenu.json').tree;

@@ -1,7 +1,10 @@
 <template>
-<div :class="['side-nav-item', { 'side-nav-item-active': isActive }]">
+<div
+   :class="['side-nav-item', { 'side-nav-item-active': isActive }]"
+   @click="routerPush"
+>
    <FontAwesomeIcon icon="chevron-right" />
-   <p @click="routerPush">{{ subMenu }}</p>
+   <p>{{ subMenu }}</p>
 </div>
 </template>
 

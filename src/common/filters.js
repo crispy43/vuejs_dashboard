@@ -2,14 +2,21 @@ import { format } from 'date-fns';
 
 
 
+/**
+ * @namespace filters
+ * @description 필터 모음
+ */
+
 export default {
 
    /**
     * @function date
     * @description 날짜 포멧팅
-    * @param {Any} originDate
-    * @param {String} [type = yMDHMS]
+    * @param {Any} originDate 원본 Date 포멧
+    * @param {String} [type = yMDHMS] 변결할 포멧 타입
+    * @example date(new Date().toISOString, 'yMDHM');
     * @return {String} filtered
+    * @memberof filters#
     */
    
    date: (originDate, type = 'yMDHMS') => {
@@ -52,9 +59,11 @@ export default {
    /**
     * @function comma
     * @description 숫자 세자리 콤마
-    * @param {Number|String} amount
+    * @param {Number|String} amount 변경할 수
     * @param {Number} [float = 4] maximumFractionDigits
+    * @example comma(300000000.25005814536, 8);
     * @return {String} filtered
+    * @memberof filters#
     */
 
    comma(amount, float = 4) {

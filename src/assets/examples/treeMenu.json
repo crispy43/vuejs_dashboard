@@ -24,12 +24,12 @@
             },
             {
                "name": "실적",
-               "key": "external",
+               "key": "profits",
                "component": "MainHeader",
                "child": [
                   {
                      "name": "실적현황",
-                     "key": "profits",
+                     "key": "board",
                      "component": "TempView"
                   },
                   {
