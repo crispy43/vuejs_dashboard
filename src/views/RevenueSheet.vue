@@ -16,7 +16,7 @@
          </div>
          <div
             class="revenue-sheet-a-table"
-            :style="{ height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')' }"
+            :style="{ height: 'calc(' + theadHeight + ' + ' + tbodyMaxHeight + ')' }"
          >
             <transition name="fade-i" mode="out-in" appear>
                <LoaderA v-if="isLoadPendings" />
@@ -24,7 +24,7 @@
                   v-else
                   :headers="pendingsHeaders"
                   :data="pendingsData"
-                  :thHeight="thHeight"
+                  :theadHeight="theadHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
                   :selectRowMutName="'checkPending'"
                   :selectRowStateName="'pendingsChecked'"
@@ -49,7 +49,7 @@
          </div>
          <div
             class="revenue-sheet-a-table"
-            :style="{ height: 'calc(' + thHeight + ' + ' + tbodyMaxHeight + ')' }"
+            :style="{ height: 'calc(' + theadHeight + ' + ' + tbodyMaxHeight + ')' }"
          >
             <transition name="fade-i" mode="out-in" appear>
                <LoaderA v-if="isLoadDeposits" />
@@ -57,7 +57,7 @@
                   v-else
                   :headers="depositsHeaders"
                   :data="depositsData"
-                  :thHeight="thHeight"
+                  :theadHeight="theadHeight"
                   :tbodyMaxHeight="tbodyMaxHeight"
                   :selectRowMutName="'checkDeposit'"
                   :selectRowStateName="'depositsChecked'"
@@ -79,7 +79,7 @@
       <TableA
          :headers="paymentConfirmsHeaders"
          :data="paymentConfirmsData"
-         :thHeight="thHeight"
+         :theadHeight="theadHeight"
       />
    </div>
 </div>
@@ -173,7 +173,7 @@ export default {
                placeholder: '이름을 입력하세요...'
             }
          },
-         thHeight: '40px',
+         theadHeight: '40px',
          tbodyMaxHeight: '40vh',
          pendingsHeaders,
          pendingsData,

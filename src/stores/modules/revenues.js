@@ -145,7 +145,7 @@ export default {
 
 
    actions: {
-
+      
       /**
        * @function fetchPendings
        * @description 매출내역 데이터 커밋
@@ -154,6 +154,7 @@ export default {
        * @param {Object=} options arguments
        * @return {Boolean} is resolved
        */
+
       async fetchPendings({ commit }) {
          await tmpPromise(500);
          const pendingsData = require('../../assets/examples/pendings.json');
@@ -171,6 +172,7 @@ export default {
        * @param {Object=} options arguments
        * @return {Boolean} is resolved
        */
+
       async fetchDeposits({ commit }) {
          await tmpPromise(250);
          const depositsData = require('../../assets/examples/deposits.json');
@@ -188,6 +190,7 @@ export default {
        * @param {Object=} options arguments
        * @return {Boolean} is resolved
        */
+
       async fetchPaymentConfirms({ commit }) {
          const paymentConfirmsData = require('../../assets/examples/paymentConfirms.json');
          commit('setPaymentConfirms', paymentConfirmsData);

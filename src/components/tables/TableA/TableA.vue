@@ -8,14 +8,14 @@
             :index="index"
             :style="{
                width: item.width,
-               height: thHeight
+               height: theadHeight
             }"
          >
             <p>{{ item.name }}</p>
          </th>
       </tr>
    </thead>
-   <tbody :style="{ maxHeight: tbodyMaxHeight }">
+   <tbody :style="{ height: tbodyHeight, maxHeight: tbodyMaxHeight }">
       <tr v-is="'TableRowA'"
          v-for="(rowData, index) in data"
          :key="index"
@@ -50,7 +50,11 @@ export default {
          type: Array,
          required: true
       },
-      thHeight: {
+      theadHeight: {
+         type: String,
+         default: 'auto'
+      },
+      tbodyHeight: {
          type: String,
          default: 'auto'
       },
@@ -74,7 +78,8 @@ export default {
    display: table;
    width: 100%;
    border-collapse: collapse;
-   border: var(--table-a-border);
+   border-left: var(--table-a-border);
+   border-right: var(--table-a-border);
    margin: 0 0 20px;
 }
 .table-a thead {
@@ -96,14 +101,22 @@ export default {
    table-layout: fixed;
    width: 100%;
 }
-.table-a tbody tr:last-child {
-   border-bottom: none;
-}
 .table-a > thead th, .table-a > tbody td {
    height: 27px;
-   border: var(--table-a-cell-border);
    font-size: 13px;
    padding: 5px;
+}
+.table-a > thead th {
+   border-top: var(--table-a-cell-border);
+   border-right: var(--table-a-cell-border);
+   border-bottom: var(--table-a-cell-border);
+}
+.table-a > tbody td {
+   border-right: var(--table-a-cell-border);
+   border-bottom: var(--table-a-cell-border);
+}
+.table-a > thead th:last-child, .table-a > tbody td:last-child {
+   border-right: none;
 }
 .table-a th {
    background-color: var(--table-a-th-background-color);
