@@ -46,7 +46,8 @@ export default {
          '--header-user-signout-height': 'auto',
          '--main-padding-top': '5px',
          '--main-padding-left-right': '35px',
-         '--scrollbar-width': '6px',
+         '--scrollbar-width': '8px',
+         '--scrollbar-height': '8px',
          '--scrollbar-background-color': 'rgb(240, 240, 240)',
 
          // components
@@ -123,6 +124,7 @@ export default {
 }
 ::-webkit-scrollbar {
    width: var(--scrollbar-width);
+   height: var(--scrollbar-height);
 }
 ::-webkit-scrollbar-track {
    background-color: transparent;

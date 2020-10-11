@@ -37,14 +37,17 @@ export const parseObjectProps = (payload, bannedProps = []) => {
  * @param {Object[]} payload
  * @param {String=} model 매핑할 모델 네임
  * @param {Boolean=} strict 엄격한 매핑 여부
- * @param {Array=} bannedProps 제외할 property 목록
+ * @param {Array} [bannedProps = []] 제외할 property 목록
+ * @param {Boolean} [widthPer = 100] 전체 가로폭 비율
  * @example
  * const { props, propModels } = parseAndMapObjectProps(dataArray, 'pathName/modelName');
  * @return {Object} props, propModels
  * @memberof parsers#
  */
 
-export const parseAndMapObjectProps = (payload, model, strict, bannedProps = []) => {
+export const parseAndMapObjectProps = (
+   payload, model, strict, bannedProps = [], widthPer = 100
+) => {
    const props = new Set();
    let propModels;
    let totalWidth = 0;
@@ -85,7 +88,7 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
    }
 
    for (const i in propModels) {
-      propModels[i].width = parseInt(propModels[i].width) / totalWidth * 100 + '%';
+      propModels[i].width = parseInt(propModels[i].width) / totalWidth * parseInt(widthPer) + '%';
    }
 
    return {
@@ -104,6 +107,7 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
  * @param {String} [options.model = dictionary] 모델 네임
  * @param {Boolean} [options.strict = true] 엄격한 매핑 여부
  * @param {Array=} options.bannedProps 제외할 property 목록
+ * @param {Boolean=} options.widthPer 전체 가로폭 비율
  * @example
  * const { map, headers, data } = parseTableData(dataArray, {
  *    model: 'pathName/modelName',
@@ -114,9 +118,9 @@ export const parseAndMapObjectProps = (payload, model, strict, bannedProps = [])
  */
 
 export const parseTableData = (payload, {
-   model = 'dictionary', strict = true, bannedProps
+   model = 'dictionary', strict = true, bannedProps, widthPer
 } = {}) => {
-   const { props, propModels } = parseAndMapObjectProps(payload, model, strict, bannedProps);
+   const { props, propModels } = parseAndMapObjectProps(payload, model, strict, bannedProps, widthPer);
    const parsedPayload = [];
    const payloadMap = new Map();
 

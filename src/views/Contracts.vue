@@ -17,13 +17,23 @@
             <ButtonB>엑셀업로드</ButtonB>
          </div>
       </div>
-      <transition name="fade-i" mode="out-in" appear>
-         <TableA
-            :headers="contractsHeaders"
-            :data="contractsData"
-            :thHeight="'50px'"
-         />
-      </transition>
+      <div
+         class="contracts-sheet-table"
+         :style="{ height: 'calc(' + theadHeight + ' + 20vh)' }"
+      >
+         <transition name="fade-i" mode="out-in" appear>
+            <LoaderA v-if="isLoadContracts" />
+            <TableAScrollX
+               v-else
+               :headers="contractsHeaders"
+               :data="contractsData"
+               :theadHeight="theadHeight"
+               :tbodyMaxHeight="tbodyMaxHeight"
+               :tableWidth="'200%'"
+               :thHeight="'50px'"
+            />
+         </transition>
+      </div>
    </div>
 </div>
 </template>
@@ -31,114 +41,52 @@
 
 
 <script>
+import { onBeforeMount, ref, toRefs } from 'vue';
+import { useStore } from 'vuex';
+import { mapAction } from '../common/mappers';
 import ContractsSearchBox from './components/ContractsSearchBox';
-import TableA from '../components/tables/TableA/TableA';
+import TableAScrollX from '../components/tables/TableA/TableAScrollX';
 import TableB from '../components/tables/TableB/TableB';
 import TitleA from '../components/titles/TitleA';
 import ButtonA from '../components/buttons/ButtonA';
 import ButtonB from '../components/buttons/ButtonB';
+import LoaderA from '../components/loaders/LoaderA';
 
 export default {
    name: 'Contracts',
    components: {
       ContractsSearchBox,
-      TableA,
+      TableAScrollX,
       TableB,
       TitleA,
       ButtonA,
-      ButtonB
+      ButtonB,
+      LoaderA
    },
    setup() {
+      const store = useStore();
+      onBeforeMount(() => {
+         refreshContracts();
+      });
+      const {
+         contractsHeaders,
+         contractsData
+      } = toRefs(store.state.revenues);
+
+      const isLoadContracts = ref(false);
+
+      const refreshContracts = async () => {
+         isLoadContracts.value = true;
+         await mapAction(store, 'fetchContracts', 'revenues')();
+         isLoadContracts.value = false;
+      }
+
       return {
-         contractsHeaders: [
-            {
-               name: '코드',
-               width: '5%'
-            },
-            {
-               name: '계약일',
-               width: '5%'
-            },
-            {
-               name: '종목명',
-               width: '5%'
-            },
-            {
-               name: '기준가격',
-               width: '5%'
-            },
-            {
-               name: '매매수량',
-               width: '5%'
-            },
-            {
-               name: '총매매대금',
-               width: '5%'
-            },
-            {
-               name: '서비스신청수량',
-               width: '5%'
-            },
-            {
-               name: '서비스기간',
-               width: '5%'
-            },
-            {
-               name: '신청인',
-               width: '5%'
-            },
-            {
-               name: '연락처',
-               width: '5%'
-            },
-            {
-               name: '계약일',
-               width: '5%'
-            },
-            {
-               name: '상품명',
-               width: '5%'
-            },
-            {
-               name: '기준가격',
-               width: '5%'
-            },
-            {
-               name: '신청인주소',
-               width: '5%'
-            },
-            {
-               name: '담당자/사번',
-               width: '5%'
-            },
-            {
-               name: '직급',
-               width: '5%'
-            },
-            {
-               name: '은행명',
-               width: '5%'
-            },
-            {
-               name: '은행계좌',
-               width: '5%'
-            },
-            {
-               name: '전자지갑주소',
-               width: '5%'
-            },
-            {
-               name: '등록처리',
-               width: '5%'
-            }
-         ],
-         contractsData: [
-            ['','','','','','','','','','','','','','','','','','','','',],
-            ['','','','','','','','','','','','','','','','','','','','',],
-            ['','','','','','','','','','','','','','','','','','','','',],
-            ['','','','','','','','','','','','','','','','','','','','',],
-            ['','','','','','','','','','','','','','','','','','','','',]
-         ],
+         theadHeight: '30px',
+         tbodyMaxHeight: '50vh',
+         contractsHeaders,
+         contractsData,
+         isLoadContracts,
          resultData: [
             [
                {
@@ -184,7 +132,7 @@ export default {
    display: flex;
    align-items: center;
    justify-content: center;
-   padding: 10px;
+   padding: 0 10px 10px;
 }
 .contracts-search-buttons > button {
    margin: 0 5px 0;
@@ -196,5 +144,8 @@ export default {
 }
 .contracts-sheet-header-right > * {
    margin-left: 10px;
+}
+.contracts-sheet-table {
+   margin-bottom: 20px;
 }
 </style>

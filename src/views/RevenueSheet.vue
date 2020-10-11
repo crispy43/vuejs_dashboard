@@ -173,7 +173,7 @@ export default {
                placeholder: '이름을 입력하세요...'
             }
          },
-         theadHeight: '40px',
+         theadHeight: '30px',
          tbodyMaxHeight: '40vh',
          pendingsHeaders,
          pendingsData,

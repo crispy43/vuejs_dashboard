@@ -32,7 +32,12 @@ export default {
       // paymentConfirms
       paymentConfirms: new Map(),
       paymentConfirmsHeaders: [],
-      paymentConfirmsData: []
+      paymentConfirmsData: [],
+
+      // contracts
+      contracts: new Map(),
+      contractsHeaders: [],
+      contractsData: []
    }),
 
 
@@ -65,6 +70,16 @@ export default {
          state.paymentConfirms = map;
          state.paymentConfirmsHeaders = headers;
          state.paymentConfirmsData = data;
+      },
+      setContracts(state, payload) {
+         const { map, headers, data } = parseTableData(payload, {
+            model: 'revenues/contracts',
+            bannedProps: ['createdAt'],
+            tableWidth: 200
+         });
+         state.contracts = map;
+         state.contractsHeaders = headers;
+         state.contractsData = data;
       },
       checkPending(state, payload) {
          (state.pendingsChecked.has(payload)) ?
@@ -207,6 +222,26 @@ export default {
          const paymentConfirmsData = require('../../assets/examples/paymentConfirms.json');
          commit('setPaymentConfirms', paymentConfirmsData);
          return true;
-      }
+      },
+
+
+
+      /**
+       * @function fetchContracts
+       * @description 계약목록 데이터 커밋
+       * @async
+       * @example
+       * import { mapAction } from './common/mappers';
+       * await mapAction(store, 'fetchContracts', 'revenues')();
+       * @return {Boolean} is resolved
+       * @memberof store#revenues#
+       */
+
+      async fetchContracts({ commit }) {
+         await tmpPromise(350);
+         const contractsData = require('../../assets/examples/contracts.json');
+         commit('setContracts', contractsData);
+         return true;
+      },
    }
 };
