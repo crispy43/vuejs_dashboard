@@ -2,7 +2,7 @@
 <div class="main-header">
    <div>
       <div class="main-header-title">
-         <h4>{{ pathNames[2].name }}</h4>
+         <h4>{{ pathNames[2] }}</h4>
       </div>
       <div class="main-header-depth">
          <div
@@ -12,8 +12,8 @@
             :index="index"
             :item="item"
          >
-            <p>{{ item.name }}</p>
-            <span v-if="!item.isLast">{{ symbol }}</span>
+            <p>{{ item }}</p>
+            <span v-if="index !== pathNames.length - 1">{{ symbol }}</span>
          </div>
       </div>
    </div>
@@ -31,18 +31,11 @@ export default {
    name: 'MainHeader',
    setup() {
       const store = useStore();
-      const { currentKeys, keyMap } = toRefs(store.state.treeMenu);
-
+      const { currentPath, pathMap } = toRefs(store.state.treeMenu);
+      
       const pathNames = computed(() => {
-         const keys = Array.from(currentKeys.value);
-         const names = [];
-         for (let i = 0; i < keys.length; i++) {
-            names.push({
-               name: keyMap.value.get(keys[i])[i],
-               isLast: (i === keys.length - 1)
-            });
-         }
-         return names;
+         const findMap = Object.assign({}, pathMap.value.get(currentPath.value));
+         return (findMap.printNames) ? JSON.parse(JSON.stringify(findMap.printNames)) : ['', '', ''];
       });
 
       const symbol = '>';
