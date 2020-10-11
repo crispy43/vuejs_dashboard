@@ -68,6 +68,7 @@ export default {
 
 <style scoped>
 .side-nav {
+   z-index: 10;
    padding-top: var(--header-height);
    background-color: var(--side-nav-background-color);
 }

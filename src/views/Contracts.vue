@@ -14,7 +14,7 @@
          <div class="contracts-sheet-header-right">
             <ButtonB>행추가</ButtonB>
             <ButtonB>행삭제</ButtonB>
-            <ButtonB>엑셀업로드</ButtonB>
+            <ButtonB @click="setModal(true)">엑셀업로드</ButtonB>
          </div>
       </div>
       <div
@@ -36,6 +36,8 @@
       </div>
    </div>
 </div>
+<!-- modal -->
+<Modal :modalName="modalName" />
 </template>
 
 
@@ -43,7 +45,7 @@
 <script>
 import { onBeforeMount, ref, toRefs } from 'vue';
 import { useStore } from 'vuex';
-import { mapAction } from '../common/mappers';
+import { mapMutation, mapAction } from '../common/mappers';
 import ContractsSearchBox from './components/ContractsSearchBox';
 import TableAScrollX from '../components/tables/TableA/TableAScrollX';
 import TableB from '../components/tables/TableB/TableB';
@@ -51,6 +53,7 @@ import TitleA from '../components/titles/TitleA';
 import ButtonA from '../components/buttons/ButtonA';
 import ButtonB from '../components/buttons/ButtonB';
 import LoaderA from '../components/loaders/LoaderA';
+import Modal from '../layouts/Modal';
 
 export default {
    name: 'Contracts',
@@ -61,7 +64,8 @@ export default {
       TitleA,
       ButtonA,
       ButtonB,
-      LoaderA
+      LoaderA,
+      Modal
    },
    setup() {
       const store = useStore();
@@ -81,12 +85,20 @@ export default {
          isLoadContracts.value = false;
       }
 
+      const setModal = (value) => {
+         mapMutation(store, 'setIsModalOn')(value);
+      }
+
+      const modalName = ref('TempModal');
+
       return {
          theadHeight: '30px',
          tbodyMaxHeight: '50vh',
          contractsHeaders,
          contractsData,
          isLoadContracts,
+         setModal,
+         modalName,
          resultData: [
             [
                {

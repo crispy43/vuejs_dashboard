@@ -85,7 +85,7 @@ export default {
    position: fixed;
    left: 0;
    right: 0;
-   z-index: 10;
+   z-index: 11;
    width: 100%;
    height: var(--header-height);
    background-color: var(--header-background-color);

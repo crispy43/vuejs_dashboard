@@ -70,5 +70,6 @@ html, body {
 #app {
    flex: 1 1 auto;
    display: flex;
+   z-index: 1;
 }
 </style>

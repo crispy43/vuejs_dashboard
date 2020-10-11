@@ -14,11 +14,15 @@ export default createStore({
       version,
       env: process.env.NODE_ENV,
       bugs,
-      isAuthenticated: false
+      isAuthenticated: false,
+      isModalOn: false
    }),
    mutations: {
       setIsAuthenticated(state, payload) {
          state.isAuthenticated = payload;
+      },
+      setIsModalOn(state, payload) {
+         state.isModalOn = payload;
       }
    },
    actions: {

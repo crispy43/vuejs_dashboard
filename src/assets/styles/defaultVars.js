@@ -1,0 +1,72 @@
+export default {
+   /**
+    * @name cssRootVar
+    * @description 전체 컴포넌트 스타일 변수 정의
+    */
+
+   // layouts
+   '--header-height': '55px',
+   '--header-background-color': '#5e72e4',
+   '--header-background-color-hover': '#576ada',
+   '--header-nav-color': 'white',
+   '--header-nav-font-size': '14px',
+   '--side-nav-width': '200px',
+   '--side-nav-min-width': '50px',
+   '--side-nav-background-color': 'rgb(250, 250, 250)',
+   '--side-nav-items-background-color-active': 'rgb(240, 240, 240)',
+   '--header-logo-width': '200px',
+   '--header-logo-height': 'auto',
+   '--header-user-signout-width': 'auto',
+   '--header-user-signout-height': 'auto',
+   '--main-padding-top': '5px',
+   '--main-padding-left-right': '35px',
+   '--scrollbar-width': '8px',
+   '--scrollbar-height': '8px',
+   '--scrollbar-background-color': 'rgb(240, 240, 240)',
+
+   // components
+   '--search-box-background-color': 'rgb(230, 230, 230)',
+   '--search-box-prop-background-color': 'rgb(230, 230, 230)',
+   '--search-box-prop-color': 'black',
+   '--search-box-prop-font-size': '12px',
+   '--search-box-prop-font-weight': '700',
+   '--search-box-value-background-color': 'white',
+   '--search-box-value-color': 'black',
+   '--search-box-value-font-size': '12px',
+   '--search-box-value-font-weight': '400',
+   '--search-box-value-input-height': '22px',
+   '--search-box-border': '1px solid rgb(240, 240, 240)',
+   '--search-box-cell-border': '1px solid rgb(240, 240, 240)',
+   '--search-box-input-border': '1px solid rgb(210, 210, 210)',
+   '--table-a-border': '1px solid rgb(230, 230, 230)',
+   '--table-a-cell-border': '1px solid rgb(230, 230, 230)',
+   '--table-a-th-background-color': 'rgb(230, 230, 230)',
+   '--table-a-th-color': 'black',
+   '--table-a-th-font-size': '12px',
+   '--table-a-th-font-weight': '700',
+   '--table-a-td-odd-background-color': 'white',
+   '--table-a-td-even-background-color': 'rgb(255, 255, 255)',
+   '--table-a-td-color': 'black',
+   '--table-a-td-font-size': '12px',
+   '--table-a-td-font-weight': '400',
+   '--table-a-td-input-border': '1px solid rgb(210, 210, 210)',
+   '--table-b-border': '1px solid rgb(230, 230, 230)',
+   '--table-b-cell-border': '1px solid rgb(230, 230, 230)',
+   '--table-b-th-background-color': 'rgb(230, 230, 230)',
+   '--table-b-th-color': 'black',
+   '--table-b-th-font-size': '12px',
+   '--table-b-th-font-weight': '700',
+   '--table-b-td-background-color': 'white',
+   '--table-b-td-color': 'black',
+   '--table-b-td-font-size': '12px',
+   '--table-b-td-font-weight': '400',
+   '--button-a-background-color': '#5e72e4',
+   '--button-a-color': 'white',
+   '--button-a-font-size': '13px',
+   '--button-a-font-weight': '700',
+   '--loader-color': '#5e72e4',
+
+   /* animations */
+   '--fade-time': '0.25s',
+   '--slide-time': '0.25s'
+};
