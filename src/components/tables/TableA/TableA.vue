@@ -1,6 +1,9 @@
 <template>
-<div class="table-a">
-   <table>
+<div
+   class="table-a"
+   :style="{ 'overflow-x': overflowX }"
+>
+   <table :style="{ 'width': tableWidth }">
       <thead>
          <tr>
             <th
@@ -52,6 +55,10 @@ export default {
          type: Array,
          required: true
       },
+      tableWidth: {
+         type: String,
+         default: '100%'
+      },
       theadHeight: {
          type: String,
          default: 'auto'
@@ -69,6 +76,14 @@ export default {
       hideRowMutName: String,
       hideRowStateName: String,
       storeName: String
+   },
+   setup(props) {
+      const tableWidthNum = parseInt(props.tableWidth.replace(/%/, ''));
+      const overflowX = (tableWidthNum > 100) ? 'scroll' : 'visible';
+
+      return {
+         overflowX
+      };
    }
 }
 </script>
@@ -78,7 +93,6 @@ export default {
 <style>
 .table-a {
    display: block;
-   width: 100%;
    margin: 0 0 20px;
 }
 .table-a > table {

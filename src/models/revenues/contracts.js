@@ -75,7 +75,7 @@ export default {
    },
    walletAddress: {
       name: '전자지갑주소',
-      width: 120
+      width: 130
    },
    createdAt: {
       name: '등록일자',

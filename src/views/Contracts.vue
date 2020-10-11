@@ -23,13 +23,13 @@
       >
          <transition name="fade-i" mode="out-in" appear>
             <LoaderA v-if="isLoadContracts" />
-            <TableAScrollX
+            <TableA
                v-else
                :headers="contractsHeaders"
                :data="contractsData"
+               :tableWidth="'175%'"
                :theadHeight="theadHeight"
                :tbodyMaxHeight="tbodyMaxHeight"
-               :tableWidth="'200%'"
                :thHeight="'50px'"
             />
          </transition>
@@ -47,7 +47,7 @@ import { onBeforeMount, ref, toRefs } from 'vue';
 import { useStore } from 'vuex';
 import { mapMutation, mapAction } from '../common/mappers';
 import ContractsSearchBox from './components/ContractsSearchBox';
-import TableAScrollX from '../components/tables/TableA/TableAScrollX';
+import TableA from '../components/tables/TableA/TableA';
 import TableB from '../components/tables/TableB/TableB';
 import TitleA from '../components/titles/TitleA';
 import ButtonA from '../components/buttons/ButtonA';
@@ -59,7 +59,7 @@ export default {
    name: 'Contracts',
    components: {
       ContractsSearchBox,
-      TableAScrollX,
+      TableA,
       TableB,
       TitleA,
       ButtonA,
