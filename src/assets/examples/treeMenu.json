@@ -56,7 +56,22 @@
                      "component": "RevenueSheet"
                   },
                   {
-                     "name": "계약관리",
+                     "name": "입금업로드",
+                     "key": "depositRegister",
+                     "component": "DepositRegister"
+                  },
+                  {
+                     "name": "입금목록",
+                     "key": "deposits",
+                     "component": "Deposits"
+                  },
+                  {
+                     "name": "매출업로드",
+                     "key": "salesRegister",
+                     "component": "DepositRegister"
+                  },
+                  {
+                     "name": "매출목록",
                      "key": "contracts",
                      "component": "Contracts"
                   }
