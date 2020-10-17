@@ -93,7 +93,7 @@ export default {
    display: flex;
    align-items: center;
    justify-content: flex-start;
-   color: var(--search-box-color);
+   color: var(--search-box-prop-color);
    font-size: var(--search-box-prop-font-size);
    font-weight: var(--search-box-prop-font-weight);
    margin-right: 20px;
@@ -105,7 +105,7 @@ export default {
    align-items: center;
    height: 35px;
    border: var(--search-box-input-border);
-   color: var(--search-box-color);
+   color: var(--search-box-value-color);
    font-size: var(--search-box-value-font-size);
    font-weight: var(--search-box-value-font-weight);
    margin-right: 20px;

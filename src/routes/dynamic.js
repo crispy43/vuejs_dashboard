@@ -16,7 +16,12 @@ export default (store) => {
         path: '/signin/:pathMatch(.*)*',
         name: 'SignIn',
         component: () => import('../views/SignIn.vue')
-     }
+      },
+      {
+         path: '/user/password/:pathMatch(.*)*',
+         name: 'PasswordChange',
+         component: () => import('../views/PasswordChange.vue')
+      }
    ];
 
    for (const [path, { name, parentsName, childPath, component, params }] of pathMap) {

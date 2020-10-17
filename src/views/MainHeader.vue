@@ -65,10 +65,15 @@ export default {
 .main-header-depth > div {
    display: inline-block;
 }
+.main-header-title > h4 {
+   font-size: var(--main-header-last-path-font-size);
+}
 .main-header-depth-items > p {
    display: inline;
+   font-size: var(--main-header-all-path-font-size);
 }
 .main-header-depth-items > span {
+   font-size: var(--main-header-all-path-font-size);
    margin: 0 10px;
 }
 </style>

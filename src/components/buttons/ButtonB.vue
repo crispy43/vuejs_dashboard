@@ -16,13 +16,14 @@ export default {
 
 <style scoped>
 .button-b {
-   width: auto;
-   height: auto;
-   border: 1px solid black;
+   border: none;
    border-radius: 5px;
-   background-color: white;
-   font-size: 11px;
+   background-color: var(--button-b-background-color);
+   box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+   color: var(--button-b-color);
+   font-size: var(--button-b-font-size);
+   font-weight: var(--button-b-font-weight);
    cursor: pointer;
-   padding: 5px 7.5px;
+   padding: 7.5px 10px;
 }
 </style>

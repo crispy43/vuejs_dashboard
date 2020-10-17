@@ -19,7 +19,8 @@ export default {
    display: block;
    padding: 5px 0 5px 10px;
    margin: 5px 0 5px 10px;
-   font-size: 15px;
-   font-weight: bold;
+   font-size: var(--title-a-font-size);
+   font-weight: var(--title-a-font-weight);
+   color: var(--title-a-color);
 }
 </style>

@@ -20,7 +20,8 @@ export default {
    list-style: square;
    padding: 5px 0 5px 9px;
    margin: 5px 0 5px 9px;
-   font-size: 13px;
-   font-weight: bold;
+   font-size: var(--title-b-font-size);
+   font-weight: var(--title-b-font-weight);
+   color: var(--title-b-color);
 }
 </style>

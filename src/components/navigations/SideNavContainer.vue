@@ -79,10 +79,11 @@ export default {
 }
 .side-nav-container-name > svg {
    flex: 0 1 50px;
-   font-size: 13px;
+   font-size: var(--side-nav-items-icon-size);
+   color: var(--side-nav-items-icon-color);
 }
 .side-nav-container-name > h3 {
    flex: 1 1 auto;
-   font-size: 15px;
+   font-size: var(--side-nav-items-font-size);
 }
 </style>

@@ -204,6 +204,7 @@ export default {
    display: flex;
    align-items: center;
    justify-content: space-between;
+   margin-bottom: 5px;
 }
 .revenue-sheet-header-right > * {
    margin-left: 10px;

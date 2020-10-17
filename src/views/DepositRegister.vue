@@ -144,6 +144,7 @@ export default {
    align-items: center;
    background-color: var(--search-box-background-color);
    font-size: var(--search-box-prop-font-size);
+   font-weight: var(--search-box-prop-font-weight);
    padding: 20px;
 }
 .deposit-register-value {
@@ -202,6 +203,7 @@ export default {
    display: flex;
    align-items: center;
    justify-content: space-between;
+   margin-bottom: 5px;
 }
 .deposit-register-table-header-right > * {
    margin-left: 10px;

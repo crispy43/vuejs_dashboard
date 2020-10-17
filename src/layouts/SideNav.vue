@@ -101,7 +101,8 @@ export default {
 }
 .side-nav-bottom svg {
    position: absolute;
-   font-size: 25px;
+   font-size: var(--side-nav-items-icon-toggle-size);
+   color: var(--side-nav-items-icon-toggle-color);
    cursor: pointer;
 }
 @keyframes nav-on {

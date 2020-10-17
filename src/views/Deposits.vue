@@ -167,6 +167,7 @@ export default {
    display: flex;
    align-items: center;
    justify-content: space-between;
+   margin-bottom: 5px;
 }
 .deposit-table-header-right > * {
    margin-left: 10px;
