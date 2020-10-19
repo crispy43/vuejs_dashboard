@@ -123,6 +123,11 @@ export default {
     width: 100%;
     height: var(--header-height);
     background-color: var(--header-background-color);
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 .header-logo {
     flex: 0 1 var(--side-nav-width);

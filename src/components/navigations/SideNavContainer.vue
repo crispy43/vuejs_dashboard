@@ -70,6 +70,11 @@ export default {
 .side-nav-container {
    display: block;
    width: 100%;
+   -ms-user-select: none; 
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   user-select: none;
 }
 .side-nav-container-name {
    display: flex;
