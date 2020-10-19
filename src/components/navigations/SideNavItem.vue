@@ -1,10 +1,13 @@
 <template>
 <div
-   :class="['side-nav-item', { 'side-nav-item-active': isActive }]"
+   class="side-nav-item"
    @click="routerPush"
 >
-   <FontAwesomeIcon icon="chevron-right" />
-   <p>{{ subMenu }}</p>
+   <span />
+   <!-- <FontAwesomeIcon icon="chevron-right" /> -->
+   <p :class="{ 'side-nav-item-active': isActive }">
+      {{ subMenu }}
+   </p>
 </div>
 </template>
 
@@ -16,15 +19,15 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
 // fortawesome
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faChevronRight);
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// library.add(faChevronRight);
 
 export default {
    name: 'SideNavItem',
    components: {
-      FontAwesomeIcon
+      // FontAwesomeIcon
    },
    props: {
       pIndex: Number,
@@ -66,8 +69,17 @@ export default {
    height: 35px;
    cursor: pointer;
 }
+.side-nav-item > span {
+   height: 35px;    
+   width: 3px;
+   background: var(--side-nav-items-background-color-active);
+   margin: 0 10px 0 25px;
+}
 .side-nav-item-active {
    background-color: var(--side-nav-items-background-color-active);
+   border-radius: 5px;
+   color: var(--side-nav-items-color-active);
+   font-weight: 700;
 }
 .side-nav-item > svg {
    flex: 0 1 50px;
@@ -76,6 +88,16 @@ export default {
 }
 .side-nav-item > p {
    flex: 1 1 auto;
+   display: flex;
+   align-items: center;
+   height: 100%;
    font-size: var(--side-nav-items-font-size);
+   padding-left: 10px;
+   margin-right: 10px;
+}
+.side-nav-item > p:hover {
+   background-color: var(--side-nav-items-background-color-active);
+   border-radius: 5px;
+   color: var(--side-nav-items-color-active);
 }
 </style>

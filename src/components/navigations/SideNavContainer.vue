@@ -14,7 +14,7 @@
       />
       <h3>{{ subTree.name }}</h3>
    </div>
-   <div v-show="isShowItems">
+   <div :class="['side-nav-item', isShowItems ? navItemOnClass : navItemOffClass]">
       <SideNavItem
          v-for="(item, cIndex) in subTree.child"
          :key="item.key"
@@ -56,7 +56,9 @@ export default {
       }
 
       return {
-         isShowItems, drop
+         isShowItems, drop,
+         navItemOnClass: 'side-nav-item-on',
+         navItemOffClass: 'side-nav-item-off'
       };
    }
 }
@@ -85,5 +87,16 @@ export default {
 .side-nav-container-name > h3 {
    flex: 1 1 auto;
    font-size: var(--side-nav-items-font-size);
+}
+.side-nav-item {
+   max-height: 500px;
+   transition: max-height var(--slide-time) ease-in-out;
+   overflow: hidden;
+}
+.side-nav-item-on {
+   max-height: 500px;
+}
+.side-nav-item-off {
+   max-height: 0;
 }
 </style>
