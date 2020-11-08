@@ -127,7 +127,7 @@
                   {
                      "name": "직원목록",
                      "key": "list",
-                     "component": "TempView"
+                     "component": "Members"
                   },
                   {
                      "name": "직원등록",

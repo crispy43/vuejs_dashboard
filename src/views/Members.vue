@@ -1,37 +1,66 @@
 <template>
-<div class="deposit">
-   <SearchBoxA
-      :date="{
-         id: 'deposit-date',
-         label: '입금일'
-      }"
-      :text="{
-         id: 'contractor',
-         label: '입금자명',
-         placeholder: '입금자명을 입력하세요...'
-      }"
-   />
-   <div class="deposit-table-header">
-      <TitleA>리스트</TitleA>
-      <div class="deposit-table-header-right">
+<div class="members">
+   <div class="search-box">
+      <div class="search-box-form">
+         <div class="search-box-date">
+            <label for="member-search-date">입사일</label>
+            <input
+               type="date"
+               name="member-search-date"
+               id="member-search-date"
+            >
+         </div>
+         <div class="search-box-text">
+            <label for="member-search-text">검색어</label>
+            <select>
+               <option value="">이름</option>
+               <option value="">사번</option>
+               <option value="">부서</option>
+            </select>
+            <input
+               type="text"
+               name="member-search-text"
+               id="member-search-text"
+               placeholder="검색어를 입력하세요..." 
+            >
+            <div class="search-box-check">
+               <input
+                  type="checkbox"
+                  name="member-search-option"
+                  id="member-search-option"
+               >
+               <label for="member-search-option">퇴직자 포함</label>
+            </div>
+         </div>
+      </div>
+      <ButtonA>검색</ButtonA>
+   </div>
+   <div class="member-table-header">
+      <TitleA>직원목록 (000)명</TitleA>
+      <div class="member-table-header-right">
          <ButtonB @click="setModal(true)">엑셀다운로드</ButtonB>
       </div>
    </div>
    <div
-      class="deposit-table"
+      class="member-table"
       :style="{ height: 'calc(' + theadHeight + ' + 40vh)' }"
    >
-      <transition name="fade-i" mode="out-in" appear>
-         <LoaderA v-if="isLoadDeposits" />
-         <TableA
-            v-else
-            :headers="depositsFileHeaders"
-            :data="depositsFileData"
-            :theadHeight="theadHeight"
-            :tbodyMaxHeight="tbodyMaxHeight"
-            :thHeight="theadHeight"
-         />
-      </transition>
+      <div class="member-table-option">
+         직원 검색창
+      </div>
+      <div class="member-table-result">
+         <transition name="fade-i" mode="out-in" appear>
+            <LoaderA v-if="isLoadDeposits" />
+            <TableA
+               v-else
+               :headers="depositsFileHeaders"
+               :data="depositsFileData"
+               :theadHeight="theadHeight"
+               :tbodyMaxHeight="tbodyMaxHeight"
+               :thHeight="theadHeight"
+            />
+         </transition>
+      </div>
    </div>
 </div>
 </template>
@@ -40,18 +69,18 @@
 
 <script>
 import { ref } from 'vue';
-import SearchBoxA from '../components/forms/SearchBoxA';
 import TableA from '../components/tables/TableA/TableA';
 import TitleA from '../components/titles/TitleA';
+import ButtonA from '../components/buttons/ButtonA';
 import ButtonB from '../components/buttons/ButtonB';
 import LoaderA from '../components/loaders/LoaderA';
 
 export default {
-   name: 'Deposits',
+   name: 'Members',
    components: {
-      SearchBoxA,
       TableA,
       TitleA,
+      ButtonA,
       ButtonB,
       LoaderA
    },
@@ -63,29 +92,29 @@ export default {
          tbodyMaxHeight: '50vh',
          depositsFileHeaders: {
             key: {
-               name: '코드',
+               name: '사번',
                width: '16.666%'
             },
             depositedAt: {
-               name: '입금일시',
+               name: '이름',
                width: '16.666%'
             },
             bank: {
-               name: '입금은행',
+               name: '부서구분',
                width: '16.666%'
             },
             bankAccount: {
-               name: '입금계좌',
+               name: '직원유형',
                width: '16.666%'
             },
             contractor: {
-               name: '입금자',
+               name: '부서',
                width: '16.666%'
             },
             amount: {
-               name: '입금액',
+               name: '직급',
                width: '16.666%'
-            },
+            }
          },
          depositsFileData: [
             ['', '', '', '', '', '']
@@ -99,80 +128,82 @@ export default {
 
 
 <style scoped>
-.deposit-form {
+.search-box {
    display: flex;
    width: 100%;
-   border: var(--search-box-border);
-   margin-bottom: 15px;
-}
-.deposit-prop {
-   flex: 1 1 20%;
-   display: flex;
-   align-items: center;
-   background-color: var(--search-box-background-color);
-   padding: 20px;
-}
-.deposit-value {
-   flex: 1 1 80%;
-   display: flex;
    align-items: center;
    justify-content: space-between;
-   padding: 0 20px;
+   background-color: var(--search-box-background-color);
+   border: var(--search-box-border);
+   padding: 12.5px 15px;
+   margin: 10px 0;
 }
-.deposit-input {
+.search-box-form {
    flex: 1 1 auto;
    display: flex;
+   align-items: center;
 }
-.deposit-input > select, .deposit-input > input {
-   flex: 0 1 25%;
+.search-box-form > div {
+   flex: 1 1 auto;
+   display: flex;
+   margin-right: 20px;
+}
+.search-box-form > div > label {
+   flex: 1 1 30%;
+   display: flex;
+   align-items: center;
+   justify-content: flex-start;
+   color: var(--search-box-prop-color);
+   font-size: var(--search-box-prop-font-size);
+   font-weight: var(--search-box-prop-font-weight);
+   margin-right: 20px;
+}
+.search-box-form > div > input, .search-box-form > div > select {
+   flex: 1 1 70%;
+   display: flex;
+   min-width: 50px;
+   align-items: center;
    height: 35px;
    border: var(--search-box-input-border);
-   color: var(--search-box-color);
+   color: var(--search-box-value-color);
    font-size: var(--search-box-value-font-size);
    font-weight: var(--search-box-value-font-weight);
-   margin-right: 15px;
+   margin-right: 20px;
    padding: 5px 10px;
 }
-.deposit-input > label {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+.search-box-check {
    min-width: 100px;
-   border: none;
-   border-radius: 5px;
-   background-color: var(--button-a-background-color);
-   box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-   color: var(--button-a-color);
-   font-size: var(--button-a-font-size);
-   font-weight: var(--button-a-font-weight);
-   cursor: pointer;
-   margin-right: 15px;
-   padding: 7.5px 10px;
-}
-.none {
-   display: none;
-}
-.file-input-button {
-   flex: 0 0 89px;
    display: flex;
    align-items: center;
-   justify-content: center;
-   background-color: #fafbfb;
-   border-radius: 0 4px 4px 0 / 0 4px 4px 0;
-   border-left: solid 1px #d8dbe0;
-   font-size: 14px;
-   color: #3c4b64;
 }
-.deposit-table-header {
+.search-box-check label {
+   color: var(--search-box-value-color);
+   font-size: var(--search-box-value-font-size);
+   font-weight: var(--search-box-value-font-weight);
+   padding-left: 15px;
+}
+.search-box button {
+   flex: 0 1 100px;
+}
+.member-table-header {
    display: flex;
    align-items: center;
    justify-content: space-between;
    margin-bottom: 5px;
 }
-.deposit-table-header-right > * {
+.member-table-header-right > * {
    margin-left: 10px;
 }
-.deposit-table-table {
+.member-table {
+   display: flex;
    margin-bottom: 20px;
+}
+.member-table-option {
+   flex: 1 1 33%;
+   border: 1px solid black;
+   margin-right: 30px;
+}
+.member-table-result {
+   flex: 1 1 66%;
 }
 </style>
