@@ -120,13 +120,77 @@
          "key": "personals",
          "child": [
             {
-               "name": "depth2",
-               "key": "depth2",
+               "name": "전체",
+               "key": "all",
                "component": "MainHeader",
                "child": [
                   {
-                     "name": "depth3",
-                     "key": "depth3",
+                     "name": "직원목록",
+                     "key": "list",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "직원등록",
+                     "key": "register",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "계좌조회",
+                     "key": "accounts",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "계좌변경 이력",
+                     "key": "accountLogs",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "직급변경 이력",
+                     "key": "rankLogs",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "승진",
+                     "key": "promotion",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "특진",
+                     "key": "special",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "근태",
+                     "key": "attendance",
+                     "component": "TempView"
+                  }
+               ]
+            },
+            {
+               "name": "영업부서 관리",
+               "key": "sales",
+               "component": "MainHeader",
+               "child": [
+                  {
+                     "name": "영업부서 매출조직도",
+                     "key": "organization",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "영업사원 목록",
+                     "key": "list",
+                     "component": "TempView"
+                  }
+               ]
+            },
+            {
+               "name": "지원부서",
+               "key": "support",
+               "component": "MainHeader",
+               "child": [
+                  {
+                     "name": "직원 목록",
+                     "key": "list",
                      "component": "TempView"
                   }
                ]

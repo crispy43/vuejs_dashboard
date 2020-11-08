@@ -95,7 +95,7 @@ export default {
 }
 .side-nav-item {
    max-height: 500px;
-   transition: max-height var(--slide-time) ease-in-out;
+   transition: max-height var(--slide-time);
    overflow: hidden;
 }
 .side-nav-item-on {
