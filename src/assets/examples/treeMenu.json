@@ -132,7 +132,7 @@
                   {
                      "name": "직원등록",
                      "key": "register",
-                     "component": "TempView"
+                     "component": "MemberRegister"
                   },
                   {
                      "name": "계좌조회",
