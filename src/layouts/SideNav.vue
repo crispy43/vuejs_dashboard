@@ -97,7 +97,7 @@ export default {
    align-items: center;
    justify-content: center;
    position: fixed;
-   bottom: 25px;
+   bottom: 60px;
 }
 .side-nav-bottom svg {
    position: absolute;

@@ -3,6 +3,7 @@
     <Header v-if="isAuthenticated" :headerLogo="headerLogo" />
     <SideNav v-if="isAuthenticated" />
     <Main />
+    <Footer />
 </div>
 </template>
 
@@ -15,13 +16,15 @@ import defaultVars from '../assets/styles/defaultVars';
 import Header from './Header';
 import SideNav from './SideNav';
 import Main from './Main';
+import Footer from './Footer';
 
 export default {
     name: 'DefaultLayout',
     components: {
         Header,
         SideNav,
-        Main
+        Main,
+        Footer
     },
     setup() {
         const cssRootVar = reactive(defaultVars);

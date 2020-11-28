@@ -141,7 +141,7 @@ export default {
     cursor: pointer;
 }
 .header-nav {
-    flex: 1 0 auto;
+    flex: 0 0 120px;
     display: flex;
 }
 .header-user {
@@ -154,6 +154,11 @@ export default {
 .header-user {
     flex: 0 1 100px;
     display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 100%;
     align-items: center;
     align-content: center;
     justify-content: center;

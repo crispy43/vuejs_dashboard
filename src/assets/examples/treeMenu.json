@@ -268,6 +268,33 @@
                ]
             }
          ]
+      },
+      {
+         "name": "* 공통팝업",
+         "key": "common",
+         "child": [
+            {
+               "name": "* 공통 팝업",
+               "key": "common",
+               "child": [
+                  {
+                     "name": "직원조회",
+                     "key": "employee",
+                     "component": "Employee"
+                  },
+                  {
+                     "name": "알럿메세지",
+                     "key": "alert",
+                     "component": "TempView"
+                  },
+                  {
+                     "name": "컨펌메세지",
+                     "key": "confirm",
+                     "component": "TempView"
+                  }
+               ]
+            }
+         ]
       }
    ]
 }
