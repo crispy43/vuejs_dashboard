@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <AlertA
+<AlertA
         v-if="isCommandSignOut"
         :title="'로그아웃'"
         :canCancel="true"

@@ -1,6 +1,12 @@
 <template>
-<div class="alert-modal">
-    <div class="alert-modal-container">
+<div
+    class="alert-modal"
+    @mousedown="cancel"
+>
+    <div
+        class="alert-modal-container"
+        @mousedown.stop
+    >
         <div
             v-if="title"
             class="alert-header"
@@ -62,7 +68,7 @@ export default {
     height: 100vh;
     top: 0;
     left: 0;
-    background-color: rgb(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 .alert-modal-container {
     display: block;

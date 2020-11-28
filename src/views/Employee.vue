@@ -1,5 +1,6 @@
 <template>
 <div class="employee">
+   <ButtonB @click="modalOn">직원 검색</ButtonB>
 </div>
 <!-- modal -->
 <Modal :modalName="modalName" />
@@ -9,6 +10,7 @@
 
 <script>
 import Modal from '../layouts/Modal';
+import ButtonB from '../components/buttons/ButtonB';
 import { ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { mapMutation } from '../common/mappers';
@@ -16,7 +18,8 @@ import { mapMutation } from '../common/mappers';
 export default {
    name: 'Employee',
    components: {
-      Modal
+      Modal,
+      ButtonB
    },
    setup() {
       const store = useStore();
@@ -26,8 +29,13 @@ export default {
 
       const modalName = ref('GetEmployee');
 
+      const modalOn = () => {
+         mapMutation(store, 'setIsModalOn')(true);
+      }
+
       return {
          modalName,
+         modalOn
       };
    }
 }
@@ -38,5 +46,8 @@ export default {
 <style scoped>
 .employee {
    display: block;
+}
+.employee > * {
+   margin: 20px;
 }
 </style>

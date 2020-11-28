@@ -284,13 +284,13 @@
                   },
                   {
                      "name": "알럿메세지",
-                     "key": "alert",
-                     "component": "TempView"
+                     "key": "alerts",
+                     "component": "Alerts"
                   },
                   {
                      "name": "컨펌메세지",
-                     "key": "confirm",
-                     "component": "TempView"
+                     "key": "confirms",
+                     "component": "Confirms"
                   }
                ]
             }
