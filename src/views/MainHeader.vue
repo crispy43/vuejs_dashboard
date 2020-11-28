@@ -5,6 +5,7 @@
          <h4>{{ pathNames[2] }}</h4>
       </div>
       <div class="main-header-depth">
+         <FontAwesomeIcon icon="home" />
          <div
             class="main-header-depth-items"
             v-for="(item, index) in pathNames"
@@ -27,8 +28,17 @@
 import { computed, toRefs } from 'vue';
 import { useStore } from 'vuex';
 
+// fortawesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(faHome);
+
 export default {
    name: 'MainHeader',
+   components: {
+      FontAwesomeIcon  
+   },
    setup() {
       const store = useStore();
       const { currentPath, pathMap } = toRefs(store.state.treeMenu);
@@ -67,6 +77,11 @@ export default {
 }
 .main-header-title > h4 {
    font-size: var(--main-header-last-path-font-size);
+}
+.main-header-depth > svg {
+   font-size: var(--main-header-all-path-font-size);
+   color: #555;
+   margin-right: 10px;
 }
 .main-header-depth-items > p {
    display: inline;
