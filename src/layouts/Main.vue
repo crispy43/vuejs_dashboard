@@ -33,6 +33,7 @@ export default {
    flex: 1 1 auto;
    background-color: white;
    overflow-y: auto;
+   margin-bottom: 50px;
 }
 .is-authenticated {
    padding: calc(var(--header-height) + var(--main-padding-top)) var(--main-padding-left-right) 0;
