@@ -24,12 +24,14 @@
          <label>계약구분</label>
       </td>
       <td class="value">
-         <input type="radio">
-         <label class="radio-label">전체</label>
-         <input type="radio">
-         <label class="radio-label">전자계약</label>
-         <input type="radio">
-         <label class="radio-label">수기계약</label>
+         <div class="radio-container">
+            <input type="radio">
+            <label class="radio-label">전체</label>
+            <input type="radio">
+            <label class="radio-label">전자계약</label>
+            <input type="radio">
+            <label class="radio-label">수기계약</label>
+         </div>
       </td>
       <td class="prop">
          <label>계약상태</label>
@@ -61,12 +63,14 @@
          <label>마감여부</label>
       </td>
       <td class="value">
-         <input type="radio">
-         <label class="radio-label">수기계약</label>
-         <input type="radio">
-         <label class="radio-label">Y</label>
-         <input type="radio">
-         <label class="radio-label">N</label>
+         <div class="radio-container">
+            <input type="radio">
+            <label class="radio-label">수기계약</label>
+            <input type="radio">
+            <label class="radio-label">Y</label>
+            <input type="radio">
+            <label class="radio-label">N</label>
+         </div>
       </td>
       <td class="prop">
          <label>고객 연락처</label>
@@ -145,20 +149,25 @@ export default {
 }
 .contract-search-box input[type=text], .contract-search-box input[type=date] {
    width: 12vw;
-   height: var(--search-box-value-input-height);
    border: var(--search-box-input-border);
    color: var(--search-box-value-color);
    font-size: var(--search-box-value-font-size);
    font-weight: var(--search-box-value-font-weight);
-   padding-left: 5px;
+   padding: 7.5px 0 5px 5px;
 }
 .contract-search-box select {
    width: 12vw;
-   height: var(--search-box-value-input-height);
    border: var(--search-box-input-border);
    color: var(--search-box-value-color);
    font-size: var(--search-box-value-font-size);
    font-weight: var(--search-box-value-font-weight);
-   padding-left: 5px;
+   padding: 7.5px 0 5px 5px;
+}
+.radio-container {
+   display: flex;
+   align-items: center;
+}
+.radio-container > * {
+   margin-right: 10px;
 }
 </style>

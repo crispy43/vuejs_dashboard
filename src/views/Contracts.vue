@@ -33,6 +33,17 @@
                :thHeight="'50px'"
             />
          </transition>
+         <div class="pagenation">
+            <PagenationA
+               :pages="[
+                  { number: 1, isCurrentPage: true },
+                  { number: 2 },
+                  { number: 3 },
+                  { number: 4 },
+                  { number: 5 }
+               ]"
+            />
+         </div>
       </div>
    </div>
 </div>
@@ -54,6 +65,7 @@ import ButtonA from '../components/buttons/ButtonA';
 import ButtonB from '../components/buttons/ButtonB';
 import LoaderA from '../components/loaders/LoaderA';
 import Modal from '../layouts/Modal';
+import PagenationA from '../components/pagenations/PagenationA';
 
 export default {
    name: 'Contracts',
@@ -65,7 +77,8 @@ export default {
       ButtonA,
       ButtonB,
       LoaderA,
-      Modal
+      Modal,
+      PagenationA
    },
    setup() {
       const store = useStore();
@@ -160,5 +173,8 @@ export default {
 }
 .contracts-sheet-table {
    margin-bottom: 20px;
+}
+.pagenation > * {
+   margin: 0 auto;
 }
 </style>
