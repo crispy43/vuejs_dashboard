@@ -46,7 +46,9 @@
       :style="{ height: 'calc(' + theadHeight + ' + 40vh)' }"
    >
       <div class="member-table-option">
-         직원 검색창
+         <TreeViewA
+            :data="members"
+         />
       </div>
       <div class="member-table-result">
          <transition name="fade-i" mode="out-in" appear>
@@ -74,6 +76,7 @@ import TitleA from '../components/titles/TitleA';
 import ButtonA from '../components/buttons/ButtonA';
 import ButtonB from '../components/buttons/ButtonB';
 import LoaderA from '../components/loaders/LoaderA';
+import TreeViewA from '../components/tree/TreeViewA';
 
 export default {
    name: 'Members',
@@ -82,7 +85,8 @@ export default {
       TitleA,
       ButtonA,
       ButtonB,
-      LoaderA
+      LoaderA,
+      TreeViewA
    },
    setup() {
       const isLoadDeposits = ref(false);
@@ -119,7 +123,82 @@ export default {
          depositsFileData: [
             ['', '', '', '', '', '']
          ],
-         isLoadDeposits
+         isLoadDeposits,
+         members: [
+            {
+               key: 'all',
+               name: '전체',
+               type: 'list',
+               child: [
+                  {
+                     key: 'partA',
+                     name: '부서A',
+                     type: 'list',
+                     child: [
+                        {
+                           key: 'A0001',
+                           name: '차장 / 홍길동 / A0001',
+                           type: 'item'
+                        },
+                        {
+                           key: 'A0002',
+                           name: '과장 / 김철수 / A0002',
+                           type: 'item'
+                        },
+                        {
+                           key: 'A0003',
+                           name: '대리 / 최영희 / A0003',
+                           type: 'item'
+                        }
+                     ]
+                  },
+                  {
+                     key: 'partB',
+                     name: '부서B',
+                     type: 'list',
+                     child: [
+                        {
+                           key: 'A0001',
+                           name: '차장 / 홍길동 / A0001',
+                           type: 'item'
+                        },
+                        {
+                           key: 'A0002',
+                           name: '과장 / 김철수 / A0002',
+                           type: 'item'
+                        },
+                        {
+                           key: 'A0003',
+                           name: '대리 / 최영희 / A0003',
+                           type: 'item'
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               key: 'etc',
+               name: '기타',
+               type: 'list',
+               child: [
+                  {
+                     key: 'A0001',
+                     name: '차장 / 홍길동 / A0001',
+                     type: 'item'
+                  },
+                  {
+                     key: 'A0002',
+                     name: '과장 / 김철수 / A0002',
+                     type: 'item'
+                  },
+                  {
+                     key: 'A0003',
+                     name: '대리 / 최영희 / A0003',
+                     type: 'item'
+                  }
+               ]
+            }
+         ]
       };
    }
 }

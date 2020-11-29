@@ -80,6 +80,7 @@ export default {
     width: 350px;
     border-radius: 5px;
     background-color: white;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
 }
 .alert-modal-container > div {
     display: flex;
